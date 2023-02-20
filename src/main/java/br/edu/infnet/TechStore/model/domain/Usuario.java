@@ -9,8 +9,6 @@ public class Usuario {
     private String setor;
     private String email;
 
-    private String caracteristicas[];
-
 
     public Usuario(){
 
@@ -31,16 +29,14 @@ public class Usuario {
     public String toString() {
 
         return String.format(
-                "O usu�rio %s tem as credenciais %s e %s, %d anos e ganha R$%.2f. "
-                        + "� um usu�rio do tipo %s, atua no setor %s e tem %d caracter�sticas",
+                "O usu�rio %s tem as credenciais %s e %s e o cpf %s"
+                        + "� um usu�rio do tipo %s, atua no setor %s",
                 username,
                 email,
                 password,
                 cpf,
                 cargo,
-                email,
-                setor,
-                caracteristicas.length
+                setor
         );
     }
 
@@ -91,4 +87,5 @@ public class Usuario {
     public void setSetor(String setor) {
         this.setor = setor;
     }
+
 }

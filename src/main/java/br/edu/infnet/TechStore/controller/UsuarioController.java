@@ -24,7 +24,7 @@ public class UsuarioController {
 		System.out.println("Quantidade de usuários = " + lista.size());
 
 		for(Usuario user : lista) {
-			System.out.printf("%s - %s\n", user.getUsername(), user.getEmail());
+			System.out.printf("%s", user.toString());
 		}		
 		
 		return "usuarios/lista";

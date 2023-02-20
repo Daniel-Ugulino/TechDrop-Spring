@@ -2,88 +2,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <meta charset="ISO-8859-1">
+    <link href="/css/cadastro.css" rel="stylesheet">
     <title>TechDrop</title>
 </head>
 <body>
-<div class="container-fluid">
-    <form action="/usuario/incluir" method="post">
-        <h3>Cadastro de Usuário</h3>
+<main>
+    <form action="/usuario/incluir" method="post" class="form">
+        <h1>Cadastro de Usuário</h1>
 
-        <div class="form-group">
+        <div class="row">
             <label>Nome:</label>
             <input type="text" name="username" value="Elberth Moraes" class="form-control">
         </div>
 
-        <div class="form-group">
+        <div class="row">
             <label>Senha:</label>
             <input type="password" name="password" value="123" class="form-control">
         </div>
 
-        <div class="form-group">
+        <div class="row">
             <label>E-mail:</label>
             <input type="email" name="email" value="elberth@gmail.com" class="form-control">
         </div>
 
-        <div class="form-group">
-            <label>Idade:</label>
+        <div class="row">
+            <label>CPF:</label>
             <input type="text" name="cpf" value="44" class="form-control">
         </div>
 
-        <div class="form-group">
-            <label>Salário:</label>
-            <input type="text" name="salario" value="999999" class="form-control">
-        </div>
-
-        <div class="form-group">
-            <label>Características:</label>
-            <div class="form-check">
-                <label class="form-check-label">
-                    <input type="checkbox" name="caracteristicas" value="De" class="form-check-input" > Developer
-                </label>
-            </div>
-            <div class="form-check">
-                <label class="form-check-label">
-                    <input type="checkbox" name="caracteristicas" value="An" checked class="form-check-input"> Analista
-                </label>
-            </div>
-            <div class="form-check">
-                <label class="form-check-label">
-                    <input type="checkbox" name="caracteristicas" value="Da" class="form-check-input"> Database
-                </label>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label>Tipo:</label>
-            <div class="form-check">
-                <label class="form-check-label">
-                    <input type="radio" name="cargo" value="P" class="form-check-input" > Padrão
-                </label>
-            </div>
-            <div class="form-check">
-                <label class="form-check-label">
-                    <input type="radio" name="cargo" value="D" class="form-check-input"> Diretor
-                </label>
-            </div>
-            <div class="form-check">
-                <label class="form-check-label">
-                    <input type="radio" name="cargo" value="A" checked class="form-check-input"> Administrador
-                </label>
-            </div>
-        </div>
-
-        <div class="form-group">
+        <div class="row-options">
             <label>Setor:</label>
-            <select name="setor" class="form-control">
-                <option value="1">Diretoria</option>
-                <option value="2">Comercial</option>
-                <option value="3" selected>Desenvolvimento</option>
+            <select name="setor">
+                <option value="1">Gerencia</option>
+                <option value="2">Cliente</option>
+                <option value="3" selected>Administrador</option>
             </select>
         </div>
+
+        <div class="row-options">
+            <label>Cargo:</label>
+            <input type="radio" name="cargo" value="G" > Gestor
+            <input type="radio" name="cargo" value="C" > Cliente
+            <input type="radio" name="cargo" value="A" checked> Desenvolvimento
+        </div>
+
         <button type="submit">Cadastrar</button>
     </form>
-</div>
+</main>
 </body>
 </html>

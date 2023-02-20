@@ -2,66 +2,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/list.css" rel="stylesheet">
     <meta charset="ISO-8859-1">
     <title>TechDrop</title>
 </head>
 <body>
-
-<div class="container-fluid">
+<main>
     <form action="/usuario" method="get">
         <h3>Listagem de Usuários</h3>
 
         <button type="submit">Novo</button>
     </form>
 
-    <table class="table table-striped">
+    <table class="table">
         <thead>
         <tr>
-            <th>Nome</th>
-            <th>Senha</th>
+            <th>Username</th>
+            <th>Password</th>
             <th>E-mail</th>
-            <th>Características</th>
-            <th>Tipo</th>
+            <th>CPF</th>
             <th>Setor</th>
-            <th>Idade</th>
-            <th>Salário</th>
+            <th>Cargo</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td>Elberth Moraes</td>
+            <td>daniel.ugulino</td>
             <td>123</td>
-            <td>elberth.moraes@prof.infnet.edu.br</td>
-            <td>Programador, Pai, Professor</td>
+            <td>daniel.ugulino@aluno.infnet.edu.br</td>
+            <td>123456789</td>
             <td>Administrador</td>
-            <td>Infnet</td>
-            <td>44</td>
-            <td>999</td>
+            <td>Desenvolvimento</td>
         </tr>
         <tr>
-            <td>Elberth Moraes</td>
+            <td>elberth.moraes</td>
             <td>123</td>
             <td>elberth.moraes@prof.infnet.edu.br</td>
-            <td>Programador, Pai, Professor</td>
-            <td>Administrador</td>
-            <td>Infnet</td>
-            <td>44</td>
-            <td>999</td>
+            <td>123456789</td>
+            <td>Gerencia</td>
+            <td>Gestor</td>
         </tr>
         <tr>
-            <td>Elberth Moraes</td>
+            <td>admin</td>
             <td>123</td>
-            <td>elberth.moraes@prof.infnet.edu.br</td>
-            <td>Programador, Pai, Professor</td>
+            <td>admin@gmail.comr</td>
+            <td>123456789</td>
             <td>Administrador</td>
-            <td>Infnet</td>
-            <td>44</td>
-            <td>999</td>
+            <td>Administrador</td>
+        </tr>
+        <tr>
+            <td>cleiton.jose</td>
+            <td>123</td>
+            <td>cleiton@gmail.comr</td>
+            <td>123456789</td>
+            <td>Cliente</td>
+            <td>Cliente</td>
         </tr>
         </tbody>
     </table>
-</div>
-
+</main>
 </body>
 </html>
