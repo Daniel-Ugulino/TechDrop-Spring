@@ -20,44 +20,51 @@
 </style>
 
 <body>
-    <c:import url="/WEB-INF/jsp/components/navbar.jsp"/>
 
-    <main>
-        <div class="container-fluid d-flex justify-content-center flex-column ps-5 pe-5 " style="height: 80vh !important;">
-            <div class="row">
-                <h2>Listagem de Usuarios</h2>
-                <a href="/usuario/cadastro">Adicionar Item</a>
-            </div>
+<c:import url="/WEB-INF/jsp/components/navbar.jsp"/>
 
-            <c:if test="${not empty usuarios}">
+<main>
+    <div class="container-fluid d-flex justify-content-center flex-column ps-5 pe-5 " style="height: 80vh !important;">
+        <div class="row">
+            <h2>Listagem de Teclados</h2>
+            <a href="/teclado/cadastro">Adicionar Item</a>
+        </div>
+
+        <c:if test="${not empty teclado}">
             <div class="row">
                 <div class="table-responsive">
                     <table class="table table-hover table-striped-columns mt-3">
                         <thead>
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Username</th>
-                            <th scope="col">Password</th>
-                            <th scope="col">E-mail</th>
-                            <th scope="col">CPF</th>
-                            <th scope="col">Setor</th>
-                            <th scope="col">Cargo</th>
+                            <th scope="col">Marca</th>
+                            <th scope="col">Modelo</th>
+                            <th scope="col">Quantidade</th>
+                            <th scope="col">Valor</th>
+                            <th scope="col">Conexao</th>
+                            <th scope="col">Iluminacao</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Switch</th>
+                            <th scope="col">Ghosting</th>
                             <th scope="col">Opções</th>
                         </tr>
                         </thead>
                         <tbody class="table-group-divider">
-                            <c:forEach var="obj" items="${usuarios}">
-                                <tr>
-                                    <td>${obj.id}</td>
-                                    <td>${obj.username}</td>
-                                    <td>${obj.password}</td>
-                                    <td>${obj.email}</td>
-                                    <td>${obj.cpf}</td>
-                                    <td>${obj.setor}</td>
-                                    <td>${obj.cargo}</td>
-                                    <td><a href="/usuario/${obj.id}/excluir">excluir</a></td>
-                                </tr>
-                            </c:forEach>
+                        <c:forEach var="obj" items="${teclado}">
+                            <tr>
+                                <td>${obj.id}</td>
+                                <td>${obj.marca}</td>
+                                <td>${obj.modelo}</td>
+                                <td>${obj.quantidade}</td>
+                                <td>${obj.valor}</td>
+                                <td>${obj.bluetooh_cable}</td>
+                                <td>${obj.iluminacao}</td>
+                                <td>${obj.tipo}</td>
+                                <td>${obj.switch_type}</td>
+                                <td>${obj.ghosting}</td>
+                                <td><a href="/teclado/${obj.id}/excluir">excluir</a></td>
+                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
@@ -86,12 +93,12 @@
                     </nav>
                 </div>
             </div>
-            </c:if>
+        </c:if>
 
-        </div>
-    </main>
+    </div>
+</main>
 
-    <c:import url="/WEB-INF/jsp/components/footer.jsp"/>
+<c:import url="/WEB-INF/jsp/components/footer.jsp"/>
 
 </body>
 

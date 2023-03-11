@@ -1,0 +1,39 @@
+[
+  {
+    "id": 0,
+    "marca": "HyperX",
+    "modelo": "Alloy MKW100",
+    "quantidade": 10,
+    "valor": 209.99,
+    "bluetooh_cable": "cable",
+    "iluminacao": true,
+    "tipo": "Mecanico",
+    "switch_type" : "Red",
+    "ghosting": "100%"
+  },
+  {
+    "id": 1,
+    "marca": "Redragon",
+    "modelo": "Surara Pro",
+    "quantidade": 10,
+    "valor":  299.99,
+    "bluetooh_cable": "cable",
+    "iluminacao": false,
+    "tipo": "Optico",
+    "switch_type" : "Blue",
+    "ghosting": "100%"
+  }
+,
+  {
+    "id": 2,
+    "marca": "Logitec",
+    "modelo": "G432",
+    "quantidade": 10,
+    "valor": 299.99,
+    "bluetooh_cable": "bluetooh",
+    "iluminacao": false,
+    "tipo": "membrana",
+    "switch_type" : "none",
+    "ghosting": "100%"
+  }
+]

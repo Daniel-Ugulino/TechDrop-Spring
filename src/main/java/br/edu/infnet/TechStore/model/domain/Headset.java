@@ -11,10 +11,12 @@ public class Headset extends Produto {
 
     private String cancelamentoRuido;
 
+    public Headset(){}
 
     public Headset(Integer codigo, Float valor, Integer quantidade) throws ProdutoException {
         super(codigo,valor,quantidade);
     }
+
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("\nHeadset\n");

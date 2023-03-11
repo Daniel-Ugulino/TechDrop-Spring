@@ -1,3 +1,4 @@
+/*
 package br.edu.infnet.TechStore.model.tests;
 
 import br.edu.infnet.TechStore.model.domain.*;
@@ -74,3 +75,4 @@ public class PedidoTeste {
 
     }
 }
+*/

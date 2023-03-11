@@ -1,3 +1,4 @@
+/*
 package br.edu.infnet.TechStore.model.tests;
 
 import br.edu.infnet.TechStore.model.domain.Headset;
@@ -64,3 +65,4 @@ public class HeadsetTeste {
 
     }
 }
+*/

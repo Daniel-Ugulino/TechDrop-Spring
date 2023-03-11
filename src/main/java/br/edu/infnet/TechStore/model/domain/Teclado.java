@@ -5,13 +5,12 @@ import br.edu.infnet.TechStore.model.execptions.DescontoException;
 import br.edu.infnet.TechStore.model.execptions.ProdutoException;
 
 public class Teclado extends Produto {
-
     private String tipo;
     private String switch_type;
     private String ghosting;
 
-    public Teclado(Integer codigo, Float valor, Integer quantidade) throws ProdutoException {
-        super(codigo,valor,quantidade);
+    public Teclado() {
+
     }
 
     public String toString() {
@@ -57,7 +56,6 @@ public class Teclado extends Produto {
         valor = valor - valor_desconto;
         return setValor(valor);
     };
-
 
     public void setTipo(String tipo){
         this.tipo = tipo;

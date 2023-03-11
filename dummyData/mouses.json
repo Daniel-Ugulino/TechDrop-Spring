@@ -1,0 +1,51 @@
+[
+  {
+    "id": 0,
+    "marca": "Hyper-X",
+    "modelo": "Pulsefire",
+    "quantidade": 10,
+    "valor": 139.99,
+    "bluetooh_cable": "cable",
+    "iluminacao": true,
+    "dpi" : 16000,
+    "qtd_botoes": 6,
+    "peso": 195
+  },
+  {
+    "id": 1,
+    "marca": "Redragon",
+    "modelo": "Cobra",
+    "quantidade": 10,
+    "valor": 107.99,
+    "bluetooh_cable": "cable",
+    "iluminacao": true,
+    "dpi" : 12400,
+    "qtd_botoes": 7,
+    "peso": 210
+  },
+  {
+    "id": 2,
+    "marca": "Logitech ",
+    "modelo": "G403 HERO",
+    "quantidade": 8,
+    "valor": 199.99,
+    "bluetooh_cable": "cable",
+    "iluminacao": true,
+    "dpi" : 16000,
+    "qtd_botoes": 6,
+    "peso": 190
+  },
+  {
+    "id": 3,
+    "marca": "Razer",
+    "modelo": "Deathadder V2 Chroma",
+    "quantidade": 10,
+    "valor": 319.90,
+    "bluetooh_cable": "cable",
+    "iluminacao": true,
+    "dpi" : 20000,
+    "qtd_botoes": 8,
+    "peso": 234
+  }
+
+]

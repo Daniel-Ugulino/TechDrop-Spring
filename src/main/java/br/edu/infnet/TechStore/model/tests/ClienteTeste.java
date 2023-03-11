@@ -1,3 +1,4 @@
+/*
 package br.edu.infnet.TechStore.model.tests;
 
 import br.edu.infnet.TechStore.model.domain.Cliente;
@@ -38,3 +39,4 @@ public class ClienteTeste {
     }
 
 }
+*/

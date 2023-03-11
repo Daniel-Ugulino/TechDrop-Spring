@@ -1,40 +1,49 @@
 package br.edu.infnet.TechStore.controller;
 
 import br.edu.infnet.TechStore.model.domain.Usuario;
-import br.edu.infnet.TechStore.model.repository.UsuarioRepository;
+import br.edu.infnet.TechStore.model.service.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import java.util.List;
 
 @Controller
 public class UsuarioController {
 
-	@GetMapping(value = "/usuario")
+	@Autowired
+	private UsuarioService usuarioService;
+
+	@GetMapping(value = "/usuario/cadastro")
 	public String telaCadastro() {
 		return "usuarios/cadastro";
 	}
 
-	@GetMapping(value = "/usuario/lista")
-	public String telaLista() {
+	@GetMapping(value = "/usuario")
+	public String telaLista(Model model) {
 
-		List<Usuario> lista = UsuarioRepository.obterLista();
-		
-		System.out.println("Quantidade de usuários = " + lista.size());
+		try {
+			model.addAttribute("usuarios", usuarioService.obterLista());
+		}catch (Exception e){
+			System.out.println(e);
+		}
 
-		for(Usuario user : lista) {
-			System.out.printf("%s", user.toString());
-		}		
-		
 		return "usuarios/lista";
 	}
 
 	@PostMapping(value = "/usuario/incluir")
 	public String incluir(Usuario usuario) {
 
-		UsuarioRepository.incluir(usuario);
+		usuarioService.incluir(usuario);
 		
-		return "redirect:/usuario/lista";
+		return "redirect:/usuario";
+	}
+	@GetMapping(value = "/usuario/{id}/excluir")
+	public String excluir(@PathVariable Integer id) {
+
+		usuarioService.excluir(id);
+
+		return "redirect:/usuario";
 	}
 }

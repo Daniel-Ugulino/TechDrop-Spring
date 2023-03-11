@@ -2,6 +2,7 @@ package br.edu.infnet.TechStore.model.domain;
 
 public class Usuario {
 
+    private Integer id;
     private String username;
     private String password;
     private String cpf;
@@ -25,19 +26,12 @@ public class Usuario {
         this.setUsername(nome);
     }
 
-    @Override
-    public String toString() {
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-        return String.format(
-                "O usu�rio %s tem as credenciais %s e %s e o cpf %s"
-                        + "� um usu�rio do tipo %s, atua no setor %s",
-                username,
-                email,
-                password,
-                cpf,
-                cargo,
-                setor
-        );
+    public Integer getId() {
+        return id;
     }
 
     public String getCpf() {

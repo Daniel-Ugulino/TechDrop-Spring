@@ -8,6 +8,10 @@ public class Mouse extends Produto {
     private Integer qtd_botoes;
     private Integer peso;
 
+    public Mouse(){
+
+    }
+
     public Mouse(Integer codigo, Float valor, Integer quantidade) throws ProdutoException {
         super(codigo,valor,quantidade);
     }
@@ -50,8 +54,6 @@ public class Mouse extends Produto {
         valor = valor - valor_desconto;
         return setValor(valor);
     };
-
-
 
     public void imprimir_pedido(){
         System.out.printf(String.valueOf(this));

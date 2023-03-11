@@ -1,0 +1,30 @@
+[
+  {
+    "id": 0,
+    "username": "Daniel",
+    "password": "123456",
+    "cpf": "620.658.820-34",
+    "cargo": "Administrador",
+    "setor": "Administrador",
+    "email": "daniel@gmail.com"
+  },
+  {
+    "id": 1,
+    "username": "Jose",
+    "password": "123456",
+    "cpf": "625.966.030-80",
+    "cargo": "Administrador",
+    "setor": "Vendas",
+    "email": "daniel@gmail.com"
+  },
+  {
+  "id": 2,
+  "username": "Hugo",
+  "password": "456123",
+  "cpf": "976.879.770-33",
+  "cargo": "Gestor",
+  "setor": "Gerencia",
+  "email": "daniel@gmail.com"
+}
+
+]

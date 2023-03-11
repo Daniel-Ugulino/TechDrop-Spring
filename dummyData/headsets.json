@@ -1,0 +1,42 @@
+[
+  {
+    "id": 0,
+    "marca": "Redragon",
+    "modelo": "Zeus X Chroma Mk.II",
+    "quantidade": 10,
+    "valor": 319.99,
+    "bluetooh_cable": "cable",
+    "iluminacao": true,
+    "som":"Surround 7.1",
+    "frequencia":"50Hz até 20000Hz",
+    "sensibilidade": "98 ± 3dB S.P.L. at 1KHz",
+    "cancelamentoRuido" : "Sim"
+  },
+  {
+    "id": 1,
+    "marca": "Hyper-X",
+    "modelo": "Cloud Stinger",
+    "quantidade": 10,
+    "valor": 499.99,
+    "bluetooh_cable": "bluetooh",
+    "iluminacao": false,
+    "som":"Surround 7.1",
+    "frequencia":"20Hz–20.000Hz",
+    "sensibilidade": "99dBSPL/mW a 1kHz",
+    "cancelamentoRuido" : "Sim"
+  }
+,
+  {
+    "id": 2,
+    "marca": "Logitec",
+    "modelo": "G432",
+    "quantidade": 10,
+    "valor": 299.99,
+    "bluetooh_cable": "cable",
+    "iluminacao": false,
+    "som":"7.1 Dolby Surround",
+    "frequencia":"20 kHz",
+    "sensibilidade": "107 dB SPL/mW",
+    "cancelamentoRuido" : "Sim"
+  }
+]

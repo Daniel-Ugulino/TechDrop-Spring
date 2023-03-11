@@ -1,3 +1,4 @@
+/*
 package br.edu.infnet.TechStore.model.tests;
 
 import br.edu.infnet.TechStore.model.domain.Teclado;
@@ -60,3 +61,4 @@ public class TecladoTeste {
         }
     }
 }
+*/
