@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 @SessionAttributes("usuario")
@@ -35,6 +38,15 @@ public class AcessoController {
 
 			return "redirect:/usuario";
 		}
+
+		return "redirect:/login";
+	}
+
+	@GetMapping(value = "/logout")
+	public String logout(HttpSession session, SessionStatus status) {
+		status.setComplete();
+
+		session.removeAttribute("usuario");
 
 		return "redirect:/login";
 	}

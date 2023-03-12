@@ -3,15 +3,15 @@
 
 <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
+        <div class="container-fluid d-flex justify-content-center">
 
             <a class="navbar-brand" href="#"><img src="/imgs/logo.png" class="logo" alt=""></a>
 
+            <c:if test="${not empty usuario}">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <c:if test="${not empty usuario}">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item dropdown">
@@ -58,7 +58,7 @@
 
                     <div class="nav-link d-flex align-items-center" style="gap:5px; font-size: 1.3rem;">
                             ${usuario.getEmail()}
-                        <a href="#" role="button">
+                        <a href="/logout" role="button">
                             <i class="bi bi-box-arrow-right" style="font-size: 2rem; color: cornflowerblue;"></i>
                         </a>
                     </div>
