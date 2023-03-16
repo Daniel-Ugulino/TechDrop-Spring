@@ -37,11 +37,11 @@
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Username</th>
-                            <th scope="col">Password</th>
                             <th scope="col">E-mail</th>
                             <th scope="col">CPF</th>
                             <th scope="col">Setor</th>
                             <th scope="col">Cargo</th>
+                            <th scope="col">Clientes</th>
                             <th scope="col">Opções</th>
                         </tr>
                         </thead>
@@ -50,12 +50,15 @@
                                 <tr>
                                     <td>${obj.id}</td>
                                     <td>${obj.username}</td>
-                                    <td>${obj.password}</td>
                                     <td>${obj.email}</td>
                                     <td>${obj.cpf}</td>
                                     <td>${obj.setor}</td>
                                     <td>${obj.cargo}</td>
-                                    <td><a href="/usuario/${obj.id}/excluir">excluir</a></td>
+                                    <td>${obj.clientes.size()}</td>
+                                    <td>
+                                        <a href="/usuario/${obj.id}/excluir">excluir</a>
+                                        <a href="/usuario/${obj.id}">atualizar</a>
+                                    </td>
                                 </tr>
                             </c:forEach>
                         </tbody>
@@ -67,21 +70,11 @@
                 <div class="col d-flex justify-content-center mt-4 ">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item"><a class="page-link" href="#">5</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
+                            <li class="page-item"><a class="page-link" href="/usuario">1</a></li>
+                            <li class="page-item"><a class="page-link" href="/usuario/page/1">2</a></li>
+                            <li class="page-item"><a class="page-link" href="/usuario/page/2">3</a></li>
+                            <li class="page-item"><a class="page-link" href="/usuario/page/3">4</a></li>
+                            <li class="page-item"><a class="page-link" href="/usuario/page/4">5</a></li>
                         </ul>
                     </nav>
                 </div>

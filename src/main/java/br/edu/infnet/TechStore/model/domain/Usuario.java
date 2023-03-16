@@ -1,7 +1,17 @@
 package br.edu.infnet.TechStore.model.domain;
 
+
+import org.hibernate.annotations.DynamicUpdate;
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+@DynamicUpdate
+@Table(name = "Usuario")
 public class Usuario {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String username;
     private String password;
@@ -9,10 +19,22 @@ public class Usuario {
     private String cargo;
     private String setor;
     private String email;
-
-
+    @OneToMany
+    @JoinColumn(name = "idUsuario")
+    private List<Cliente> clientes;
+    @OneToMany
+    @JoinColumn(name = "idUsuario")
+    private List<Produto> produtos;
     public Usuario(){
 
+    }
+
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
     }
 
     public Usuario(String email, String senha) {
@@ -82,4 +104,11 @@ public class Usuario {
         this.setor = setor;
     }
 
+    public List<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(List<Cliente> clientes) {
+        this.clientes = clientes;
+    }
 }

@@ -3,6 +3,11 @@ package br.edu.infnet.TechStore.model.domain;
 import br.edu.infnet.TechStore.model.execptions.DescontoException;
 import br.edu.infnet.TechStore.model.execptions.ProdutoException;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "mouse")
 public class Mouse extends Produto {
     private Integer dpi;
     private Integer qtd_botoes;

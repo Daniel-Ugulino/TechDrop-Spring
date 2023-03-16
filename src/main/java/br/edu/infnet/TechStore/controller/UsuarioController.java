@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.persistence.Id;
+
 @Controller
 public class UsuarioController {
 
@@ -24,10 +26,22 @@ public class UsuarioController {
 	public String telaLista(Model model) {
 
 		try {
-			model.addAttribute("usuarios", usuarioService.obterLista());
+			model.addAttribute("usuarios", usuarioService.listaPaginada(0));
 		}catch (Exception e){
 			System.out.println(e);
 		}
+
+		return "usuarios/lista";
+	}
+
+	@GetMapping(value = "/usuario/page/{page}")
+	public String listaPaginada(Model model,@PathVariable Integer page){
+		try {
+			model.addAttribute("usuarios", usuarioService.listaPaginada(page));
+		}catch (Exception e){
+			System.out.println(e);
+		}
+		System.out.println(usuarioService.listaPaginada(page));
 
 		return "usuarios/lista";
 	}
@@ -45,5 +59,25 @@ public class UsuarioController {
 		usuarioService.excluir(id);
 
 		return "redirect:/usuario";
+	}
+
+	@PostMapping(value = "/usuario/{id}/atualizar")
+	public String Update(Usuario usuario, @PathVariable Integer id){
+		usuarioService.atualizar(usuario, id);
+		return "redirect:/usuario";
+	}
+
+	@GetMapping(value = "/usuario/{id}")
+	public String getUser(Model model,@PathVariable Integer id){
+
+		Usuario usuario = usuarioService.getById(id);
+
+		try {
+			model.addAttribute("usuario", usuario);
+		}catch (Exception e){
+			System.out.println(e);
+		}
+
+		return "usuarios/atualizar";
 	}
 }

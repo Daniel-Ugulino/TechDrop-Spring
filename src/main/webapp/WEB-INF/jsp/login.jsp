@@ -37,8 +37,8 @@
             <form action="/login" method="post" class=" d-flex justify-content-center pt-3" style="gap:20px">
                 <div class="col d-flex flex-column" style="gap:10px">
                     <div>
-                        <label for="email" class="form-label">Nome</label>
-                        <input type="text" name="email" id="email" class="form-control" placeholder="Nome">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Nome">
                     </div>
 
                     <div>

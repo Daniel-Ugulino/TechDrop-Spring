@@ -1,44 +1,21 @@
 package br.edu.infnet.TechStore.model.repository;
 
 import br.edu.infnet.TechStore.model.domain.Usuario;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.*;
+import java.util.Collection;
 
 @Repository
-public class UsuarioRepository {
+public interface UsuarioRepository extends CrudRepository<Usuario,Integer> {
+    @Query("from Usuario u where u.email = :email")
+    Usuario login(String email);
 
-	private static Integer id = 1;
+    @Query("from Usuario ORDER BY id ASC")
+    Collection<Usuario> findAll();
 
-	private static Map<Integer, Usuario> mapaUsuario = new HashMap<Integer, Usuario>();
-
-	public boolean incluir(Usuario usuario) {
-
-		usuario.setId(id++);
-
-		try {
-			mapaUsuario.put(usuario.getId(), usuario);
-			return true;
-		} catch (Exception e) {
-			return false;
-		}
-
-	}
-
-	public Usuario excluir(Integer key) {
-
-		return mapaUsuario.remove(key);
-	}
-
-	public Collection<Usuario> obterLista(){
-		return mapaUsuario.values();
-	}
-
-	public Usuario autenticar(Usuario usuario){
-		if(usuario.getEmail().equals(usuario.getPassword())){
-			return usuario;
-		}
-		return null;
-	}
-
+    @Query(value="select * from Usuario ORDER BY id ASC offset :page * 5 limit 5 ", nativeQuery = true)
+    Collection<Usuario> findPaginated(Integer page);
 }
+

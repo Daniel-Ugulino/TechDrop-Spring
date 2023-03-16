@@ -135,6 +135,19 @@
                 </div>
             </div>
 
+            <div class="col d-flex flex-column" style="gap:10px">
+                <h4>Imagem do Produto:</h4>
+
+                    <div class="card" style="max-width: 200px;max-height: 200px;">
+                    <img src="..." class="card-img-top" alt="..." id="preview_img">
+                </div>
+
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" id="file">
+                </div>
+
+            </div>
+
             <div class="col-md-12 d-flex" style="gap:10px">
                 <button class="btn btn-primary" type="submit">Cadastrar Teclado</button>
             </div>
@@ -146,5 +159,17 @@
 <c:import url="/WEB-INF/jsp/components/footer.jsp"/>
 
 </body>
+
+<script>
+    imgInp = document.querySelector("#file")
+    preview = document.querySelector("#preview_img")
+
+    imgInp.onchange = evt => {
+        const [file] = imgInp.files
+        if (file) {
+            preview.src = URL.createObjectURL(file)
+        }
+    }
+</script>
 
 </html>

@@ -10,14 +10,26 @@ import java.util.Collection;
 public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
-    public boolean incluir(Cliente cliente){
-        return clienteRepository.incluir(cliente);
+    public Cliente incluir(Cliente cliente){
+        return clienteRepository.save( cliente);
     }
-    public Cliente excluir(Integer key){
-        return clienteRepository.excluir(key);
+    public void atualizar(Cliente cliente){
+        clienteRepository.save(cliente);
+    }
+    public void excluir(Integer key){
+        clienteRepository.deleteById(key);
     }
 
     public Collection<Cliente> obterLista(){
-        return clienteRepository.obterLista();
+        return clienteRepository.findAll();
     }
+
+    public Collection<Cliente> listaPaginada(Integer page){
+        return clienteRepository.findPaginated(page);
+    }
+
+    public Cliente getById(Integer id){
+        return clienteRepository.findById(id).get();
+    }
+
 }

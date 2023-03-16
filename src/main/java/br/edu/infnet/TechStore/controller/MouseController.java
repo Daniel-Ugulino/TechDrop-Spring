@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class MouseController {
@@ -27,9 +28,9 @@ public class MouseController {
     }
 
     @PostMapping(value = "/mouse/incluir")
-    public String incluir(Mouse mouse){
-
-        mouseService.incluir(mouse);
+    public String incluir(Mouse mouse, MultipartFile file){
+        System.out.println(file.getOriginalFilename());
+        mouseService.incluir(mouse,file);
 
         return "redirect:/mouse";
     }

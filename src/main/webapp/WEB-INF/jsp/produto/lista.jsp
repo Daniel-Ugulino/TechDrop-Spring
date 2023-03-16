@@ -26,46 +26,43 @@
 <main>
     <div class="container-fluid d-flex justify-content-center flex-column ps-5 pe-5 " style="height: 80vh !important;">
         <div class="row">
-            <h2>Listagem de Clientes</h2>
-            <a href="/cliente/cadastro">Adicionar Item</a>
+            <h2>Listagem de Teclados</h2>
+            <a href="/teclado/cadastro">Adicionar Item</a>
         </div>
 
-        <c:if test="${not empty cliente}">
+        <c:if test="${not empty teclado}">
             <div class="row">
                 <div class="table-responsive">
                     <table class="table table-hover table-striped-columns mt-3">
                         <thead>
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Sobrenome</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Cpf</th>
-                            <th scope="col">Nascimento</th>
-                            <th scope="col">Cep</th>
-                            <th scope="col">Endereco</th>
-                            <th scope="col">Telefone</th>
-                            <th scope="col">Usuario vinculado</th>
+                            <th scope="col">Marca</th>
+                            <th scope="col">Modelo</th>
+                            <th scope="col">Quantidade</th>
+                            <th scope="col">Valor</th>
+                            <th scope="col">Conexao</th>
+                            <th scope="col">Iluminacao</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Switch</th>
+                            <th scope="col">Ghosting</th>
                             <th scope="col">Opções</th>
                         </tr>
                         </thead>
                         <tbody class="table-group-divider">
-                        <c:forEach var="obj" items="${cliente}">
+                        <c:forEach var="obj" items="${teclado}">
                             <tr>
                                 <td>${obj.id}</td>
-                                <td>${obj.nome}</td>
-                                <td>${obj.sobrenome}</td>
-                                <td>${obj.email}</td>
-                                <td>${obj.cpf}</td>
-                                <td>${obj.nascimento}</td>
-                                <td>${obj.endereco}</td>
-                                <td>${obj.cep}</td>
-                                <td>${obj.telefone}</td>
-                                <td>${obj.usuario.getUsername()}</td>
-                                <td>
-                                    <a href="/cliente/${obj.id}/excluir">excluir</a>
-                                    <a href="/cliente/${obj.id}">atualizar</a>
-                                </td>
+                                <td>${obj.marca}</td>
+                                <td>${obj.modelo}</td>
+                                <td>${obj.quantidade}</td>
+                                <td>${obj.valor}</td>
+                                <td>${obj.bluetooh_cable}</td>
+                                <td>${obj.iluminacao}</td>
+                                <td>${obj.tipo}</td>
+                                <td>${obj.switch_type}</td>
+                                <td>${obj.ghosting}</td>
+                                <td><a href="/teclado/${obj.id}/excluir">excluir</a></td>
                             </tr>
                         </c:forEach>
                         </tbody>

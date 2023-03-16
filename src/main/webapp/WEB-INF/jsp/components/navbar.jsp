@@ -57,7 +57,7 @@
                     </ul>
 
                     <div class="nav-link d-flex align-items-center" style="gap:5px; font-size: 1.3rem;">
-                            ${usuario.getEmail()}
+                            ${usuario.getUsername()}
                         <a href="/logout" role="button">
                             <i class="bi bi-box-arrow-right" style="font-size: 2rem; color: cornflowerblue;"></i>
                         </a>

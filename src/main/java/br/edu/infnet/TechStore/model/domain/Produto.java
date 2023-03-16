@@ -3,7 +3,14 @@ package br.edu.infnet.TechStore.model.domain;
 import br.edu.infnet.TechStore.model.execptions.DescontoException;
 import br.edu.infnet.TechStore.model.execptions.ProdutoException;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "produto")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Produto {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String marca;
     private String modelo;
@@ -12,10 +19,30 @@ public abstract class Produto {
     private String bluetooh_cable;
     private Boolean iluminacao;
 
+    private String imgUrl;
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
+
     public Produto(){
 
     }
 
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
     public Produto(Integer codigo, Float valor, Integer quantidade) throws ProdutoException {
 

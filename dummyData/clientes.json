@@ -1,6 +1,5 @@
 [
   {
-    "id": 0,
     "nome": "Daniel",
     "sobrenome": "Fonseca",
     "email": "teste@gmail.com",
@@ -11,7 +10,6 @@
     "telefone": "(21)982302376"
   },
   {
-    "id": 1,
     "nome": "German",
     "sobrenome": "Cano",
     "email": "cano@gmail.com",
@@ -22,7 +20,6 @@
     "telefone": "(21)12245678"
   },
   {
-    "id": 2,
     "nome": "Wagner",
     "sobrenome": "Leao",
     "email": "leao@gmail.com",

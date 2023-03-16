@@ -2,8 +2,14 @@ package br.edu.infnet.TechStore.model.domain;
 
 import  br.edu.infnet.TechStore.model.execptions.ClienteException;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Cliente")
 public class Cliente {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
     private String sobrenome;
@@ -13,6 +19,18 @@ public class Cliente {
     private String endereco;
     private String cep;
     private String telefone;
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
+
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
     public Cliente(){}
 
@@ -61,16 +79,20 @@ public class Cliente {
         return sb.toString();
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getNome() {
+        return nome;
     }
 
-    public String getEmail() {
-        return email;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getSobrenome() {
@@ -81,6 +103,46 @@ public class Cliente {
         this.sobrenome = sobrenome;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getNascimento() {
+        return nascimento;
+    }
+
+    public void setNascimento(String nascimento) {
+        this.nascimento = nascimento;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
     public String getTelefone() {
         return telefone;
     }
@@ -88,36 +150,4 @@ public class Cliente {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
-
-    public void setNascimento(String idade) {
-        this.nascimento = idade;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getNome(){return nome;}
-    public String getNascimento(){return nascimento;}
-    public String getCep(){return cep;}
-    public String getCpf(){return cpf;}
-    public String getEndereco(){return endereco;}
-
 }

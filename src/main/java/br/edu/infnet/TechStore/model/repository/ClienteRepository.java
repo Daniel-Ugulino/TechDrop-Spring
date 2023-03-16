@@ -1,39 +1,16 @@
 package br.edu.infnet.TechStore.model.repository;
 
 import br.edu.infnet.TechStore.model.domain.Cliente;
-import br.edu.infnet.TechStore.model.domain.Teclado;
-import org.springframework.stereotype.Repository;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
-@Repository
-public class ClienteRepository {
+public interface ClienteRepository extends CrudRepository<Cliente,Integer> {
+    @Query("from Cliente ORDER BY id ASC")
+    Collection<Cliente> findAll();
 
-    private static Integer id = 1;
-
-    private static Map<Integer, Cliente> mapaCliente = new HashMap<Integer, Cliente>();
-
-    public boolean incluir(Cliente cliente) {
-
-        cliente.setId(id++);
-
-        try {
-            mapaCliente.put(cliente.getId(), cliente);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-
-    }
-
-    public Cliente excluir(Integer key) {
-
-        return mapaCliente.remove(key);
-    }
-
-    public Collection<Cliente> obterLista(){
-        return mapaCliente.values();
-    }
+    @Query(value="select * from Cliente ORDER BY id ASC offset :page * 5 limit 5 ", nativeQuery = true)
+    Collection<Cliente> findPaginated(Integer page);
 }
