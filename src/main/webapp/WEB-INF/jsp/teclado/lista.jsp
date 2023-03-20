@@ -46,6 +46,7 @@
                             <th scope="col">Tipo</th>
                             <th scope="col">Switch</th>
                             <th scope="col">Ghosting</th>
+                            <th scope="col">Imagem do Produto</th>
                             <th scope="col">Opções</th>
                         </tr>
                         </thead>
@@ -62,7 +63,11 @@
                                 <td>${obj.tipo}</td>
                                 <td>${obj.switch_type}</td>
                                 <td>${obj.ghosting}</td>
-                                <td><a href="/teclado/${obj.id}/excluir">excluir</a></td>
+                                <td><a href="${obj.imgUrl}" target="_blank">imagem</a></td>
+                                <td>
+                                    <a href="/teclado/${obj.id}/excluir">excluir</a>
+                                    <a href="/teclado/${obj.id}">atualizar</a>
+                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>

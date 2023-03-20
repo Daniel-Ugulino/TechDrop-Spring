@@ -32,6 +32,10 @@ public class MouseLoader implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         String file = "dummyData/mouses.json";
         Gson gson = new Gson();
+
+        Usuario admin = new Usuario();
+        admin.setId(1);
+
         try{
 
             FileReader fileR = new FileReader(file);
@@ -43,7 +47,8 @@ public class MouseLoader implements ApplicationRunner {
             this.mouses = gson.fromJson(json, collectionType);
 
             for(Mouse mouse : mouses){
-                mouseService.incluir(mouse);
+                mouse.setUsuario(admin);
+                mouseService.incluir(mouse,null);
                 System.out.println("O mouse: " + mouse.getMarca() + " " + mouse.getModelo() + " foi incluido com sucesso");
             }
 

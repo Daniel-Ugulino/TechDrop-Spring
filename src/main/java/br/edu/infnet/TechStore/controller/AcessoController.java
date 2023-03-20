@@ -1,7 +1,6 @@
 package br.edu.infnet.TechStore.controller;
 
 import br.edu.infnet.TechStore.model.domain.Usuario;
-import br.edu.infnet.TechStore.model.repository.AcessoRepository;
 import br.edu.infnet.TechStore.model.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

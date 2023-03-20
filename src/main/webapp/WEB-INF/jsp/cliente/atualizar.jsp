@@ -41,7 +41,7 @@
                 <h2>Atualizar Cliente: ${cliente.getNome()}</h2>
             </div>
 
-            <form action="/cliente/${cliente.getId()}/atualizar" method="post" class="row d-flex justify-content-center pt-3" style="gap:20px">
+            <form action="/cliente/${cliente.getId()}/atualizar" enctype="multipart/form-data" method="post" class="row d-flex justify-content-center pt-3" style="gap:20px">
                 <div class="col d-flex flex-column" style="gap:10px">
                     <div>
                         <label for="nome"  class="form-label">Nome</label>
@@ -87,9 +87,22 @@
                     </div>
                 </div>
 
+                <div class="col d-flex flex-column" style="gap:10px">
+                    <h4>Imagem do Cliente:</h4>
+
+                    <div class="card" style="max-width: 200px;max-height: 200px;">
+                        <img src="${cliente.getImgUrl()}" class="card-img-top" alt="..." id="preview_img">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" id="file" name="file">
+                    </div>
+                </div>
+
                 <div class="col-md-12 d-flex" style="gap:10px">
                     <button class="btn btn-primary" type="submit">Atualizar Cliente</button>
                 </div>
+
             </form>
         </c:if>
 
@@ -99,5 +112,26 @@
 <c:import url="/WEB-INF/jsp/components/footer.jsp"/>
 
 </body>
+
+<script>
+    imgInp = document.querySelector("#file")
+    preview = document.querySelector("#preview_img")
+
+    imgInp.onchange = evt => {
+        const [file] = imgInp.files
+        if (file) {
+            preview.src = URL.createObjectURL(file)
+        }
+    }
+
+    $( "#cep" ).keyup(function() {
+        if($("#cep").val().length >= 8){
+            $.get( "/getCep/"+$("#cep").val(), function( data ) {
+                $("#endereco").empty()
+                $("#endereco").val(data.bairro + " " + data.logradouro + " " + data.localidade)
+            });
+        }
+    });
+</script>
 
 </html>

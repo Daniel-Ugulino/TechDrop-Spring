@@ -1,9 +1,13 @@
 package br.edu.infnet.TechStore.model.service;
 
+import br.edu.infnet.TechStore.model.domain.Cliente;
 import br.edu.infnet.TechStore.model.domain.Headset;
+import br.edu.infnet.TechStore.model.domain.Mouse;
 import br.edu.infnet.TechStore.model.repository.HeadsetRepository;
+import br.edu.infnet.TechStore.model.repository.MouseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Collection;
 
@@ -11,14 +15,51 @@ import java.util.Collection;
 public class HeadsetService {
     @Autowired
     private HeadsetRepository headsetRepository;
-    public boolean incluir(Headset headset){
-        return headsetRepository.incluir(headset);
+    @Autowired
+    S3fileService s3fileService;
+    private String bucket_folder =  "techdrop_headset/";
+    private String type =  "headset";
+    public void incluir(Headset headset, MultipartFile multipartFile ){
+        headset.setType(type);
+        if (multipartFile != null){
+            String path = s3fileService.getFilePath(multipartFile,bucket_folder,headset.getMarca(),headset.getModelo());
+            String s3FileUrl = s3fileService.uploadFile(path, multipartFile);
+            headset.setImgUrl(s3FileUrl);
+        }
+
+        headsetRepository.save(headset);
     }
-    public Headset excluir(Integer key){
-        return headsetRepository.excluir(key);
+
+    public void excluir(Integer key){
+        headsetRepository.deleteById(key);
+    }
+
+    public void atualizar(Headset headset,Integer id, MultipartFile multipartFile){
+
+        Headset headsetDB = headsetRepository.findById(id).get();
+        headset.setId(headsetDB.getId());
+
+        if (multipartFile != null){
+            String path = s3fileService.getFilePath(multipartFile, bucket_folder,headset.getMarca(),headset.getModelo());
+            String s3FileUrl = s3fileService.uploadFile(path, multipartFile);
+            headset.setImgUrl(s3FileUrl);
+        }else{
+            headset.setImgUrl(headsetDB.getImgUrl());
+        }
+
+        headsetRepository.save(headset);
     }
 
     public Collection<Headset> obterLista(){
-        return headsetRepository.obterLista();
+        return headsetRepository.findAll();
     }
+
+    public Collection<Headset> obterLista(Integer id){
+        return headsetRepository.findAll(id);
+    }
+
+    public Headset getById(Integer id){
+        return headsetRepository.findById(id).get();
+    }
+
 }

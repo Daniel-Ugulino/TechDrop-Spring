@@ -1,37 +1,19 @@
 package br.edu.infnet.TechStore.model.repository;
 
 import br.edu.infnet.TechStore.model.domain.Teclado;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
 @Repository
-public class TecladoRepository {
+public interface TecladoRepository extends CrudRepository<Teclado, Integer> {
+    @Query("from Teclado ORDER BY id ASC")
+    Collection<Teclado> findAll();
 
-    private static Integer id = 1;
+    @Query("from Teclado t where t.usuario.id= :id ORDER BY 'id' ASC ")
+    Collection<Teclado> findAll(Integer id);
 
-    private static Map<Integer, Teclado> mapaTeclado = new HashMap<Integer, Teclado>();
-
-    public boolean incluir(Teclado teclado) {
-
-        teclado.setId(id++);
-
-        try {
-            mapaTeclado.put(teclado.getId(), teclado);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-
-    }
-
-    public Teclado excluir(Integer key) {
-        return mapaTeclado.remove(key);
-    }
-
-    public Collection<Teclado> obterLista(){
-        return mapaTeclado.values();
-    }
+    @Query(value="select * from Teclado ORDER BY id ASC offset :page * 5 limit 5 ", nativeQuery = true)
+    Collection<Teclado> findPaginated(Integer page);
 }

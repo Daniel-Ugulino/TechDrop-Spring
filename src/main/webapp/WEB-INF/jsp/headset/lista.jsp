@@ -47,6 +47,7 @@
                             <th scope="col">Frequencia</th>
                             <th scope="col">Sensibilidade</th>
                             <th scope="col">Cancelamento de Ruido</th>
+                            <th scope="col">Imagem do Produto</th>
                             <th scope="col">Opções</th>
                         </tr>
                         </thead>
@@ -64,7 +65,11 @@
                                 <td>${obj.frequencia}</td>
                                 <td>${obj.sensibilidade}</td>
                                 <td>${obj.cancelamentoRuido}</td>
-                                <td><a href="/headset/${obj.id}/excluir">excluir</a></td>
+                                <td><a href="${obj.imgUrl}" target="_blank">imagem</a></td>
+                                <td>
+                                    <a href="/headset/${obj.id}/excluir">excluir</a>
+                                    <a href="/headset/${obj.id}">atualizar</a>
+                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>

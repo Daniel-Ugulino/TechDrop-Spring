@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class ClienteController {
@@ -23,19 +24,23 @@ public class ClienteController {
     }
 
     @GetMapping(value = "/cliente")
-    public String telaLista(Model model) {
+    public String telaLista(Model model,@SessionAttribute("usuario") Usuario usuario) {
 
-        model.addAttribute("cliente", clienteService.obterLista());
+        model.addAttribute("cliente", clienteService.obterLista(usuario.getId()));
 
         return "cliente/lista";
     }
 
     @PostMapping(value = "/cliente/incluir")
-    public String incluir(Cliente cliente, @SessionAttribute("usuario") Usuario usuario) {
+    public String incluir(Cliente cliente, MultipartFile file, @SessionAttribute("usuario") Usuario usuario) {
 
         cliente.setUsuario(usuario);
 
-        clienteService.incluir(cliente);
+        if(file.isEmpty()) {
+            clienteService.incluir(cliente,null);
+        }else{
+            clienteService.incluir(cliente,file);
+        }
 
         return "redirect:/cliente";
     }
@@ -49,9 +54,16 @@ public class ClienteController {
     }
 
     @PostMapping(value = "/cliente/{id}/atualizar")
-    public String Update(Cliente cliente, @SessionAttribute("usuario") Usuario usuario){
+    public String Update(Cliente cliente,  MultipartFile file, @PathVariable Integer id,@SessionAttribute("usuario") Usuario usuario){
+
         cliente.setUsuario(usuario);
-        clienteService.atualizar(cliente);
+
+        if(file.isEmpty()) {
+            clienteService.atualizar(cliente,id,null);
+        }else{
+            clienteService.atualizar(cliente,id,file);
+        }
+
         return "redirect:/cliente";
     }
 

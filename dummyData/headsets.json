@@ -1,6 +1,5 @@
 [
   {
-    "id": 0,
     "marca": "Redragon",
     "modelo": "Zeus X Chroma Mk.II",
     "quantidade": 10,
@@ -13,7 +12,6 @@
     "cancelamentoRuido" : "Sim"
   },
   {
-    "id": 1,
     "marca": "Hyper-X",
     "modelo": "Cloud Stinger",
     "quantidade": 10,
@@ -27,7 +25,6 @@
   }
 ,
   {
-    "id": 2,
     "marca": "Logitec",
     "modelo": "G432",
     "quantidade": 10,

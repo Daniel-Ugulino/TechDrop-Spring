@@ -1,34 +1,64 @@
 package br.edu.infnet.TechStore.model.service;
 
-
+import br.edu.infnet.TechStore.model.domain.Headset;
 import br.edu.infnet.TechStore.model.domain.Mouse;
 import br.edu.infnet.TechStore.model.repository.MouseRepository;
-import br.edu.infnet.TechStore.model.repository.MouseRepository2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.File;
 import java.util.Collection;
 
 @Service
 public class MouseService{
     @Autowired
-    private MouseRepository2 mouseRepository;
-
+    private MouseRepository mouseRepository;
+    @Autowired
     S3fileService s3fileService;
+    private String bucket_folder =  "techdrop_mouse/";
+    private String type =  "mouse";
+    public void incluir(Mouse mouse, MultipartFile multipartFile ){
+        mouse.setType(type);
+        if (multipartFile != null){
+            String path = s3fileService.getFilePath(multipartFile,bucket_folder,mouse.getMarca(),mouse.getModelo());
+            String s3FileUrl = s3fileService.uploadFile(path, multipartFile);
+            mouse.setImgUrl(s3FileUrl);
+            }
 
-    public Mouse incluir(Mouse mouse, MultipartFile multipartFile){
-        File file = s3fileService.convertMultiPartFileToFile(multipartFile);
-        String s3FileUrl = s3fileService.uploadFile("techdrop_mouse/",file);
-        mouse.setImgUrl(s3FileUrl);
-        return mouseRepository.save(mouse);
+        mouseRepository.save(mouse);
     }
+
     public void excluir(Integer key){
-        mouseRepository.deleteById(key);
+
+            mouseRepository.deleteById(key);
     }
+
+    public void atualizar(Mouse mouse,Integer id, MultipartFile multipartFile){
+        mouse.setType(type);
+        Mouse mouseDB = mouseRepository.findById(id).get();
+        mouse.setId(mouseDB.getId());
+
+        if (multipartFile != null){
+            String path = s3fileService.getFilePath(multipartFile,bucket_folder,mouse.getMarca(),mouse.getModelo());
+            String s3FileUrl = s3fileService.uploadFile(path, multipartFile);
+            mouse.setImgUrl(s3FileUrl);
+        }else{
+            mouse.setImgUrl(mouseDB.getImgUrl());
+        }
+
+        mouseRepository.save(mouse);
+    }
+
 
     public Collection<Mouse> obterLista(){
         return mouseRepository.findAll();
     }
+
+    public Collection<Mouse> obterLista(Integer id){
+        return mouseRepository.findAll(id);
+    }
+
+    public Mouse getById(Integer id){
+        return mouseRepository.findById(id).get();
+    }
+
 }

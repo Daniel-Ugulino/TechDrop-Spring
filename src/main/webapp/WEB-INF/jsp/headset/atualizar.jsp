@@ -36,47 +36,48 @@
 
 <main class="pt-3 pb-3">
     <div class="container-fluid d-flex flex-column justify-content-center ps-5 pe-5">
+        <c:if test="${not empty headset}">
 
         <div class="row">
-            <h2>Cadastro de Headsets</h2>
+            <h2>Atualizar Headset: ${headset.getMarca()} ${headset.getModelo()}</h2>
         </div>
 
-        <form action="/headset/incluir" method="post" enctype="multipart/form-data" class="row d-flex justify-content-center pt-3" style="gap:20px">
+        <form action="/headset/atualizar/${headset.getId()}" method="post" enctype="multipart/form-data" class="row d-flex justify-content-center pt-3" style="gap:20px">
             <div class="col d-flex flex-column" style="gap:10px">
                 <h4>Características</h4>
 
                 <div>
                     <label for="marca"  class="form-label">Marca</label>
-                    <input type="text" class="form-control" name="marca" id="marca" placeholder="name@example.com">
+                    <input type="text" class="form-control" name="marca" value="${headset.getMarca()}" id="marca" placeholder="name@example.com">
                 </div>
 
                 <div>
                     <label for="modelo"  class="form-label">Modelo</label>
-                    <input type="text" class="form-control" name="modelo" id="modelo" placeholder="name@example.com">
+                    <input type="text" class="form-control" name="modelo" value="${headset.getModelo()}" id="modelo" placeholder="name@example.com">
                 </div>
 
                 <div>
                     <label for="quantidade" class="form-label">Quantidade</label>
-                    <input type="text" class="form-control" name="quantidade" id="quantidade" placeholder="name@example.com">
+                    <input type="text" class="form-control" name="quantidade" value="${headset.getQuantidade()}" id="quantidade" placeholder="name@example.com">
                 </div>
 
                 <div>
                     <label for="valor" class="form-label">Valor</label>
-                    <input type="text" class="form-control" name="valor" id="valor" placeholder="name@example.com">
+                    <input type="text" class="form-control" name="valor" value="${headset.getValor()}" id="valor" placeholder="name@example.com">
                 </div>
 
                 <div class="d-flex" style="gap:15px">
                     <p>Conexão:</p>
                     <div class="form-check d-flex" style="gap:10px">
-                        <input class="form-check-input" type="radio" name="bluetooh_cable" id="bluetooh_cable1">
-                        <label class="form-check-label" for="bluetooh_cable1">
+                        <input ${headset.getBluetooh_cable().equals("bluetooh") ? 'checked="checked"' : ''} class="form-check-input" type="radio" name="bluetooh_cable" id="bluetooh_cable" value="bluetooh">
+                        <label class="form-check-label" for="bluetooh_cable">
                             Bluetooh
                         </label>
                     </div>
 
                     <div class="form-check d-flex" style="gap:10px">
-                        <input class="form-check-input" type="radio" name="bluetooh_cable" id="bluetooh_cable2">
-                        <label class="form-check-label" for="bluetooh_cable2">
+                        <input ${headset.getBluetooh_cable().equals("cable") ? 'checked="checked"' : ''} class="form-check-input" type="radio" name="bluetooh_cable" id="bluetooh_cable" value="cable">
+                        <label class="form-check-label" for="bluetooh_cable">
                             Cable
                         </label>
                     </div>
@@ -85,15 +86,15 @@
                 <div class="d-flex" style="gap:15px">
                     <p>Iluminação:</p>
                     <div class="form-check d-flex" style="gap:10px">
-                        <input class="form-check-input" type="radio" name="iluminacao" id="iluminacao1">
-                        <label class="form-check-label" for="iluminacao1">
+                        <input ${headset.getIluminacao() ? 'checked="checked"' : ''} class="form-check-input" type="radio" name="iluminacao" id="iluminacao" value="true">
+                        <label class="form-check-label" for="iluminacao">
                             Sim
                         </label>
                     </div>
 
-                    <div class="form-check d-flex" style="gap:10px">
-                        <input class="form-check-input" type="radio" name="iluminacao" id="iluminacao2">
-                        <label class="form-check-label" for="iluminacao2">
+                    <div ${headset.getIluminacao() == false ? 'checked="checked"' : ''} class="form-check d-flex" style="gap:10px">
+                        <input class="form-check-input" type="radio" name="iluminacao" id="iluminacao" value="false">
+                        <label class="form-check-label" for="iluminacao">
                             Não
                         </label>
                     </div>
@@ -106,33 +107,33 @@
                     <label for="tipo" class="form-label">Tipo de som</label>
                     <select class="form-select" id="tipo" name="som">
                         <option selected>Selecione uma das opções abaixo</option>
-                        <option value="Stereo 7.1">Stereo 7.1</option>
-                        <option value="Surround">Surround</option>
-                        <option value="Mono">Mono</option>
+                        <option ${headset.getSom().equals("stereo 7.1") ? 'selected' : ''}  value="stereo 7.1">Stereo 7.1</option>
+                        <option ${headset.getSom().equals("surround") ? 'selected' : ''}value="surround">Surround</option>
+                        <option ${headset.getSom().equals("surround") ? 'selected' : ''} value="mono">Mono</option>
                     </select>
                 </div>
 
                 <div>
                     <label for="frequencia" class="form-label">Frequencia do Som</label>
-                    <input type="number" class="form-control" name="frequencia" id="frequencia" placeholder="1000">
+                    <input type="number" value="${headset.getFrequencia()}"  class="form-control" name="frequencia" id="frequencia" placeholder="1000">
                 </div>
 
                 <div>
                     <label for="sensibilidade" class="form-label">Sensibilidade</label>
-                    <input type="number" class="form-control" name="sensibilidade" id="sensibilidade" placeholder="1000">
+                    <input type="number" value="${headset.getSensibilidade()}" class="form-control" name="sensibilidade" id="sensibilidade" placeholder="1000">
                 </div>
 
                 <div class="d-flex" style="gap:15px">
                     <p>Cancelamento de Ruido:</p>
                     <div class="form-check d-flex" style="gap:10px">
-                        <input class="form-check-input" type="radio" value="sim" name="cancelamentoRuido" id="cancelamentoRuido1">
+                        <input ${headset.getCancelamentoRuido() ? 'checked="checked"' : ''}  class="form-check-input" type="radio" value="true" name="cancelamentoRuido" id="cancelamentoRuido1">
                         <label class="form-check-label" for="cancelamentoRuido1">
                             Sim
                         </label>
                     </div>
 
                     <div class="form-check d-flex" style="gap:10px">
-                        <input class="form-check-input" type="radio" value="nao" name="cancelamentoRuido" id="cancelamentoRuido2">
+                        <input ${headset.getCancelamentoRuido() == false ? 'checked="checked"' : ''} class="form-check-input" type="radio" value="false" name="cancelamentoRuido" id="cancelamentoRuido2">
                         <label class="form-check-label" for="cancelamentoRuido2">
                             Não
                         </label>
@@ -144,7 +145,7 @@
                 <h4>Imagem do Produto:</h4>
 
                 <div class="card" style="max-width: 200px;max-height: 200px;">
-                    <img src="..." class="card-img-top" alt="..." id="preview_img">
+                    <img src="${headset.getImgUrl()}" class="card-img-top" alt="..." id="preview_img">
                 </div>
 
                 <div class="input-group mb-3">
@@ -154,10 +155,12 @@
             </div>
 
             <div class="col-md-12 d-flex" style="gap:10px">
-                <button class="btn btn-primary" type="submit">Cadastrar Teclado</button>
+                <button class="btn btn-primary" type="submit">Atualizar Headset</button>
             </div>
-        </form>
 
+
+        </form>
+        </c:if>
     </div>
 </main>
 

@@ -19,6 +19,16 @@ public class Cliente {
     private String endereco;
     private String cep;
     private String telefone;
+    private String imgUrl;
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
     @ManyToOne
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;

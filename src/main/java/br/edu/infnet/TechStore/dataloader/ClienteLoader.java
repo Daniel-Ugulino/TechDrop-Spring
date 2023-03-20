@@ -1,6 +1,7 @@
 package br.edu.infnet.TechStore.dataloader;
 
 import br.edu.infnet.TechStore.model.domain.Cliente;
+import br.edu.infnet.TechStore.model.domain.Usuario;
 import br.edu.infnet.TechStore.model.service.ClienteService;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -30,6 +31,9 @@ public class ClienteLoader implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         String file = "dummyData/clientes.json";
         Gson gson = new Gson();
+
+        Usuario admin = new Usuario();
+        admin.setId(1);
         try{
 
             FileReader fileR = new FileReader(file);
@@ -41,6 +45,7 @@ public class ClienteLoader implements ApplicationRunner {
             this.clientes = gson.fromJson(json, collectionType);
 
             for(Cliente cliente : clientes){
+                cliente.setUsuario(admin);
                 clienteService.incluir(cliente);
                 System.out.println("O cliente: "+cliente.getNome()+" foi incluido com sucesso");
             }

@@ -1,6 +1,7 @@
 package br.edu.infnet.TechStore.dataloader;
 
 import br.edu.infnet.TechStore.model.domain.Headset;
+import br.edu.infnet.TechStore.model.domain.Usuario;
 import br.edu.infnet.TechStore.model.service.HeadsetService;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -30,6 +31,8 @@ public class HeadsetLoader implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         String file = "dummyData/headsets.json";
         Gson gson = new Gson();
+        Usuario admin = new Usuario();
+        admin.setId(1);
         try{
 
             FileReader fileR = new FileReader(file);
@@ -41,7 +44,8 @@ public class HeadsetLoader implements ApplicationRunner {
             this.headsets = gson.fromJson(json, collectionType);
 
             for(Headset headset : headsets){
-                headsetService.incluir(headset);
+                headset.setUsuario(admin);
+                headsetService.incluir(headset,null);
                 System.out.println("O Headset: " + headset.getMarca() + " " + headset.getModelo() + " foi incluido com sucesso");
             }
 

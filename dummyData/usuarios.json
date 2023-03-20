@@ -1,5 +1,13 @@
 [
   {
+    "username": "admin",
+    "password": "admin",
+    "cpf": "000.000.000-00",
+    "cargo": "Desenvolvedor",
+    "setor": "Administrador",
+    "email": "admin@admin.com"
+  },
+  {
     "username": "Mavis",
     "password": 123456,
     "cpf": "620.658.820-34",

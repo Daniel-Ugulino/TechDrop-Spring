@@ -18,14 +18,22 @@ public abstract class Produto {
     private Float valor;
     private String bluetooh_cable;
     private Boolean iluminacao;
-
     private String imgUrl;
+    private String type;
     @ManyToOne
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;
 
     public Produto(){
 
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getImgUrl() {

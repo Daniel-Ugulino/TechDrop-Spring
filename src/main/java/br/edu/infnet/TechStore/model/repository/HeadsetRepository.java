@@ -1,36 +1,19 @@
 package br.edu.infnet.TechStore.model.repository;
-
 import br.edu.infnet.TechStore.model.domain.Headset;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 @Repository
-public class HeadsetRepository {
-    private static Integer id = 1;
+public interface HeadsetRepository extends CrudRepository<Headset,Integer> {
 
-    private static Map<Integer, Headset> headsetMap =  new HashMap<Integer,Headset>();
+    @Query("from Headset ORDER BY id ASC")
+    Collection<Headset> findAll();
 
-    public boolean incluir(Headset headset){
-        headset.setId(id++);
-
-        try {
-            headsetMap.put(id,headset);
-            return true;
-        }
-        catch (Exception e){
-            return false;
-        }
-    }
-
-    public Headset excluir(Integer id){
-        return headsetMap.remove(id);
-    }
-
-    public Collection<Headset> obterLista(){
-        return headsetMap.values();
-    }
-
+    @Query("from Headset h where h.usuario.id= :id ORDER BY 'id' ASC ")
+    Collection<Headset> findAll(Integer id);
+    @Query(value="select * from Headset ORDER BY id ASC offset :page * 5 limit 5 ", nativeQuery = true)
+    Collection<Headset> findPaginated(Integer page);
 
 }

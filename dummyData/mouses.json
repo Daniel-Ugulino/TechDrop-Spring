@@ -1,6 +1,5 @@
 [
   {
-    "id": 0,
     "marca": "Hyper-X",
     "modelo": "Pulsefire",
     "quantidade": 10,
@@ -12,7 +11,6 @@
     "peso": 195
   },
   {
-    "id": 1,
     "marca": "Redragon",
     "modelo": "Cobra",
     "quantidade": 10,
@@ -24,7 +22,6 @@
     "peso": 210
   },
   {
-    "id": 2,
     "marca": "Logitech ",
     "modelo": "G403 HERO",
     "quantidade": 8,
@@ -36,7 +33,6 @@
     "peso": 190
   },
   {
-    "id": 3,
     "marca": "Razer",
     "modelo": "Deathadder V2 Chroma",
     "quantidade": 10,

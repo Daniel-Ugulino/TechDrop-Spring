@@ -1,9 +1,11 @@
 package br.edu.infnet.TechStore.model.service;
 
+import br.edu.infnet.TechStore.model.domain.Headset;
 import br.edu.infnet.TechStore.model.domain.Teclado;
 import br.edu.infnet.TechStore.model.repository.TecladoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Collection;
 
@@ -11,14 +13,51 @@ import java.util.Collection;
 public class TecladoService {
     @Autowired
     private TecladoRepository tecladoRepository;
-    public boolean incluir(Teclado teclado){
-        return tecladoRepository.incluir(teclado);
+    @Autowired
+    S3fileService s3fileService;
+    private String bucket_folder =  "techdrop_teclado/";
+    private String type =  "teclado";
+    public void incluir(Teclado teclado, MultipartFile multipartFile){
+        teclado.setType(type);
+        if (multipartFile != null){
+            String path = s3fileService.getFilePath(multipartFile,bucket_folder,teclado.getMarca(),teclado.getModelo());
+            String s3FileUrl = s3fileService.uploadFile(path, multipartFile);
+            teclado.setImgUrl(s3FileUrl);
+        }
+
+        tecladoRepository.save(teclado);
     }
-    public Teclado excluir(Integer key){
-        return tecladoRepository.excluir(key);
+
+    public void excluir(Integer key){
+        tecladoRepository.deleteById(key);
+    }
+
+    public void atualizar(Teclado teclado,Integer id, MultipartFile multipartFile){
+
+        Teclado tecladoDB = tecladoRepository.findById(id).get();
+        teclado.setId(tecladoDB.getId());
+
+        if (multipartFile != null){
+            String path = s3fileService.getFilePath(multipartFile,bucket_folder,teclado.getMarca(),teclado.getModelo());
+            String s3FileUrl = s3fileService.uploadFile(path, multipartFile);
+            teclado.setImgUrl(s3FileUrl);
+        }else{
+            teclado.setImgUrl(tecladoDB.getImgUrl());
+        }
+
+        tecladoRepository.save(teclado);
     }
 
     public Collection<Teclado> obterLista(){
-        return tecladoRepository.obterLista();
+        return tecladoRepository.findAll();
     }
+
+    public Collection<Teclado> obterLista(Integer id){
+        return tecladoRepository.findAll(id);
+    }
+
+    public Teclado getById(Integer id){
+        return tecladoRepository.findById(id).get();
+    }
+
 }

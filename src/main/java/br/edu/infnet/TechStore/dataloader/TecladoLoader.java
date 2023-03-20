@@ -1,6 +1,7 @@
 package br.edu.infnet.TechStore.dataloader;
 
 import br.edu.infnet.TechStore.model.domain.Teclado;
+import br.edu.infnet.TechStore.model.domain.Usuario;
 import br.edu.infnet.TechStore.model.service.TecladoService;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -30,6 +31,10 @@ public class TecladoLoader implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         String file = "dummyData/teclados.json";
         Gson gson = new Gson();
+
+        Usuario admin = new Usuario();
+        admin.setId(1);
+
         try{
 
             FileReader fileR = new FileReader(file);
@@ -41,7 +46,8 @@ public class TecladoLoader implements ApplicationRunner {
             this.teclados = gson.fromJson(json, collectionType);
 
             for(Teclado teclado : teclados){
-                tecladoService.incluir(teclado);
+                teclado.setUsuario(admin);
+                tecladoService.incluir(teclado,null);
                 System.out.println("O teclado: " + teclado.getMarca() + " " + teclado.getModelo() + " foi incluido com sucesso");
             }
 

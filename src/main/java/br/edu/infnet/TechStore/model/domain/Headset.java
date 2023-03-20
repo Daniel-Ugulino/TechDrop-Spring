@@ -3,8 +3,12 @@ package br.edu.infnet.TechStore.model.domain;
 import br.edu.infnet.TechStore.model.execptions.DescontoException;
 import br.edu.infnet.TechStore.model.execptions.ProdutoException;
 
-public class Headset extends Produto {
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "Headset")
+public class Headset extends Produto {
     private String som;
     private String frequencia;
     private String sensibilidade;
