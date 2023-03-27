@@ -26,18 +26,20 @@ public class HeadsetService {
             String s3FileUrl = s3fileService.uploadFile(path, multipartFile);
             headset.setImgUrl(s3FileUrl);
         }
-
         headsetRepository.save(headset);
     }
 
-    public void excluir(Integer key){
-        headsetRepository.deleteById(key);
+    public void excluir(Integer id){
+        Headset headsetDB = headsetRepository.findById(id).get();
+        headsetDB.setStatus(false);
+        headsetRepository.save(headsetDB);
     }
 
     public void atualizar(Headset headset,Integer id, MultipartFile multipartFile){
 
         Headset headsetDB = headsetRepository.findById(id).get();
         headset.setId(headsetDB.getId());
+        headset.setType(type);
 
         if (multipartFile != null){
             String path = s3fileService.getFilePath(multipartFile, bucket_folder,headset.getMarca(),headset.getModelo());

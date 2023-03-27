@@ -10,59 +10,49 @@
     <c:import url="/WEB-INF/jsp/components/dependencies.jsp"/>
 </head>
 
-
 <body>
 
 <c:import url="/WEB-INF/jsp/components/navbar.jsp"/>
 
 <main>
-    <div class="container-fluid d-flex justify-content-center flex-column ps-5 pe-5 ">
+    <div class="container-fluid d-flex justify-content-center flex-column ps-5 pe-5">
         <div class="row">
-            <h2>Listagem de Headsets</h2>
-            <h5>Quantidade de headset's cadastrados: ${headset.size()}</h5>
-
-            <a href="/headset/cadastro">Adicionar Item</a>
+            <h2>Listagem de Pedidos</h2>
+            <h5>Quantidade de pedidos realizados: ${pedido.size()}</h5>
+            <a href="/pedido/cadastro">Adicionar Item</a>
         </div>
 
-        <c:if test="${not empty headset}">
+        <c:if test="${not empty pedido}">
             <div class="row">
                 <div class="table-responsive">
                     <table class="table table-hover table-striped-columns mt-3">
                         <thead>
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Marca</th>
-                            <th scope="col">Modelo</th>
-                            <th scope="col">Quantidade</th>
-                            <th scope="col">Valor</th>
-                            <th scope="col">Conexao</th>
-                            <th scope="col">Iluminacao</th>
-                            <th scope="col">Tipo de som</th>
-                            <th scope="col">Frequencia</th>
-                            <th scope="col">Sensibilidade</th>
-                            <th scope="col">Cancelamento de Ruido</th>
-                            <th scope="col">Imagem do Produto</th>
+                            <th scope="col">Descricao</th>
+                            <th scope="col">Data</th>
+                            <th scope="col">Quantidade de Produtos</th>
+                            <th scope="col">Forma de Pagamento</th>
+                            <th scope="col">Valor Total</th>
+                            <th scope="col">Cliente</th>
+                            <th scope="col">Usuario</th>
                             <th scope="col">Opções</th>
                         </tr>
                         </thead>
                         <tbody class="table-group-divider">
-                        <c:forEach var="obj" items="${headset}">
+                        <c:forEach var="obj" items="${pedido}">
                             <tr>
-                                <td>${obj.id}</td>
-                                <td>${obj.marca}</td>
-                                <td>${obj.modelo}</td>
-                                <td>${obj.quantidade}</td>
-                                <td>${obj.valor}</td>
-                                <td>${obj.bluetooh_cable}</td>
-                                <td>${obj.iluminacao}</td>
-                                <td>${obj.som}</td>
-                                <td>${obj.frequencia}</td>
-                                <td>${obj.sensibilidade}</td>
-                                <td>${obj.cancelamentoRuido}</td>
-                                <td><a href="${obj.imgUrl}" target="_blank">imagem</a></td>
+                                    <td>${obj.id}</td>
+                                    <td>${obj.descricao}</td>
+                                    <td>${obj.date}</td>
+                                    <td>${obj.produtos.size()}</td>
+                                    <td>${obj.pagamento}</td>
+                                    <td>${obj.valor_total}</td>
+                                    <td>${obj.cliente.getNome()}</td>
+                                    <td>${obj.usuario.getUsername()}</td>
                                 <td>
-                                    <a href="/headset/${obj.id}/excluir">excluir</a>
-                                    <a href="/headset/${obj.id}">atualizar</a>
+                                    <a href="/pedido/${obj.id}/excluir">excluir</a>
+                                    <a href="/pedido/${obj.id}">atualizar</a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -95,6 +85,7 @@
                 </div>
             </div>
         </c:if>
+
     </div>
 </main>
 

@@ -6,6 +6,7 @@
     "valor": 209.99,
     "bluetooh_cable": "cable",
     "iluminacao": true,
+    "imgUrl": "https://techdrop-bucket.s3.amazonaws.com/default.png",
     "tipo": "mecanico",
     "switch_type" : "red",
     "ghosting": "100%"
@@ -17,6 +18,7 @@
     "valor":  299.99,
     "bluetooh_cable": "cable",
     "iluminacao": false,
+    "imgUrl": "https://techdrop-bucket.s3.amazonaws.com/default.png",
     "tipo": "optico",
     "switch_type" : "blue",
     "ghosting": "100%"
@@ -29,6 +31,7 @@
     "valor": 299.99,
     "bluetooh_cable": "bluetooh",
     "iluminacao": false,
+    "imgUrl": "https://techdrop-bucket.s3.amazonaws.com/default.png",
     "tipo": "membrana",
     "switch_type" : "none",
     "ghosting": "100%"

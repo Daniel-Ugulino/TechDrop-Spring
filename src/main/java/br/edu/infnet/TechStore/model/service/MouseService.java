@@ -27,9 +27,10 @@ public class MouseService{
         mouseRepository.save(mouse);
     }
 
-    public void excluir(Integer key){
-
-            mouseRepository.deleteById(key);
+    public void excluir(Integer id){
+        Mouse mouseDB = mouseRepository.findById(id).get();
+        mouseDB.setStatus(false);
+        mouseRepository.save(mouseDB);
     }
 
     public void atualizar(Mouse mouse,Integer id, MultipartFile multipartFile){

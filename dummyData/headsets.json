@@ -6,10 +6,12 @@
     "valor": 319.99,
     "bluetooh_cable": "cable",
     "iluminacao": true,
+    "imgUrl": "https://techdrop-bucket.s3.amazonaws.com/default.png",
     "som":"Surround 7.1",
     "frequencia":"50Hz até 20000Hz",
     "sensibilidade": "98 ± 3dB S.P.L. at 1KHz",
     "cancelamentoRuido" : "Sim"
+
   },
   {
     "marca": "Hyper-X",
@@ -18,6 +20,7 @@
     "valor": 499.99,
     "bluetooh_cable": "bluetooh",
     "iluminacao": false,
+    "imgUrl": "https://techdrop-bucket.s3.amazonaws.com/default.png",
     "som":"Surround 7.1",
     "frequencia":"20Hz–20.000Hz",
     "sensibilidade": "99dBSPL/mW a 1kHz",
@@ -31,6 +34,7 @@
     "valor": 299.99,
     "bluetooh_cable": "cable",
     "iluminacao": false,
+    "imgUrl": "https://techdrop-bucket.s3.amazonaws.com/default.png",
     "som":"7.1 Dolby Surround",
     "frequencia":"20 kHz",
     "sensibilidade": "107 dB SPL/mW",

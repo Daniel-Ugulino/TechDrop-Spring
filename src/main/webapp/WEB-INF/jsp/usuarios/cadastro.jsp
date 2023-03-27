@@ -8,27 +8,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/css/navbar.css" rel="stylesheet">
     <c:import url="/WEB-INF/jsp/components/dependencies.jsp"/>
 </head>
-
-<style>
-    body {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-    }
-
-    main>div {
-        height: 80vh !important
-    }
-
-    @media screen and ( max-width: 535px) {
-        main>div {
-            height: auto !important;
-        }
-    }
-</style>
 
 <body>
 
@@ -65,51 +46,51 @@
                     <input type="text" name="cpf" class="form-control" id="cpf" placeholder="000.000.000-00">
                 </div>
 
-                <div class="d-flex" style="gap:15px">
+                <div class="d-flex flex-wrap" style="gap:15px">
                     <p>Setor:</p>
                     <div class="form-check d-flex" style="gap:10px">
-                        <input class="form-check-input" name="setor" type="radio" value="Gerencia" id="setor_opt1">
+                        <input class="form-check-input" name="setor" type="radio" value="gerencia" id="setor_opt1">
                         <label class="form-check-label" for="setor_opt1">
                             Gerencia
                         </label>
                     </div>
 
                     <div class="form-check d-flex" style="gap:10px">
-                        <input class="form-check-input" name="setor" type="radio" value="Cliente" id="setor_opt2">
+                        <input class="form-check-input" name="setor" type="radio" value="vendas" id="setor_opt2">
                         <label class="form-check-label" for="setor_opt2">
                             Vendas
                         </label>
                     </div>
 
                     <div class="form-check d-flex" style="gap:10px">
-                        <input class="form-check-input" name="setor" type="radio" value="Administrador" id="setor_opt3">
+                        <input class="form-check-input" name="setor" type="radio" value="desenvolvimento" id="setor_opt3">
                         <label class="form-check-label" for="setor_opt3">
-                            Administrador
+                            Desenvolvimento
                         </label>
                     </div>
                 </div>
 
 
-                <div class="d-flex" style="gap:15px">
+                <div class="d-flex flex-wrap" style="gap:15px">
                     <p>Cargo:</p>
                     <div class="form-check d-flex" style="gap:10px">
-                        <input class="form-check-input" name="cargo" type="radio" value="Gestor" id="cargo_opt1">
+                        <input class="form-check-input" name="cargo" type="radio" value="gestor" id="cargo_opt1">
                         <label class="form-check-label" for="cargo_opt1">
                             Gestor
                         </label>
                     </div>
 
                     <div class="form-check d-flex" style="gap:10px">
-                        <input class="form-check-input" name="cargo" type="radio" value="Cliente" id="cargo_opt2">
+                        <input class="form-check-input" name="cargo" type="radio" value="vendendor" id="cargo_opt2">
                         <label class="form-check-label" for="cargo_opt2">
                             Vendendor
                         </label>
                     </div>
 
                     <div class="form-check d-flex" style="gap:10px">
-                        <input class="form-check-input" name="cargo" type="radio" value="Desenvolvimento" id="cargo_opt3">
+                        <input class="form-check-input" name="cargo" type="radio" value="desenvolvedor" id="cargo_opt3">
                         <label class="form-check-label" for="cargo_opt3">
-                            Desenvolvimento
+                            Desenvolvedor
                         </label>
                     </div>
                 </div>

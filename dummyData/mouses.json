@@ -6,6 +6,7 @@
     "valor": 139.99,
     "bluetooh_cable": "cable",
     "iluminacao": true,
+    "imgUrl": "https://techdrop-bucket.s3.amazonaws.com/default.png",
     "dpi" : 16000,
     "qtd_botoes": 6,
     "peso": 195
@@ -17,6 +18,7 @@
     "valor": 107.99,
     "bluetooh_cable": "cable",
     "iluminacao": true,
+    "imgUrl": "https://techdrop-bucket.s3.amazonaws.com/default.png",
     "dpi" : 12400,
     "qtd_botoes": 7,
     "peso": 210
@@ -28,6 +30,7 @@
     "valor": 199.99,
     "bluetooh_cable": "cable",
     "iluminacao": true,
+    "imgUrl": "https://techdrop-bucket.s3.amazonaws.com/default.png",
     "dpi" : 16000,
     "qtd_botoes": 6,
     "peso": 190
@@ -39,6 +42,7 @@
     "valor": 319.90,
     "bluetooh_cable": "cable",
     "iluminacao": true,
+    "imgUrl": "https://techdrop-bucket.s3.amazonaws.com/default.png",
     "dpi" : 20000,
     "qtd_botoes": 8,
     "peso": 234

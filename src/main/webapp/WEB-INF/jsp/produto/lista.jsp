@@ -7,30 +7,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/css/navbar.css" rel="stylesheet">
     <c:import url="/WEB-INF/jsp/components/dependencies.jsp"/>
 </head>
-
-<style>
-    body {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-    }
-</style>
 
 <body>
 
 <c:import url="/WEB-INF/jsp/components/navbar.jsp"/>
 
 <main>
-    <div class="container-fluid d-flex justify-content-center flex-column ps-5 pe-5 " style="height: 80vh !important;">
+    <div class="container-fluid d-flex justify-content-center flex-column ps-5 pe-5 ">
         <div class="row">
-            <h2>Listagem de Teclados</h2>
-            <a href="/teclado/cadastro">Adicionar Item</a>
+            <h2>Listagem de Produtos</h2>
+            <h5>Quantidade de produtos cadastrados: ${produto.size()}</h5>
         </div>
 
-        <c:if test="${not empty teclado}">
+        <c:if test="${not empty produto}">
             <div class="row">
                 <div class="table-responsive">
                     <table class="table table-hover table-striped-columns mt-3">
@@ -44,13 +35,12 @@
                             <th scope="col">Conexao</th>
                             <th scope="col">Iluminacao</th>
                             <th scope="col">Tipo</th>
-                            <th scope="col">Switch</th>
-                            <th scope="col">Ghosting</th>
+                            <th scope="col">Imagem do Produto</th>
                             <th scope="col">Opções</th>
                         </tr>
                         </thead>
                         <tbody class="table-group-divider">
-                        <c:forEach var="obj" items="${teclado}">
+                        <c:forEach var="obj" items="${produto}">
                             <tr>
                                 <td>${obj.id}</td>
                                 <td>${obj.marca}</td>
@@ -59,10 +49,12 @@
                                 <td>${obj.valor}</td>
                                 <td>${obj.bluetooh_cable}</td>
                                 <td>${obj.iluminacao}</td>
-                                <td>${obj.tipo}</td>
-                                <td>${obj.switch_type}</td>
-                                <td>${obj.ghosting}</td>
-                                <td><a href="/teclado/${obj.id}/excluir">excluir</a></td>
+                                <td>${obj.type}</td>
+                                <td><a href="${obj.imgUrl}" target="_blank">imagem</a></td>
+                                <td>
+                                    <a href="/${obj.type}/${obj.id}/excluir">excluir</a>
+                                    <a href="/${obj.type}/${obj.id}">atualizar</a>
+                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>

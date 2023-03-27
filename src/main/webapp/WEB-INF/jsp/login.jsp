@@ -8,21 +8,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/css/navbar.css" rel="stylesheet">
     <c:import url="/WEB-INF/jsp/components/dependencies.jsp"/>
 </head>
-
-<style>
-    body {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-    }
-
-    main>div {
-        height: 80vh !important
-    }
-</style>
 
 <body>
 

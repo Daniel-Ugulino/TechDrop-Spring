@@ -8,27 +8,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/css/navbar.css" rel="stylesheet">
     <c:import url="/WEB-INF/jsp/components/dependencies.jsp"/>
 </head>
-
-<style>
-    body {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-    }
-
-    main>div {
-        height: 80vh !important
-    }
-
-    @media screen and ( max-width: 535px) {
-        main>div {
-            height: auto !important;
-        }
-    }
-</style>
 
 <body>
 
@@ -63,22 +44,9 @@
                         <input type="text" class="form-control" name="cpf" value="${cliente.getCpf()}" id="cpf" placeholder="000.000.000-00">
                     </div>
 
-                </div>
-
-                <div class="col d-flex flex-column" style="gap:10px">
                     <div>
                         <label for="nascimento"  class="form-label">Nascimento</label>
                         <input type="text" class="form-control" name="nascimento" value="${cliente.getNascimento()}"  id="nascimento" placeholder="02/02/2002">
-                    </div>
-
-                    <div>
-                        <label for="cep"  class="form-label">Cep</label>
-                        <input type="text" class="form-control" name="cep" id="cep" value="${cliente.getCep()}" placeholder="000000-000">
-                    </div>
-
-                    <div>
-                        <label for="endereco" class="form-label">Endereco</label>
-                        <input type="text" class="form-control" name="endereco" id="endereco" value="${cliente.getEndereco()}" placeholder="Rua a quadra b">
                     </div>
 
                     <div>
@@ -87,11 +55,14 @@
                     </div>
                 </div>
 
+                <c:import url="/WEB-INF/jsp/components/endereco.jsp"/>
+
+
                 <div class="col d-flex flex-column" style="gap:10px">
                     <h4>Imagem do Cliente:</h4>
 
                     <div class="card" style="max-width: 200px;max-height: 200px;">
-                        <img src="${cliente.getImgUrl()}" class="card-img-top" alt="..." id="preview_img">
+                        <img src="${cliente.getImgUrl()}" class="card-img-top" alt="..." id="preview_img" style="max-height: 100%;">
                     </div>
 
                     <div class="input-group mb-3">

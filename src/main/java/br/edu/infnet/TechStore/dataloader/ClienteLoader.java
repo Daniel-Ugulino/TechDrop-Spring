@@ -1,6 +1,7 @@
 package br.edu.infnet.TechStore.dataloader;
 
 import br.edu.infnet.TechStore.model.domain.Cliente;
+import br.edu.infnet.TechStore.model.domain.Endereco;
 import br.edu.infnet.TechStore.model.domain.Usuario;
 import br.edu.infnet.TechStore.model.service.ClienteService;
 import com.google.gson.Gson;
@@ -33,6 +34,8 @@ public class ClienteLoader implements ApplicationRunner {
         Gson gson = new Gson();
 
         Usuario admin = new Usuario();
+        Endereco endereco =  new Endereco("01001000","Praça da Sé","lado ímpar","Sé","São Paulo","SP");
+        endereco.setId(1);
         admin.setId(1);
         try{
 
@@ -46,6 +49,8 @@ public class ClienteLoader implements ApplicationRunner {
 
             for(Cliente cliente : clientes){
                 cliente.setUsuario(admin);
+                cliente.setStatus(true);
+                cliente.setEndereco(endereco);
                 clienteService.incluir(cliente);
                 System.out.println("O cliente: "+cliente.getNome()+" foi incluido com sucesso");
             }

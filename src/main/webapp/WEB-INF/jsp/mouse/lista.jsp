@@ -7,26 +7,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/css/navbar.css" rel="stylesheet">
     <c:import url="/WEB-INF/jsp/components/dependencies.jsp"/>
 </head>
-
-<style>
-    body {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-    }
-</style>
 
 <body>
 
 <c:import url="/WEB-INF/jsp/components/navbar.jsp"/>
 
 <main>
-    <div class="container-fluid d-flex justify-content-center flex-column ps-5 pe-5 " style="height: 80vh !important;">
+    <div class="container-fluid d-flex justify-content-center flex-column ps-5 pe-5 ">
         <div class="row">
             <h2>Listagem de Mouse's</h2>
+            <h5>Quantidade de mouse's cadastrados: ${mouse.size()}</h5>
             <a href="/mouse/cadastro">Adicionar Item</a>
         </div>
 

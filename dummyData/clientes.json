@@ -5,9 +5,9 @@
     "email": "teste@gmail.com",
     "cpf": "123456789-12",
     "nascimento": "02/09/2002",
-    "endereco": "Rua a Quadra B",
     "cep": "23860-000",
-    "telefone": "(21)982302376"
+    "telefone": "(21)982302376",
+    "imgUrl": "https://techdrop-bucket.s3.amazonaws.com/default.png"
   },
   {
     "nome": "German",
@@ -15,9 +15,9 @@
     "email": "cano@gmail.com",
     "cpf": "123456789-12",
     "nascimento": "01/01/2001",
-    "endereco": "Rua B Quadra C",
     "cep": "23860-000",
-    "telefone": "(21)12245678"
+    "telefone": "(21)12245678",
+    "imgUrl": "https://techdrop-bucket.s3.amazonaws.com/default.png"
   },
   {
     "nome": "Wagner",
@@ -25,8 +25,8 @@
     "email": "leao@gmail.com",
     "cpf": "123456789-12",
     "nascimento": "05/12/2011",
-    "endereco": "Rua D Quadra E",
     "cep": "23860-000",
-    "telefone": "(21)12245678"
+    "telefone": "(21)12245678",
+    "imgUrl": "https://techdrop-bucket.s3.amazonaws.com/default.png"
   }
 ]

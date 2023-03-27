@@ -4,7 +4,7 @@
 <footer style="margin-top: auto;">
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Footer</a>
+            <a class="navbar-brand" href="#">FEITO POR: DANIEL UGULINO INFNET 2023</a>
         </div>
     </nav>
 </footer>

@@ -41,6 +41,7 @@ public class UsuarioLoader implements ApplicationRunner {
             this.usuarios = gson.fromJson(json, collectionType);
 
             for(Usuario usuario : usuarios){
+                usuario.setStatus(true);
                 usuarioService.incluir(usuario);
                 System.out.println("O Usuario: " + usuario.getUsername() + " foi incluido com sucesso");
             }

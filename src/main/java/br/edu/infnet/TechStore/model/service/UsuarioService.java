@@ -18,23 +18,27 @@ public class UsuarioService{
 
     public Collection<Usuario> obterLista(){ return usuarioRepository.findAll(); }
 
+
     public Collection<Usuario> listaPaginada(Integer page){
         return usuarioRepository.findPaginated(page);
     }
 
-
     public Usuario incluir(Usuario usuario) {
         usuario.setPassword(bCryptPasswordEncoder.encode(usuario.getPassword()));
+        usuario.setStatus(true);
         return usuarioRepository.save(usuario);
     }
 
-    public void excluir(Integer key) {
-        usuarioRepository.deleteById(key);
+    public void excluir(Integer id) {
+        Usuario userFromDB = usuarioRepository.findById(id).get();
+        userFromDB.setStatus(false);
+        usuarioRepository.save(userFromDB);
     }
 
     public Usuario autenticar(Usuario usuario){
         Usuario userFromDB = usuarioRepository.login(usuario.getEmail());
-        if (bCryptPasswordEncoder.matches(usuario.getPassword(), userFromDB.getPassword())){
+        if (userFromDB.getStatus() && bCryptPasswordEncoder.matches(usuario.getPassword(), userFromDB.getPassword())){
+            System.out.println(userFromDB.getCargo().equals("desenvolvedor"));
             return userFromDB;
         }
         return null;

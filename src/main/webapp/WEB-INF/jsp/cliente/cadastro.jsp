@@ -8,27 +8,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/css/navbar.css" rel="stylesheet">
     <c:import url="/WEB-INF/jsp/components/dependencies.jsp"/>
 </head>
 
-<style>
-    body {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-    }
-
-    main>div {
-        height: 80vh !important
-    }
-
-    @media screen and ( max-width: 535px) {
-        main>div {
-            height: auto !important;
-        }
-    }
-</style>
 
 <body>
 
@@ -43,6 +25,8 @@
 
         <form action="/cliente/incluir" method="post" enctype="multipart/form-data" class="row d-flex justify-content-center pt-3" style="gap:20px">
             <div class="col d-flex flex-column" style="gap:10px">
+                <h4>Dados do Cliente:</h4>
+
                 <div>
                     <label for="nome"  class="form-label">Nome</label>
                     <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome">
@@ -63,22 +47,9 @@
                     <input type="text" class="form-control" name="cpf" id="cpf" placeholder="000.000.000-00">
                 </div>
 
-            </div>
-
-            <div class="col d-flex flex-column" style="gap:10px">
                 <div>
                     <label for="nascimento"  class="form-label">Nascimento</label>
                     <input type="text" class="form-control" name="nascimento" id="nascimento" placeholder="02/02/2002">
-                </div>
-
-                <div>
-                    <label for="cep"  class="form-label">Cep</label>
-                    <input type="text" class="form-control" name="cep" id="cep" placeholder="000000-000">
-                </div>
-
-                <div>
-                    <label for="endereco" class="form-label">Endereco</label>
-                    <input type="text" class="form-control" name="endereco" id="endereco" placeholder="Rua a quadra b">
                 </div>
 
                 <div>
@@ -87,11 +58,13 @@
                 </div>
             </div>
 
+            <c:import url="/WEB-INF/jsp/components/endereco.jsp"/>
+
             <div class="col d-flex flex-column" style="gap:10px">
                 <h4>Imagem do Cliente:</h4>
 
                 <div class="card" style="max-width: 200px;max-height: 200px;">
-                    <img src="..." class="card-img-top" alt="..." id="preview_img">
+                    <img src="..." class="card-img-top" alt="..." id="preview_img" style="max-height: 100%;">
                 </div>
 
                 <div class="input-group mb-3">
@@ -123,11 +96,26 @@
         }
     }
 
+
     $( "#cep" ).keyup(function() {
         if($("#cep").val().length >= 8){
             $.get( "/getCep/"+$("#cep").val(), function( data ) {
-                $("#endereco").empty()
-                $("#endereco").val(data.bairro + " " + data.logradouro + " " + data.localidade)
+                console.log(data)
+                $("#logradouro").empty()
+                $("#logradouro").val(data.logradouro)
+
+                $("#complemento").empty()
+                $("#complemento").val(data.complemento)
+
+                $("#bairro").empty()
+                $("#bairro").val(data.bairro)
+
+                $("#localidade").empty()
+                $("#localidade").val(data.localidade)
+
+                $("#uf").empty()
+                $("#uf").val(data.uf)
+
             });
         }
     });

@@ -19,21 +19,24 @@
                                 Vendas
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Listar</a></li>
-                                <li><a class="dropdown-item" href="#">Cadastrar</a></li>
+                                <li><a class="dropdown-item" href="/pedido">Listar</a></li>
+                                <li><a class="dropdown-item" href="/pedido/cadastro">Cadastrar</a></li>
                             </ul>
                         </li>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Produtos
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/headset">Headsets</a></li>
-                                <li><a class="dropdown-item" href="/mouse">Mouse's</a></li>
-                                <li><a class="dropdown-item" href="/teclado">Teclados</a></li>
-                            </ul>
-                        </li>
+                        <c:if test='${!usuario.getCargo().equals("vendendor")}'>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="/produto" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Produtos
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/produto">Todos</a></li>
+                                    <li><a class="dropdown-item" href="/headset">Headsets</a></li>
+                                    <li><a class="dropdown-item" href="/mouse">Mouse's</a></li>
+                                    <li><a class="dropdown-item" href="/teclado">Teclados</a></li>
+                                </ul>
+                            </li>
+                        </c:if>
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -45,19 +48,21 @@
                             </ul>
                         </li>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Usuarios
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/usuario">Listar</a></li>
-                                <li><a class="dropdown-item" href="/usuario/cadastro">Cadastrar</a></li>
-                            </ul>
-                        </li>
+                        <c:if test='${usuario.getCargo().equals("desenvolvedor")}'>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Usuarios
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/usuario">Listar</a></li>
+                                    <li><a class="dropdown-item" href="/usuario/cadastro">Cadastrar</a></li>
+                                </ul>
+                            </li>
+                        </c:if>
                     </ul>
 
                     <div class="nav-link d-flex align-items-center" style="gap:5px; font-size: 1.3rem;">
-                            ${usuario.getUsername()}
+                        ${usuario.getUsername()}
                         <a href="/logout" role="button">
                             <i class="bi bi-box-arrow-right" style="font-size: 2rem; color: cornflowerblue;"></i>
                         </a>

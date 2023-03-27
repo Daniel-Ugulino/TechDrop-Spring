@@ -45,6 +45,7 @@ public class HeadsetLoader implements ApplicationRunner {
 
             for(Headset headset : headsets){
                 headset.setUsuario(admin);
+                headset.setStatus(true);
                 headsetService.incluir(headset,null);
                 System.out.println("O Headset: " + headset.getMarca() + " " + headset.getModelo() + " foi incluido com sucesso");
             }

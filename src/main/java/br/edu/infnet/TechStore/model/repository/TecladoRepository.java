@@ -8,12 +8,12 @@ import org.springframework.stereotype.Repository;
 import java.util.Collection;
 @Repository
 public interface TecladoRepository extends CrudRepository<Teclado, Integer> {
-    @Query("from Teclado ORDER BY id ASC")
+    @Query("from Teclado t where t.status = true ORDER BY t.id ASC")
     Collection<Teclado> findAll();
 
-    @Query("from Teclado t where t.usuario.id= :id ORDER BY 'id' ASC ")
+    @Query("from Teclado t where t.usuario.id= :id and t.status = true ORDER BY t.id ASC ")
     Collection<Teclado> findAll(Integer id);
 
-    @Query(value="select * from Teclado ORDER BY id ASC offset :page * 5 limit 5 ", nativeQuery = true)
+    @Query(value="select * from Teclado where t.status = true ORDER BY id ASC offset :page * 5 limit 5 ", nativeQuery = true)
     Collection<Teclado> findPaginated(Integer page);
 }

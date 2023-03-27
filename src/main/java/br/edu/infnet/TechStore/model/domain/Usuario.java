@@ -1,6 +1,7 @@
 package br.edu.infnet.TechStore.model.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.*;
 import java.util.List;
@@ -19,12 +20,30 @@ public class Usuario {
     private String cargo;
     private String setor;
     private String email;
+    private Boolean status;
+
+    @JsonIgnore
     @OneToMany
     @JoinColumn(name = "idUsuario")
     private List<Cliente> clientes;
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+    @JsonIgnore
     @OneToMany
     @JoinColumn(name = "idUsuario")
     private List<Produto> produtos;
+
+    @JsonIgnore
+    @OneToMany
+    @JoinColumn(name = "idUsuario")
+    private List<Pedido> pedidos;
     public Usuario(){
 
     }
@@ -106,6 +125,14 @@ public class Usuario {
 
     public List<Cliente> getClientes() {
         return clientes;
+    }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 
     public void setClientes(List<Cliente> clientes) {

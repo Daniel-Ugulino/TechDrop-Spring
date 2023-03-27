@@ -1,6 +1,7 @@
 package br.edu.infnet.TechStore.model.service;
 
 import br.edu.infnet.TechStore.model.domain.Headset;
+import br.edu.infnet.TechStore.model.domain.Mouse;
 import br.edu.infnet.TechStore.model.domain.Teclado;
 import br.edu.infnet.TechStore.model.repository.TecladoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,14 +29,17 @@ public class TecladoService {
         tecladoRepository.save(teclado);
     }
 
-    public void excluir(Integer key){
-        tecladoRepository.deleteById(key);
+    public void excluir(Integer id){
+        Teclado tecladoDB = tecladoRepository.findById(id).get();
+        tecladoDB.setStatus(false);
+        tecladoRepository.save(tecladoDB);
     }
 
     public void atualizar(Teclado teclado,Integer id, MultipartFile multipartFile){
 
         Teclado tecladoDB = tecladoRepository.findById(id).get();
         teclado.setId(tecladoDB.getId());
+        teclado.setType(type);
 
         if (multipartFile != null){
             String path = s3fileService.getFilePath(multipartFile,bucket_folder,teclado.getMarca(),teclado.getModelo());

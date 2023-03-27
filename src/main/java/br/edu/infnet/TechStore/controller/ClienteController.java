@@ -1,6 +1,7 @@
 package br.edu.infnet.TechStore.controller;
 
 import br.edu.infnet.TechStore.model.domain.Cliente;
+import br.edu.infnet.TechStore.model.domain.Endereco;
 import br.edu.infnet.TechStore.model.domain.Usuario;
 import br.edu.infnet.TechStore.model.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,15 +27,21 @@ public class ClienteController {
     @GetMapping(value = "/cliente")
     public String telaLista(Model model,@SessionAttribute("usuario") Usuario usuario) {
 
-        model.addAttribute("cliente", clienteService.obterLista(usuario.getId()));
+        if(usuario.getCargo() == "administrador"){
+            model.addAttribute("cliente", clienteService.obterLista());
+        }
+        else {
+            model.addAttribute("cliente", clienteService.obterLista(usuario.getId()));
+        }
 
         return "cliente/lista";
     }
 
     @PostMapping(value = "/cliente/incluir")
-    public String incluir(Cliente cliente, MultipartFile file, @SessionAttribute("usuario") Usuario usuario) {
+    public String incluir(Cliente cliente, Endereco endereco, MultipartFile file, @SessionAttribute("usuario") Usuario usuario) {
 
         cliente.setUsuario(usuario);
+        cliente.setEndereco(endereco);
 
         if(file.isEmpty()) {
             clienteService.incluir(cliente,null);

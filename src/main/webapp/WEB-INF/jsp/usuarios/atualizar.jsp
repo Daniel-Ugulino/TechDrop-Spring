@@ -8,27 +8,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/css/navbar.css" rel="stylesheet">
     <c:import url="/WEB-INF/jsp/components/dependencies.jsp"/>
 </head>
-
-<style>
-    body {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-    }
-
-    main>div {
-        height: 80vh !important
-    }
-
-    @media screen and ( max-width: 535px) {
-        main>div {
-            height: auto !important;
-        }
-    }
-</style>
 
 <body>
 
@@ -63,21 +44,21 @@
                     <div class="d-flex" style="gap:15px">
                         <p>Setor:</p>
                         <div class="form-check d-flex" style="gap:10px">
-                            <input ${usuario.getSetor().equals("Gerencia") ? 'checked="checked"' : ''} class="form-check-input" name="setor" type="radio" value="Gerencia" id="setor_opt1">
+                            <input ${usuario.getSetor().toLowerCase().equals("Gerencia") ? 'checked="checked"' : ''} class="form-check-input" name="setor" type="radio" value="Gerencia" id="setor_opt1">
                             <label class="form-check-label" for="setor_opt1">
                                 Gerencia
                             </label>
                         </div>
 
                         <div class="form-check d-flex" style="gap:10px">
-                            <input ${usuario.getSetor().equals("Vendas") ? 'checked="checked"' : ''} class="form-check-input" name="setor" type="radio" value="Vendas" id="setor_opt2">
+                            <input ${usuario.getSetor().toLowerCase().equals("Vendas") ? 'checked="checked"' : ''} class="form-check-input" name="setor" type="radio" value="Vendas" id="setor_opt2">
                             <label class="form-check-label" for="setor_opt2">
                                 Vendas
                             </label>
                         </div>
 
                         <div class="form-check d-flex" style="gap:10px">
-                            <input ${usuario.getSetor().equals("Administrador") ? 'checked="checked"' : ''} class="form-check-input" name="setor" type="radio" value="Administrador" id="setor_opt3">
+                            <input ${usuario.getSetor().toLowerCase().equals("Administrador") ? 'checked="checked"' : ''} class="form-check-input" name="setor" type="radio" value="Administrador" id="setor_opt3">
                             <label class="form-check-label" for="setor_opt3">
                                 Administrador
                             </label>
@@ -88,21 +69,21 @@
                     <div class="d-flex" style="gap:15px">
                         <p>Cargo:</p>
                         <div class="form-check d-flex" style="gap:10px">
-                            <input ${usuario.getCargo().equals("Gestor") ? 'checked="checked"' : ''} class="form-check-input" name="cargo" type="radio" value="Gestor" id="cargo_opt1">
+                            <input ${usuario.getCargo().toLowerCase().equals("Gestor") ? 'checked="checked"' : ''} class="form-check-input" name="cargo" type="radio" value="Gestor" id="cargo_opt1">
                             <label class="form-check-label" for="cargo_opt1">
                                 Gestor
                             </label>
                         </div>
 
                         <div class="form-check d-flex" style="gap:10px">
-                            <input ${usuario.getCargo().equals("Vendendor") ? 'checked="checked"' : ''} class="form-check-input" name="cargo" type="radio" value="Vendendor" id="cargo_opt2">
+                            <input ${usuario.getCargo().toLowerCase().equals("Vendendor") ? 'checked="checked"' : ''} class="form-check-input" name="cargo" type="radio" value="Vendendor" id="cargo_opt2">
                             <label class="form-check-label" for="cargo_opt2">
                                 Vendendor
                             </label>
                         </div>
 
                         <div class="form-check d-flex" style="gap:10px">
-                            <input ${usuario.getCargo().equals("Desenvolvedor") ? 'checked="checked"' : ''} class="form-check-input" name="cargo" type="radio" value="Desenvolvedor" id="cargo_opt3">
+                            <input ${usuario.getCargo().toLowerCase().equals("Desenvolvedor") ? 'checked="checked"' : ''} class="form-check-input" name="cargo" type="radio" value="Desenvolvedor" id="cargo_opt3">
                             <label class="form-check-label" for="cargo_opt3">
                                 Desenvolvedor
                             </label>

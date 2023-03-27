@@ -48,6 +48,8 @@ public class MouseLoader implements ApplicationRunner {
 
             for(Mouse mouse : mouses){
                 mouse.setUsuario(admin);
+                mouse.setStatus(true);
+
                 mouseService.incluir(mouse,null);
                 System.out.println("O mouse: " + mouse.getMarca() + " " + mouse.getModelo() + " foi incluido com sucesso");
             }

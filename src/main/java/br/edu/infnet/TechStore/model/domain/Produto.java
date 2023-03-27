@@ -2,8 +2,10 @@ package br.edu.infnet.TechStore.model.domain;
 
 import br.edu.infnet.TechStore.model.execptions.DescontoException;
 import br.edu.infnet.TechStore.model.execptions.ProdutoException;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "produto")
@@ -20,13 +22,28 @@ public abstract class Produto {
     private Boolean iluminacao;
     private String imgUrl;
     private String type;
+    private Boolean status;
+
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;
+    @JsonIgnore
+    @ManyToMany(mappedBy = "produtos")
+    private List<Pedido> pedidos;
 
     public Produto(){
-
     }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+
 
     public String getType() {
         return type;

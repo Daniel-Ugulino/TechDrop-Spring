@@ -18,6 +18,7 @@ public class ClienteService {
 
     private String bucket_folder = "techdrop_cliente/";
     public Cliente incluir(Cliente cliente){
+        cliente.setStatus(true);
         return clienteRepository.save( cliente);
     }
     public void incluir(Cliente cliente, MultipartFile multipartFile ){
@@ -44,8 +45,10 @@ public class ClienteService {
 
         clienteRepository.save(cliente);
     }
-    public void excluir(Integer key){
-        clienteRepository.deleteById(key);
+    public void excluir(Integer id) {
+        Cliente clienteDB = clienteRepository.findById(id).get();
+        clienteDB.setStatus(false);
+        clienteRepository.save(clienteDB);
     }
 
     public Collection<Cliente> obterLista(){

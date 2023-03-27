@@ -2,17 +2,41 @@ package br.edu.infnet.TechStore.model.domain;
 
 import br.edu.infnet.TechStore.model.execptions.PedidoException;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+@Entity
+@Table(name = "pedido")
 public class Pedido {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String descricao;
-    private LocalDateTime date;
-    private Float valor_total = 0F ;
+    private String date;
+    private Float valor_total = 0F;
     private String pagamento;
+    @ManyToMany(cascade = CascadeType.DETACH)
     private List<Produto> produtos;
+    @OneToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "idSolicitante")
     private Cliente cliente;
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
+
+    public Pedido(){
+
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Pedido(Cliente cliente, List<Produto> produtos) throws PedidoException {
 
@@ -26,7 +50,7 @@ public class Pedido {
 
         this.cliente = cliente;
         this.produtos = produtos;
-        this.date = LocalDateTime.now();
+        this.date = LocalDateTime.now().toString();
     }
 
     @Override
@@ -34,8 +58,32 @@ public class Pedido {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         calcularValorTotal();
         return String.format("%s\nDescrição: %s | Data da compra: %s | Forma de Pagamento: %s | Valor Total: %.2f\n",
-                cliente,descricao,date.format(formatter),pagamento,valor_total
+                cliente,descricao,date,pagamento,valor_total
         );
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public Float getValor_total() {
+        return valor_total;
+    }
+
+    public void setValor_total(Float valor_total) {
+        this.valor_total = valor_total;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public String imprimirPedido() {
@@ -55,7 +103,7 @@ public class Pedido {
     public String obterLinha() {
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("MM/yyyy");
 
-        return this.getData().format(formato)+";"+
+        return this.getData().format(formato.toString())+";"+
                 this.getDescricao()+";"+
                 this.getPagamento()+";"+
                 this.getCliente().getNome()+";"+
@@ -77,7 +125,7 @@ public class Pedido {
     public List<Produto> getProdutos() {
         return produtos;
     }
-    public LocalDateTime getData() {
+    public String getData() {
         return date;
     }
 }

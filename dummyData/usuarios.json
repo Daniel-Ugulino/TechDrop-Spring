@@ -3,88 +3,88 @@
     "username": "admin",
     "password": "admin",
     "cpf": "000.000.000-00",
-    "cargo": "Desenvolvedor",
-    "setor": "Administrador",
+    "cargo": "desenvolvedor",
+    "setor": "desenvolvimento",
     "email": "admin@admin.com"
   },
   {
     "username": "Mavis",
     "password": 123456,
     "cpf": "620.658.820-34",
-    "cargo": "Desenvolvedor",
-    "setor": "Administrador",
+    "cargo": "vendendor",
+    "setor": "administrador",
     "email": "mavismccarty@equitax.com"
   },
   {
     "username": "King",
     "password": 123456,
     "cpf": "620.658.820-34",
-    "cargo": "Desenvolvedor",
-    "setor": "Administrador",
+    "cargo": "gestor",
+    "setor": "administrador",
     "email": "kingmccarty@equitax.com"
   },
   {
     "username": "Olive",
     "password": 123456,
     "cpf": "620.658.820-34",
-    "cargo": "Desenvolvedor",
-    "setor": "Administrador",
+    "cargo": "desenvolvedor",
+    "setor": "administrador",
     "email": "olivemccarty@equitax.com"
   },
   {
     "username": "Hannah",
     "password": 123456,
     "cpf": "620.658.820-34",
-    "cargo": "Desenvolvedor",
-    "setor": "Administrador",
+    "cargo": "vendendor",
+    "setor": "administrador",
     "email": "hannahmccarty@equitax.com"
   },
   {
     "username": "Stevens",
     "password": 123456,
     "cpf": "620.658.820-34",
-    "cargo": "Desenvolvedor",
-    "setor": "Administrador",
+    "cargo": "desenvolvedor",
+    "setor": "administrador",
     "email": "stevensmccarty@equitax.com"
   },
   {
     "username": "Marianne",
     "password": 123456,
     "cpf": "620.658.820-34",
-    "cargo": "Desenvolvedor",
-    "setor": "Administrador",
+    "cargo": "desenvolvedor",
+    "setor": "administrador",
     "email": "mariannemccarty@equitax.com"
   },
   {
     "username": "Heather",
     "password": 123456,
     "cpf": "620.658.820-34",
-    "cargo": "Desenvolvedor",
-    "setor": "Administrador",
+    "cargo": "desenvolvedor",
+    "setor": "administrador",
     "email": "heathermccarty@equitax.com"
   },
   {
     "username": "Tonia",
     "password": 123456,
     "cpf": "620.658.820-34",
-    "cargo": "Desenvolvedor",
-    "setor": "Administrador",
+    "cargo": "desenvolvedor",
+    "setor": "administrador",
     "email": "toniamccarty@equitax.com"
   },
   {
     "username": "Burks",
     "password": 123456,
     "cpf": "620.658.820-34",
-    "cargo": "Desenvolvedor",
-    "setor": "Administrador",
+    "cargo": "desenvolvedor",
+    "setor": "administrador",
     "email": "burksmccarty@equitax.com"
   },
   {
     "username": "Savannah",
     "password": 123456,
     "cpf": "620.658.820-34",
-    "cargo": "Desenvolvedor",
-    "setor": "Administrador",
+    "cargo": "desenvolvedor",
+    "setor": "administrador",
     "email": "savannahmccarty@equitax.com"
   }
 ]

@@ -17,3 +17,19 @@
     max-height: 25px;
     cursor: pointer;
 }
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main>div {
+    height: 80vh !important
+}
+
+@media screen and ( max-width: 535px) {
+    main>div {
+        height: auto !important;
+    }
+}

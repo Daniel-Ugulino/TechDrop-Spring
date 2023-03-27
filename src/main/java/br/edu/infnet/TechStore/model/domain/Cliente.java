@@ -1,8 +1,10 @@
 package br.edu.infnet.TechStore.model.domain;
 
 import  br.edu.infnet.TechStore.model.execptions.ClienteException;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Cliente")
@@ -16,10 +18,16 @@ public class Cliente {
     private String email;
     private String cpf;
     private String nascimento;
-    private String endereco;
-    private String cep;
     private String telefone;
     private String imgUrl;
+    private Boolean status;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "idEndereco")
+    private Endereco endereco;
+
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
 
     public String getImgUrl() {
         return imgUrl;
@@ -29,10 +37,14 @@ public class Cliente {
         this.imgUrl = imgUrl;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "idUsuario")
-    private Usuario usuario;
 
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
 
     public Usuario getUsuario() {
         return usuario;
@@ -44,7 +56,7 @@ public class Cliente {
 
     public Cliente(){}
 
-    public Cliente(String nome,String cpf,String nascimento,String endereco,String cep) throws ClienteException {
+    public Cliente(String nome,String cpf,String nascimento,String endereco) throws ClienteException {
         if(nome == "") {
             throw new ClienteException("O nome do cliente deve ser preenchido!");
         }
@@ -61,15 +73,9 @@ public class Cliente {
             throw new ClienteException("O endereco do cliente deve ser preenchido!");
         }
 
-        if(cep == "") {
-            throw new ClienteException("O cep do cliente deve ser preenchido!");
-        }
-
         this.nome = nome;
         this.cpf = cpf;
         this.nascimento = nascimento;
-        this.endereco = endereco;
-        this.cep = cep;
     }
 
     @Override
@@ -84,8 +90,6 @@ public class Cliente {
         sb.append(nascimento);
         sb.append(" | Endereço:");
         sb.append(endereco);
-        sb.append(" | Cep:");
-        sb.append(cep);
         return sb.toString();
     }
 
@@ -137,21 +141,14 @@ public class Cliente {
         this.nascimento = nascimento;
     }
 
-    public String getEndereco() {
+    public Endereco getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(String endereco) {
+    public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
 
-    public String getCep() {
-        return cep;
-    }
-
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
 
     public String getTelefone() {
         return telefone;

@@ -47,6 +47,7 @@ public class TecladoLoader implements ApplicationRunner {
 
             for(Teclado teclado : teclados){
                 teclado.setUsuario(admin);
+                teclado.setStatus(true);
                 tecladoService.incluir(teclado,null);
                 System.out.println("O teclado: " + teclado.getMarca() + " " + teclado.getModelo() + " foi incluido com sucesso");
             }
