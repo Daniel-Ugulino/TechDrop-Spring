@@ -7,9 +7,9 @@
     "bluetooh_cable": "cable",
     "iluminacao": true,
     "imgUrl": "https://techdrop-bucket.s3.amazonaws.com/default.png",
-    "tipo": "mecanico",
-    "switch_type" : "red",
-    "ghosting": "100%"
+    "tipo": "MECANICO",
+    "switch_type" : "RED",
+    "ghosting": "TOTAL"
   },
   {
     "marca": "Redragon",
@@ -19,9 +19,9 @@
     "bluetooh_cable": "cable",
     "iluminacao": false,
     "imgUrl": "https://techdrop-bucket.s3.amazonaws.com/default.png",
-    "tipo": "optico",
-    "switch_type" : "blue",
-    "ghosting": "100%"
+    "tipo": "OPTICO",
+    "switch_type" : "BLUE",
+    "ghosting": "TOTAL"
   }
 ,
   {
@@ -32,8 +32,8 @@
     "bluetooh_cable": "bluetooh",
     "iluminacao": false,
     "imgUrl": "https://techdrop-bucket.s3.amazonaws.com/default.png",
-    "tipo": "membrana",
-    "switch_type" : "none",
-    "ghosting": "100%"
+    "tipo": "MEMBRANA",
+    "switch_type" : "NENHUM",
+    "ghosting": "TOTAL"
   }
 ]

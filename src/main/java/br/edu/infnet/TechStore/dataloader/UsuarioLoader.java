@@ -31,7 +31,6 @@ public class UsuarioLoader implements ApplicationRunner {
         String file = "dummyData/usuarios.json";
         Gson gson = new Gson();
         try{
-
             FileReader fileR = new FileReader(file);
             BufferedReader leitura = new BufferedReader(fileR);
 

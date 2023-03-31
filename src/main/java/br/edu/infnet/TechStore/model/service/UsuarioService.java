@@ -37,8 +37,8 @@ public class UsuarioService{
 
     public Usuario autenticar(Usuario usuario){
         Usuario userFromDB = usuarioRepository.login(usuario.getEmail());
-        if (userFromDB.getStatus() && bCryptPasswordEncoder.matches(usuario.getPassword(), userFromDB.getPassword())){
-            System.out.println(userFromDB.getCargo().equals("desenvolvedor"));
+
+        if (userFromDB != null && userFromDB.getStatus() && bCryptPasswordEncoder.matches(usuario.getPassword(), userFromDB.getPassword())){
             return userFromDB;
         }
         return null;

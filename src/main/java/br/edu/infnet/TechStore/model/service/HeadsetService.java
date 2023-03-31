@@ -26,6 +26,9 @@ public class HeadsetService {
             String s3FileUrl = s3fileService.uploadFile(path, multipartFile);
             headset.setImgUrl(s3FileUrl);
         }
+        else{
+            headset.setImgUrl("https://techdrop-bucket.s3.amazonaws.com/default.png");
+        }
         headsetRepository.save(headset);
     }
 

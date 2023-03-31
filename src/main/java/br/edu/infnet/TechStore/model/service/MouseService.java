@@ -22,7 +22,10 @@ public class MouseService{
             String path = s3fileService.getFilePath(multipartFile,bucket_folder,mouse.getMarca(),mouse.getModelo());
             String s3FileUrl = s3fileService.uploadFile(path, multipartFile);
             mouse.setImgUrl(s3FileUrl);
-            }
+        }
+        else{
+            mouse.setImgUrl("https://techdrop-bucket.s3.amazonaws.com/default.png");
+        }
 
         mouseRepository.save(mouse);
     }

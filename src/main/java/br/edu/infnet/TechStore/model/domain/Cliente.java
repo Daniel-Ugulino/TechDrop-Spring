@@ -20,7 +20,7 @@ public class Cliente {
     private String nascimento;
     private String telefone;
     private String imgUrl;
-    private Boolean status;
+    private Boolean status = true;
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "idEndereco")
     private Endereco endereco;

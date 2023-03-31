@@ -24,6 +24,7 @@
 
             <form action="/cliente/${cliente.getId()}/atualizar" enctype="multipart/form-data" method="post" class="row d-flex justify-content-center pt-3" style="gap:20px">
                 <div class="col d-flex flex-column" style="gap:10px">
+                    <h4>Dados do Cliente:</h4>
                     <div>
                         <label for="nome"  class="form-label">Nome</label>
                         <input type="text" class="form-control" name="nome" value="${cliente.getNome()}" id="nome" placeholder="Nome">
@@ -55,7 +56,13 @@
                     </div>
                 </div>
 
-                <c:import url="/WEB-INF/jsp/components/endereco.jsp"/>
+                <c:if test="${not empty cliente.endereco}">
+                    <c:import url="/WEB-INF/jsp/endereco/atualizar.jsp"/>
+                </c:if>
+
+                <c:if test="${empty cliente.endereco}">
+                    <c:import url="/WEB-INF/jsp/endereco/cadastro.jsp"/>
+                </c:if>
 
 
                 <div class="col d-flex flex-column" style="gap:10px">

@@ -34,8 +34,6 @@ public class ClienteLoader implements ApplicationRunner {
         Gson gson = new Gson();
 
         Usuario admin = new Usuario();
-        Endereco endereco =  new Endereco("01001000","Praça da Sé","lado ímpar","Sé","São Paulo","SP");
-        endereco.setId(1);
         admin.setId(1);
         try{
 
@@ -43,14 +41,13 @@ public class ClienteLoader implements ApplicationRunner {
             BufferedReader leitura = new BufferedReader(fileR);
 
             JsonArray json = new JsonParser().parse(leitura).getAsJsonArray();
-
             Type collectionType = new TypeToken<List<Cliente>>(){}.getType();
             this.clientes = gson.fromJson(json, collectionType);
 
             for(Cliente cliente : clientes){
                 cliente.setUsuario(admin);
                 cliente.setStatus(true);
-                cliente.setEndereco(endereco);
+                cliente.setEndereco(null);
                 clienteService.incluir(cliente);
                 System.out.println("O cliente: "+cliente.getNome()+" foi incluido com sucesso");
             }

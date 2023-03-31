@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +26,6 @@
         <form action="/cliente/incluir" method="post" enctype="multipart/form-data" class="row d-flex justify-content-center pt-3" style="gap:20px">
             <div class="col d-flex flex-column" style="gap:10px">
                 <h4>Dados do Cliente:</h4>
-
                 <div>
                     <label for="nome"  class="form-label">Nome</label>
                     <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome">
@@ -58,13 +57,13 @@
                 </div>
             </div>
 
-            <c:import url="/WEB-INF/jsp/components/endereco.jsp"/>
+            <c:import url="/WEB-INF/jsp/endereco/cadastro.jsp"/>
 
             <div class="col d-flex flex-column" style="gap:10px">
                 <h4>Imagem do Cliente:</h4>
 
                 <div class="card" style="max-width: 200px;max-height: 200px;">
-                    <img src="..." class="card-img-top" alt="..." id="preview_img" style="max-height: 100%;">
+                    <img src="https://techdrop-bucket.s3.amazonaws.com/default.png" class="card-img-top" alt="..." id="preview_img" style="max-height: 100%;">
                 </div>
 
                 <div class="input-group mb-3">

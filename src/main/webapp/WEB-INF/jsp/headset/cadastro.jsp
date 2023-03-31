@@ -49,14 +49,14 @@
                 <div class="d-flex" style="gap:15px">
                     <p>Conexão:</p>
                     <div class="form-check d-flex" style="gap:10px">
-                        <input class="form-check-input" type="radio" name="bluetooh_cable" id="bluetooh_cable1">
+                        <input value="bluetooh" class="form-check-input" type="radio" name="bluetooh_cable" id="bluetooh_cable1">
                         <label class="form-check-label" for="bluetooh_cable1">
                             Bluetooh
                         </label>
                     </div>
 
                     <div class="form-check d-flex" style="gap:10px">
-                        <input class="form-check-input" type="radio" name="bluetooh_cable" id="bluetooh_cable2">
+                        <input value="cable" class="form-check-input" type="radio" name="bluetooh_cable" id="bluetooh_cable2">
                         <label class="form-check-label" for="bluetooh_cable2">
                             Cable
                         </label>
@@ -66,14 +66,14 @@
                 <div class="d-flex" style="gap:15px">
                     <p>Iluminação:</p>
                     <div class="form-check d-flex" style="gap:10px">
-                        <input class="form-check-input" type="radio" name="iluminacao" id="iluminacao1">
+                        <input value="true" class="form-check-input" type="radio" name="iluminacao" id="iluminacao1">
                         <label class="form-check-label" for="iluminacao1">
                             Sim
                         </label>
                     </div>
 
                     <div class="form-check d-flex" style="gap:10px">
-                        <input class="form-check-input" type="radio" name="iluminacao" id="iluminacao2">
+                        <input value="false" class="form-check-input" type="radio" name="iluminacao" id="iluminacao2">
                         <label class="form-check-label" for="iluminacao2">
                             Não
                         </label>
@@ -125,7 +125,7 @@
                 <h4>Imagem do Produto:</h4>
 
                 <div class="card" style="max-width: 200px;max-height: 200px;">
-                    <img src="..." class="card-img-top" alt="..." id="preview_img" style="max-height: 100%;">
+                    <img src="https://techdrop-bucket.s3.amazonaws.com/default.png" class="card-img-top" alt="..." id="preview_img" style="max-height: 100%;">
                 </div>
 
                 <div class="input-group mb-3">

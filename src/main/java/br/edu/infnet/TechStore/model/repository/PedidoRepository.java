@@ -12,7 +12,7 @@ import java.util.Collection;
 public interface PedidoRepository extends CrudRepository<Pedido,Integer> {
     @Query("from Pedido ORDER BY id ASC")
     Collection<Pedido> findAll();
-    @Query("from Pedido p where p.usuario.id= :id ORDER BY p.id ASC ")
+    @Query("from Pedido p where p.usuario.id= :id and p.status = true ORDER BY p.id ASC ")
     Collection<Pedido> findAll(Integer id);
     @Query(value="select * from Pedido ORDER BY id ASC offset :page * 5 limit 5 ", nativeQuery = true)
     Collection<Pedido> findPaginated(Integer page);

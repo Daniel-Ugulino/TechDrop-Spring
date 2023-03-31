@@ -19,6 +19,13 @@
     <div class="container-fluid d-flex flex-column align-items-center justify-content-center ps-5 pe-5">
 
         <div class="row">
+
+            <c:if test="${not empty msg}">
+                <div class="alert alert-danger" role="alert">
+                        ${msg}
+                </div>
+            </c:if>
+
             <h2>Login</h2>
 
             <form action="/login" method="post" class=" d-flex justify-content-center pt-3" style="gap:20px">

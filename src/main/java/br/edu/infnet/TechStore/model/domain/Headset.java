@@ -1,19 +1,23 @@
 package br.edu.infnet.TechStore.model.domain;
 
+import br.edu.infnet.TechStore.enums.headset.headsetSound;
 import br.edu.infnet.TechStore.model.execptions.DescontoException;
 import br.edu.infnet.TechStore.model.execptions.ProdutoException;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
+import javax.validation.constraints.Null;
 
 @Entity
 @Table(name = "Headset")
 public class Headset extends Produto {
-    private String som;
+    @Enumerated(EnumType.STRING)
+    private headsetSound som;
     private String frequencia;
     private String sensibilidade;
-
-    private String cancelamentoRuido;
+    private boolean cancelamentoRuido;
 
     public Headset(){}
 
@@ -45,11 +49,11 @@ public class Headset extends Produto {
     public float calcularDesconto() throws DescontoException {
         Float desconto = 0f;
 
-        if(som == "" || frequencia == "" || sensibilidade == "" || cancelamentoRuido == ""){
+        if(som == null || frequencia == "" || sensibilidade == ""){
             throw new DescontoException("Não é possivel gerar desconto, os campos estão invalidos");
         }
 
-        if(som.equalsIgnoreCase("Stereo"))
+        if(som == headsetSound.STEREO)
         {
             desconto += 10;
         }
@@ -61,7 +65,7 @@ public class Headset extends Produto {
         {
             desconto += 10;
         }
-        if(cancelamentoRuido.equalsIgnoreCase("Não"))
+        if(!cancelamentoRuido)
         {
             desconto += 10;
         }
@@ -71,17 +75,27 @@ public class Headset extends Produto {
         return setValor(valor);
     };
 
-    public void setSom(String som){
+    public headsetSound getSom() {
+        return som;
+    }
+
+    public void setSom(headsetSound som) {
         this.som = som;
     }
+
+    public boolean isCancelamentoRuido() {
+        return cancelamentoRuido;
+    }
+
+    public void setCancelamentoRuido(boolean cancelamentoRuido) {
+        this.cancelamentoRuido = cancelamentoRuido;
+    }
+
     public void setFrequencia(String frequencia){
         this.frequencia = frequencia;
     }
     public void setSensibilidade(String sensibilidade){
         this.sensibilidade = sensibilidade;
-    }
-    public void setCancelamentoRuido(String cancelamentoRuido){
-        this.cancelamentoRuido = cancelamentoRuido;
     }
 
     public String getSensibilidade(){
@@ -90,11 +104,6 @@ public class Headset extends Produto {
     public String getFrequencia(){
         return frequencia;
     }
-    public String getSom(){
-        return som;
-    }
-    public String getCancelamentoRuido(){
-        return cancelamentoRuido;
-    }
+
 
 }

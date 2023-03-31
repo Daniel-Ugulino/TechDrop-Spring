@@ -2,22 +2,27 @@ package br.edu.infnet.TechStore.controller;
 
 import br.edu.infnet.TechStore.model.domain.Cliente;
 import br.edu.infnet.TechStore.model.domain.Endereco;
+import br.edu.infnet.TechStore.model.domain.Headset;
 import br.edu.infnet.TechStore.model.domain.Usuario;
+import br.edu.infnet.TechStore.model.dtos.clienteDto;
+import br.edu.infnet.TechStore.model.dtos.enderecoDto;
 import br.edu.infnet.TechStore.model.service.ClienteService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.validation.Valid;
 
 @Controller
 public class ClienteController {
-
     @Autowired
     private ClienteService clienteService;
+
+    private String msg;
+
 
     @GetMapping(value = "/cliente/cadastro")
     public String telaCadastro() {
@@ -27,27 +32,38 @@ public class ClienteController {
     @GetMapping(value = "/cliente")
     public String telaLista(Model model,@SessionAttribute("usuario") Usuario usuario) {
 
-        if(usuario.getCargo() == "administrador"){
+        if(usuario.getPermission().toString() == "ADMINISTRATOR"){
             model.addAttribute("cliente", clienteService.obterLista());
         }
         else {
             model.addAttribute("cliente", clienteService.obterLista(usuario.getId()));
         }
 
+        model.addAttribute("msg", msg);
+
+
         return "cliente/lista";
     }
 
     @PostMapping(value = "/cliente/incluir")
-    public String incluir(Cliente cliente, Endereco endereco, MultipartFile file, @SessionAttribute("usuario") Usuario usuario) {
+    public String incluir(@Valid clienteDto clienteDto,@Valid enderecoDto enderecoDto, MultipartFile file, @SessionAttribute("usuario") Usuario usuario) {
+        Cliente clienteModel = new Cliente();
+        Endereco enderecoModel = new Endereco();
 
-        cliente.setUsuario(usuario);
-        cliente.setEndereco(endereco);
+        BeanUtils.copyProperties(clienteDto,clienteModel);
+        BeanUtils.copyProperties(enderecoDto,enderecoModel);
+
+        clienteModel.setUsuario(usuario);
+        clienteModel.setEndereco(enderecoModel);
 
         if(file.isEmpty()) {
-            clienteService.incluir(cliente,null);
+            clienteService.incluir(clienteModel,null);
         }else{
-            clienteService.incluir(cliente,file);
+            clienteService.incluir(clienteModel,file);
         }
+
+        msg = "Cliente cadastrado com sucesso";
+
 
         return "redirect:/cliente";
     }
@@ -57,19 +73,29 @@ public class ClienteController {
 
         clienteService.excluir(id);
 
+        msg = "Cliente excluido com sucesso";
+
         return "redirect:/cliente";
     }
 
     @PostMapping(value = "/cliente/{id}/atualizar")
-    public String Update(Cliente cliente,  MultipartFile file, @PathVariable Integer id,@SessionAttribute("usuario") Usuario usuario){
+    public String Update(@Valid clienteDto clienteDto,@Valid enderecoDto enderecoDto, MultipartFile file, @PathVariable Integer id,@SessionAttribute("usuario") Usuario usuario){
+        Cliente clienteModel = new Cliente();
+        Endereco enderecoModel = new Endereco();
 
-        cliente.setUsuario(usuario);
+        BeanUtils.copyProperties(clienteDto,clienteModel);
+        BeanUtils.copyProperties(enderecoDto,enderecoModel);
+
+        clienteModel.setUsuario(usuario);
+        clienteModel.setEndereco(enderecoModel);
 
         if(file.isEmpty()) {
-            clienteService.atualizar(cliente,id,null);
+            clienteService.atualizar(clienteModel,id,null);
         }else{
-            clienteService.atualizar(cliente,id,file);
+            clienteService.atualizar(clienteModel,id,file);
         }
+
+        msg = "Cliente atualizado com sucesso";
 
         return "redirect:/cliente";
     }

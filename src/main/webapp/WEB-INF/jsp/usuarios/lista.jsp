@@ -16,6 +16,11 @@
     <main>
         <div class="container-fluid d-flex justify-content-center flex-column ps-5 pe-5 ">
             <div class="row">
+                <c:if test="${not empty msg}">
+                    <div class="alert alert-success" role="alert">
+                            ${msg}
+                    </div>
+                </c:if>
                 <h2>Listagem de Usuarios</h2>
                 <h5>Quantidade de usuarios cadastrados: ${usuarios.size()}</h5>
                 <a href="/usuario/cadastro">Adicionar Item</a>
@@ -47,7 +52,7 @@
                                     <td>${obj.email}</td>
                                     <td>${obj.cpf}</td>
                                     <td>${obj.setor}</td>
-                                    <td>${obj.cargo}</td>
+                                    <td>${obj.permission}</td>
                                     <td>${obj.clientes.size()}</td>
                                     <td>${obj.produtos.size()}</td>
                                     <td>${obj.pedidos.size()}</td>

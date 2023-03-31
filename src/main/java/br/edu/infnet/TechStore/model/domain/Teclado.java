@@ -1,21 +1,28 @@
 package br.edu.infnet.TechStore.model.domain;
 
+import br.edu.infnet.TechStore.enums.teclado.tecladoGhosthing;
+import br.edu.infnet.TechStore.enums.teclado.tecladoSwitch;
+import br.edu.infnet.TechStore.enums.teclado.tecladoTipo;
 import br.edu.infnet.TechStore.model.execptions.DescontoException;
 import br.edu.infnet.TechStore.model.execptions.DescontoException;
 import br.edu.infnet.TechStore.model.execptions.ProdutoException;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Teclado")
 public class Teclado extends Produto {
-    private String tipo;
-    private String switch_type;
-    private String ghosting;
+    @Enumerated(EnumType.STRING)
+    private tecladoTipo tipo;
+    @Enumerated(EnumType.STRING)
+    private tecladoSwitch switch_type;
+    @Enumerated(EnumType.STRING)
+    private tecladoGhosthing ghosting;
 
     public Teclado() {
-
     }
 
     public String toString() {
@@ -39,19 +46,19 @@ public class Teclado extends Produto {
     public float calcularDesconto() throws DescontoException {
         Float desconto = 0f;
 
-        if(tipo == "" || switch_type == "" || ghosting == ""){
+        if(tipo == null || switch_type == null || ghosting == null ){
             throw new DescontoException("Não é possivel gerar desconto, os campos estão invalidos");
         }
 
-        if(tipo.equalsIgnoreCase( "membrana"))
+        if(tipo == tecladoTipo.MEMBRANA)
         {
             desconto += 10;
         }
-        if(switch_type.equalsIgnoreCase("nenhum"))
+        if(switch_type == tecladoSwitch.NENHUM)
         {
             desconto += 10;
         }
-        if(ghosting.equalsIgnoreCase("nenhum"))
+        if(ghosting == tecladoGhosthing.NENHUM)
         {
             desconto += 10;
         }
@@ -62,24 +69,27 @@ public class Teclado extends Produto {
         return setValor(valor);
     };
 
-    public void setTipo(String tipo){
-        this.tipo = tipo;
-    }
-    public void setSwitch_type(String switch_type){
-        this.switch_type = switch_type;
-    }
-    public void setGhosting(String ghosting){
-        this.ghosting = ghosting;
-    }
-
-    public String getTipo(){
+    public tecladoTipo getTipo() {
         return tipo;
     }
-    public String getSwitch_type(){
+
+    public void setTipo(tecladoTipo tipo) {
+        this.tipo = tipo;
+    }
+
+    public tecladoSwitch getSwitch_type() {
         return switch_type;
     }
-    public String getGhosting(){
+
+    public void setSwitch_type(tecladoSwitch switch_type) {
+        this.switch_type = switch_type;
+    }
+
+    public tecladoGhosthing getGhosting() {
         return ghosting;
     }
 
+    public void setGhosting(tecladoGhosthing ghosting) {
+        this.ghosting = ghosting;
+    }
 }

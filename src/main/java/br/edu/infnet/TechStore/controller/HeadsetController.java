@@ -1,8 +1,11 @@
 package br.edu.infnet.TechStore.controller;
 
 import br.edu.infnet.TechStore.model.domain.Headset;
+import br.edu.infnet.TechStore.model.domain.Mouse;
 import br.edu.infnet.TechStore.model.domain.Usuario;
+import br.edu.infnet.TechStore.model.dtos.headsetDto;
 import br.edu.infnet.TechStore.model.service.HeadsetService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,11 +15,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
+
 @Controller
 public class HeadsetController {
 
     @Autowired
     private HeadsetService headsetService;
+
+    private String msg;
+
 
     @GetMapping(value = "/headset/cadastro")
     public String telaCadastro(){
@@ -27,33 +35,44 @@ public class HeadsetController {
     public String telaLista(Model model,@SessionAttribute("usuario") Usuario usuario){
 
         model.addAttribute("headset", headsetService.obterLista(usuario.getId()));
+        model.addAttribute("msg", msg);
 
         return "headset/lista";
     }
 
     @PostMapping(value = "/headset/incluir")
-    public String incluir(Headset headset, MultipartFile file, @SessionAttribute("usuario") Usuario usuario){
-        headset.setUsuario(usuario);
+    public String incluir(@Valid headsetDto headsetDto, MultipartFile file, @SessionAttribute("usuario") Usuario usuario){
+        Headset headsetModel = new Headset();
+        BeanUtils.copyProperties(headsetDto,headsetModel);
+        headsetModel.setUsuario(usuario);
 
         if(file.isEmpty()) {
-            headsetService.incluir(headset,null);
+            headsetService.incluir(headsetModel,null);
         }else{
-            headsetService.incluir(headset,file);
+            headsetService.incluir(headsetModel,file);
         }
+
+        msg = "Headset cadastrado com sucesso";
+
 
         return "redirect:/headset";
     }
 
 
     @PostMapping(value = "/headset/atualizar/{id}")
-    public String atualizar(Headset headset, MultipartFile file, @SessionAttribute("usuario") Usuario usuario,@PathVariable Integer id){
-        headset.setUsuario(usuario);
+    public String atualizar(@Valid headsetDto headsetDto, MultipartFile file, @SessionAttribute("usuario") Usuario usuario,@PathVariable Integer id){
+        Headset headsetModel = new Headset();
+        BeanUtils.copyProperties(headsetDto,headsetModel);
+        headsetModel.setUsuario(usuario);
 
         if(file.isEmpty()) {
-            headsetService.atualizar(headset,id,null);
+            headsetService.atualizar(headsetModel,id,null);
         }else{
-            headsetService.atualizar(headset,id,file);
+            headsetService.atualizar(headsetModel,id,file);
         }
+
+        msg = "Headset atualizado com sucesso";
+
 
         return "redirect:/headset";
     }
@@ -77,6 +96,7 @@ public class HeadsetController {
     public String excluir(@PathVariable Integer id) {
 
         headsetService.excluir(id);
+        msg = "Headset excluido com sucesso";
 
         return "redirect:/headset";
     }

@@ -26,12 +26,12 @@ public class ProdutoController {
     @GetMapping(value = "/produto")
     public String telaLista(Model model, @SessionAttribute("usuario") Usuario usuario){
 
-        if (usuario.getCargo().equals("desenvolvedor")){
+/*        if (usuario.getCargo().equals("desenvolvedor")){
             model.addAttribute("produto", produtoService.obterLista());
         }
-        else {
+        else {*/
             model.addAttribute("produto", produtoService.obterLista(usuario.getId()));
-        }
+/*        }*/
 
         return "produto/lista";
     }

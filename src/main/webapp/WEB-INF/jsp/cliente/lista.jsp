@@ -17,6 +17,11 @@
 <main class="">
     <div class="container-fluid d-flex justify-content-center flex-column ps-5 pe-5 ">
         <div class="row">
+            <c:if test="${not empty msg}">
+                <div class="alert alert-success" role="alert">
+                        ${msg}
+                </div>
+            </c:if>
             <h2>Listagem de Clientes</h2>
             <h5>Quantidade de clientes cadastrados: ${cliente.size()}</h5>
             <a href="/cliente/cadastro">Adicionar Item</a>
@@ -50,14 +55,16 @@
                                 <td>${obj.email}</td>
                                 <td>${obj.cpf}</td>
                                 <td>${obj.nascimento}</td>
-                                <td>${obj.endereco}</td>
-                                <td>${obj.cep}</td>
+                                <td>${obj.endereco.uf}</td>
+                                <td>${obj.endereco.cep}</td>
                                 <td>${obj.telefone}</td>
                                 <td>${obj.usuario.getUsername()}</td>
                                 <td>
-                                    <c:if test='${!usuario.getCargo().equals("vendendor")}'>
+                                  <%--  <c:if test='${!usuario.getCargo().equals("vendendor")}'>--%>
                                         <a href="/cliente/${obj.id}/excluir">excluir</a>
+<%--
                                     </c:if>
+--%>
                                     <a href="/cliente/${obj.id}">atualizar</a>
                                 </td>
                             </tr>

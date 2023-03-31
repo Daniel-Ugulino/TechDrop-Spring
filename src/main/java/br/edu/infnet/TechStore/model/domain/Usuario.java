@@ -1,6 +1,7 @@
 package br.edu.infnet.TechStore.model.domain;
 
 
+import br.edu.infnet.TechStore.enums.user.userPermissions;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.*;
@@ -17,23 +18,16 @@ public class Usuario {
     private String username;
     private String password;
     private String cpf;
-    private String cargo;
+    @Enumerated(EnumType.STRING)
+    private userPermissions permission;
     private String setor;
     private String email;
-    private Boolean status;
+    private Boolean status = true;
 
     @JsonIgnore
     @OneToMany
     @JoinColumn(name = "idUsuario")
     private List<Cliente> clientes;
-
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
-    }
 
     @JsonIgnore
     @OneToMany
@@ -46,6 +40,22 @@ public class Usuario {
     private List<Pedido> pedidos;
     public Usuario(){
 
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+    public userPermissions getPermission() {
+        return permission;
+    }
+
+    public void setPermission(userPermissions permission) {
+        this.permission = permission;
     }
 
     public List<Produto> getProdutos() {
@@ -87,9 +97,6 @@ public class Usuario {
         return password;
     }
 
-    public String getCargo() {
-        return cargo;
-    }
 
     public String getUsername() {
         return username;
@@ -105,10 +112,6 @@ public class Usuario {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
     }
 
     public void setUsername(String username) {

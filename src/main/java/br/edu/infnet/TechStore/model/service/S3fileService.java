@@ -40,6 +40,4 @@ public class S3fileService {
         String path =  bucket_folder + filename + "." + extension;
         return path;
     };
-
-
 }

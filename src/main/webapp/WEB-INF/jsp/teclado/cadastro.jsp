@@ -49,15 +49,15 @@
                 <div class="d-flex" style="gap:15px">
                     <p>Conexão:</p>
                     <div class="form-check d-flex" style="gap:10px">
-                        <input class="form-check-input" type="radio" name="bluetooh_cable" id="bluetooh_cable">
-                        <label class="form-check-label" for="bluetooh_cable">
+                        <input value="bluetooh" class="form-check-input" type="radio" name="bluetooh_cable" id="bluetooh_cable1">
+                        <label class="form-check-label" for="bluetooh_cable1">
                             Bluetooh
                         </label>
                     </div>
 
                     <div class="form-check d-flex" style="gap:10px">
-                        <input class="form-check-input" type="radio" name="bluetooh_cable" id="bluetooh_cable">
-                        <label class="form-check-label" for="bluetooh_cable">
+                        <input value="cable" class="form-check-input" type="radio" name="bluetooh_cable" id="bluetooh_cable2">
+                        <label class="form-check-label" for="bluetooh_cable2">
                             Cable
                         </label>
                     </div>
@@ -66,15 +66,15 @@
                 <div class="d-flex" style="gap:15px">
                     <p>Iluminação:</p>
                     <div class="form-check d-flex" style="gap:10px">
-                        <input class="form-check-input" type="radio" name="iluminacao" id="iluminacao">
-                        <label class="form-check-label" for="iluminacao">
+                        <input value="true" class="form-check-input" type="radio" name="iluminacao" id="iluminacao1">
+                        <label class="form-check-label" for="iluminacao1">
                             Sim
                         </label>
                     </div>
 
                     <div class="form-check d-flex" style="gap:10px">
-                        <input class="form-check-input" type="radio" name="iluminacao" id="iluminacao">
-                        <label class="form-check-label" for="iluminacao">
+                        <input value="false" class="form-check-input" type="radio" name="iluminacao" id="iluminacao2">
+                        <label class="form-check-label" for="iluminacao2">
                             Não
                         </label>
                     </div>
@@ -87,9 +87,9 @@
                     <label for="tipo" class="form-label">Tipo de Teclado</label>
                     <select class="form-select" id="tipo" name="tipo">
                         <option selected>Selecione uma das opções abaixo</option>
-                        <option value="Membrana">Membrana</option>
-                        <option value="Mecanico">Mecanico</option>
-                        <option value="Optico">Optico</option>
+                        <option value="MEMBRANA">Membrana</option>
+                        <option value="MECANICO">Mecanico</option>
+                        <option value="OPTICO">Optico</option>
                     </select>
                 </div>
 
@@ -97,10 +97,11 @@
                     <label for="switch_type" class="form-label">Tipo de Switch</label>
                     <select class="form-select" id="switch_type" name="switch_type">
                         <option selected>Selecione uma das opções abaixo</option>
-                        <option value="Blue">Blue</option>
-                        <option value="Red">Red</option>
-                        <option value="Brown">Brown</option>
-                        <option value="Black">Black</option>
+                        <option value="NENHUM">Nenhum</option>
+                        <option value="BLUE">Blue</option>
+                        <option value="RED">Red</option>
+                        <option value="BROWN">Brown</option>
+                        <option value="BLACK">Black</option>
                     </select>
                 </div>
 
@@ -108,10 +109,9 @@
                     <label for="ghosting" class="form-label">Ghosting</label>
                     <select class="form-select" id="ghosting" name="ghosting">
                         <option selected>Selecione uma das opções abaixo</option>
-                        <option value="Nenhum">Nenhum</option>
-                        <option value="25%">25%</option>
-                        <option value="50%">50%</option>
-                        <option value="100%">100%</option>
+                        <option value="NENHUM">Nenhum</option>
+                        <option value="METADE">50%</option>
+                        <option value="TOTAL">100%</option>
                     </select>
                 </div>
             </div>
@@ -120,7 +120,7 @@
                 <h4>Imagem do Produto:</h4>
 
                     <div class="card" style="max-width: 200px;max-height: 200px;">
-                    <img src="..." class="card-img-top" alt="..." id="preview_img" style="max-height: 100%;">
+                    <img src="https://techdrop-bucket.s3.amazonaws.com/default.png" class="card-img-top" alt="..." id="preview_img" style="max-height: 100%;">
                 </div>
 
                 <div class="input-group mb-3">

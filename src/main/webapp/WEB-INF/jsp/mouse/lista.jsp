@@ -17,6 +17,11 @@
 <main>
     <div class="container-fluid d-flex justify-content-center flex-column ps-5 pe-5 ">
         <div class="row">
+            <c:if test="${not empty msg}">
+                <div class="alert alert-success" role="alert">
+                        ${msg}
+                </div>
+            </c:if>
             <h2>Listagem de Mouse's</h2>
             <h5>Quantidade de mouse's cadastrados: ${mouse.size()}</h5>
             <a href="/mouse/cadastro">Adicionar Item</a>

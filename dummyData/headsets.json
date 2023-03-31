@@ -7,10 +7,10 @@
     "bluetooh_cable": "cable",
     "iluminacao": true,
     "imgUrl": "https://techdrop-bucket.s3.amazonaws.com/default.png",
-    "som":"Surround 7.1",
+    "som":"STEREO",
     "frequencia":"50Hz até 20000Hz",
     "sensibilidade": "98 ± 3dB S.P.L. at 1KHz",
-    "cancelamentoRuido" : "Sim"
+    "cancelamentoRuido" : true
 
   },
   {
@@ -21,10 +21,10 @@
     "bluetooh_cable": "bluetooh",
     "iluminacao": false,
     "imgUrl": "https://techdrop-bucket.s3.amazonaws.com/default.png",
-    "som":"Surround 7.1",
+    "som":"STEREO",
     "frequencia":"20Hz–20.000Hz",
     "sensibilidade": "99dBSPL/mW a 1kHz",
-    "cancelamentoRuido" : "Sim"
+    "cancelamentoRuido" : true
   }
 ,
   {
@@ -35,9 +35,9 @@
     "bluetooh_cable": "cable",
     "iluminacao": false,
     "imgUrl": "https://techdrop-bucket.s3.amazonaws.com/default.png",
-    "som":"7.1 Dolby Surround",
+    "som":"SURROUND",
     "frequencia":"20 kHz",
     "sensibilidade": "107 dB SPL/mW",
-    "cancelamentoRuido" : "Sim"
+    "cancelamentoRuido" : true
   }
 ]

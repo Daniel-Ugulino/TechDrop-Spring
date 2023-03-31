@@ -73,8 +73,8 @@
                         </label>
                     </div>
 
-                    <div ${teclado.getIluminacao() == false ? 'checked="checked"' : ''} class="form-check d-flex" style="gap:10px">
-                        <input class="form-check-input" type="radio" name="iluminacao" id="iluminacao" value="false">
+                    <div  class="form-check d-flex" style="gap:10px">
+                        <input ${teclado.getIluminacao() == false ? 'checked="checked"' : ''} class="form-check-input" type="radio" name="iluminacao" id="iluminacao" value="false">
                         <label class="form-check-label" for="iluminacao">
                             Não
                         </label>
@@ -88,9 +88,9 @@
                     <label for="tipo" class="form-label">Tipo de Teclado</label>
                     <select class="form-select" id="tipo" name="tipo">
                         <option>Selecione uma das opções abaixo</option>
-                        <option ${mouse.getTipo().equals("membrana") ? 'selected' : ''} value="membrana">Membrana</option>
-                        <option ${mouse.getTipo().equals("mecanico") ? 'selected' : ''} value="mecanico">Mecanico</option>
-                        <option ${mouse.getTipo().equals("optico") ? 'selected' : ''} value="optico">Optico</option>
+                        <option ${mouse.getTipo() == tecladoTipo.MEMBRANA ? "selected" : " "} value="MEMBRANA">Membrana</option>
+                        <option ${mouse.getTipo() == tecladoTipo.MECANICO ? "selected" : " "} value="MECANICO">Mecanico</option>
+                        <option ${mouse.getTipo() == tecladoTipo.OPTICO ? "selected" : " "} value="OPTICO">Optico</option>
                     </select>
                 </div>
 
@@ -98,10 +98,11 @@
                     <label for="switch_type" class="form-label">Tipo de Switch</label>
                     <select class="form-select" id="switch_type" name="switch_type">
                         <option>Selecione uma das opções abaixo</option>
-                        <option ${mouse.getSwitch_type().equals("blue") ? 'selected' : ''} value="blue">Blue</option>
-                        <option ${mouse.getSwitch_type().equals("red") ? 'selected' : ''} value="red">Red</option>
-                        <option ${mouse.getSwitch_type().equals("brown") ? 'selected' : ''} value="brown">Brown</option>
-                        <option ${mouse.getSwitch_type().equals("black") ? 'selected' : ''} value="black">Black</option>
+                        <option ${mouse.getSwitch_type() == tecladoSwitch.NENHUM ? "selected" : " "} value="NENHUM">Nenhum</option>
+                        <option ${mouse.getSwitch_type() == tecladoSwitch.BLUE ? "selected" : " "} value="BLUE">Blue</option>
+                        <option ${mouse.getSwitch_type() == tecladoSwitch.BLACK ? "selected" : " "} value="BLACK">Red</option>
+                        <option ${mouse.getSwitch_type() == tecladoSwitch.BROWN ? "selected" : " "} value="BROWN">Brown</option>
+                        <option ${mouse.getSwitch_type() == tecladoSwitch.RED ? "selected" : " "} value="RED">Black</option>
                     </select>
                 </div>
 
@@ -109,10 +110,9 @@
                     <label for="ghosting" class="form-label">Ghosting</label>
                     <select class="form-select" id="ghosting" name="ghosting">
                         <option >Selecione uma das opções abaixo</option>
-                        <option ${mouse.getGhosting().equals("none") ? 'selected' : ''}  value="none">Nenhum</option>
-                        <option ${mouse.getGhosting().equals("25") ? 'selected' : ''}  value="25">25%</option>
-                        <option ${mouse.getGhosting().equals("50") ? 'selected' : ''}  value="50">50%</option>
-                        <option ${mouse.getGhosting().equals("100") ? 'selected' : ''}  value="100">100%</option>
+                        <option ${mouse.getGhosting() == tecladoGhosthing.NENHUM ? "selected" : " "}}  value="NENHUM">Nenhum</option>
+                        <option ${mouse.getGhosting() == tecladoGhosthing.METADE ? "selected" : " "}}  value="METADE">50%</option>
+                        <option ${mouse.getGhosting()== tecladoGhosthing.TOTAL ? "TOTAL" : " "}}  value="TOTAL">100%</option>
                     </select>
                 </div>
             </div>

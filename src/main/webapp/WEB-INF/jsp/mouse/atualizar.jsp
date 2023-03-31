@@ -74,8 +74,8 @@
                         </label>
                     </div>
 
-                    <div ${mouse.getIluminacao() == false ? 'checked="checked"' : ''} class="form-check d-flex" style="gap:10px">
-                        <input class="form-check-input" type="radio" name="iluminacao" id="iluminacao" value="false">
+                    <div class="form-check d-flex" style="gap:10px">
+                        <input ${mouse.getIluminacao() == false ? 'checked="checked"' : ''} class="form-check-input" type="radio" name="iluminacao" id="iluminacao" value="false">
                         <label class="form-check-label" for="iluminacao">
                             Não
                         </label>

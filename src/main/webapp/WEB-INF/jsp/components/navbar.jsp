@@ -5,7 +5,7 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid d-flex justify-content-center">
 
-            <a class="navbar-brand" href="#"><img src="/imgs/logo.png" class="logo" alt=""></a>
+            <a class="navbar-brand" href="/home"><img src="/imgs/logo.png" class="logo" alt=""></a>
 
             <c:if test="${not empty usuario}">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +24,7 @@
                             </ul>
                         </li>
 
-                        <c:if test='${!usuario.getCargo().equals("vendendor")}'>
+                        <c:if test='${usuario.getPermission().toString() != "SALES"}'>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="/produto" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Produtos
@@ -48,7 +48,8 @@
                             </ul>
                         </li>
 
-                        <c:if test='${usuario.getCargo().equals("desenvolvedor")}'>
+
+                        <c:if test='${usuario.getPermission().toString() == "ADMINISTRATOR"}'>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Usuarios
@@ -59,6 +60,7 @@
                                 </ul>
                             </li>
                         </c:if>
+
                     </ul>
 
                     <div class="nav-link d-flex align-items-center" style="gap:5px; font-size: 1.3rem;">

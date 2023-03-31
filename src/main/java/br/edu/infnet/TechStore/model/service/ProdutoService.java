@@ -1,7 +1,5 @@
 package br.edu.infnet.TechStore.model.service;
 
-import br.edu.infnet.TechStore.model.domain.Cliente;
-import br.edu.infnet.TechStore.model.domain.Mouse;
 import br.edu.infnet.TechStore.model.domain.Produto;
 import br.edu.infnet.TechStore.model.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +35,4 @@ public class ProdutoService {
         produto.setStatus(false);
         produtoRepository.save(produto);
     }
-
-
 }

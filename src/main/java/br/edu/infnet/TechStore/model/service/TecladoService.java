@@ -1,7 +1,5 @@
 package br.edu.infnet.TechStore.model.service;
 
-import br.edu.infnet.TechStore.model.domain.Headset;
-import br.edu.infnet.TechStore.model.domain.Mouse;
 import br.edu.infnet.TechStore.model.domain.Teclado;
 import br.edu.infnet.TechStore.model.repository.TecladoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +22,8 @@ public class TecladoService {
             String path = s3fileService.getFilePath(multipartFile,bucket_folder,teclado.getMarca(),teclado.getModelo());
             String s3FileUrl = s3fileService.uploadFile(path, multipartFile);
             teclado.setImgUrl(s3FileUrl);
+        }else {
+            teclado.setImgUrl("https://techdrop-bucket.s3.amazonaws.com/default.png");
         }
 
         tecladoRepository.save(teclado);

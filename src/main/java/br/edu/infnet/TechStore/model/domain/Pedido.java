@@ -17,6 +17,7 @@ public class Pedido {
     private String date;
     private Float valor_total = 0F;
     private String pagamento;
+    private Boolean status = true;
     @ManyToMany(cascade = CascadeType.DETACH)
     private List<Produto> produtos;
     @OneToOne(cascade = CascadeType.DETACH)
@@ -28,6 +29,14 @@ public class Pedido {
 
     public Pedido(){
 
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 
     public Integer getId() {

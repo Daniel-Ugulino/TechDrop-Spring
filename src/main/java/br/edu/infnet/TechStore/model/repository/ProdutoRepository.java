@@ -15,6 +15,6 @@ public interface ProdutoRepository extends CrudRepository<Produto,Integer> {
     Collection<Produto> findAllByType(String type);
     @Query("from Produto p where p.usuario.id = :id and p.status = true ORDER BY p.id ASC")
     Collection<Produto> findAll(Integer id);
-    @Query(value="select * from Mouse where p.usuario.id = :id and p.status = true ORDER BY id ASC offset :page * 5 limit 5 ", nativeQuery = true)
+    @Query(value="select * from Produto where p.usuario.id = :id and p.status = true ORDER BY id ASC offset :page * 5 limit 5 ", nativeQuery = true)
     Collection<Produto> findPaginated(Integer page);
 }

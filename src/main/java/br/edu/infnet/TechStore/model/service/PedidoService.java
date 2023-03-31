@@ -1,5 +1,6 @@
 package br.edu.infnet.TechStore.model.service;
 
+import br.edu.infnet.TechStore.model.domain.Mouse;
 import br.edu.infnet.TechStore.model.domain.Pedido;
 import br.edu.infnet.TechStore.model.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,10 @@ public class PedidoService {
         pedidoRepository.save(pedido);
     }
 
-    public void excluir(Integer key){
-        pedidoRepository.deleteById(key);
+    public void excluir(Integer id){
+        Pedido pedidoDB = pedidoRepository.findById(id).get();
+        pedidoDB.setStatus(false);
+        pedidoRepository.save(pedidoDB);
     }
 
     public void atualizar(Pedido pedido,Integer id){

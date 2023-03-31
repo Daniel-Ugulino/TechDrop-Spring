@@ -17,6 +17,9 @@ public class PedidoController {
 
     @Autowired
     private PedidoService pedidoService;
+
+    private String msg;
+
     @Autowired
     private ClienteService clienteService;
 
@@ -29,6 +32,8 @@ public class PedidoController {
     @GetMapping(value = "/pedido")
     public String telaLista(Model model, @SessionAttribute("usuario") Usuario usuario){
         model.addAttribute("pedido", pedidoService.obterLista(usuario.getId()));
+        model.addAttribute("msg", msg);
+
         return "pedido/lista";
     }
 
@@ -37,14 +42,19 @@ public class PedidoController {
         pedido.setUsuario(usuario);
         pedido.calcularValorTotal();
         pedidoService.incluir(pedido);
+
+        msg = "Pedido realizado com sucesso";
+
         return "redirect:/pedido";
     }
-
 
     @PostMapping(value = "/pedido/atualizar/{id}")
     public String atualizar(Pedido pedido, @SessionAttribute("usuario") Usuario usuario,@PathVariable Integer id){
         pedido.setUsuario(usuario);
         pedidoService.atualizar(pedido,id);
+
+        msg = "Pedido atualizado com sucesso";
+
         return "redirect:/mouse";
     }
 
@@ -62,6 +72,8 @@ public class PedidoController {
     @GetMapping(value = "/pedido/{id}/excluir")
     public String excluir(@PathVariable Integer id) {
         pedidoService.excluir(id);
+        msg = "Pedido excluido com sucesso";
+
         return "redirect:/pedido";
     }
 }

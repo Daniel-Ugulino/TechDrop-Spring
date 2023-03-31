@@ -66,25 +66,25 @@
                     </div>
 
 
-                    <div class="d-flex" style="gap:15px">
-                        <p>Cargo:</p>
+                    <div class="d-flex flex-wrap" style="gap:15px">
+                        <p>Permissao:</p>
                         <div class="form-check d-flex" style="gap:10px">
-                            <input ${usuario.getCargo().toLowerCase().equals("Gestor") ? 'checked="checked"' : ''} class="form-check-input" name="cargo" type="radio" value="Gestor" id="cargo_opt1">
-                            <label class="form-check-label" for="cargo_opt1">
+                            <input class="form-check-input" name="permission" type="radio" value="ADMINISTRATOR" id="permission_opt1">
+                            <label class="form-check-label" for="permission_opt1">
                                 Gestor
                             </label>
                         </div>
 
                         <div class="form-check d-flex" style="gap:10px">
-                            <input ${usuario.getCargo().toLowerCase().equals("Vendendor") ? 'checked="checked"' : ''} class="form-check-input" name="cargo" type="radio" value="Vendendor" id="cargo_opt2">
-                            <label class="form-check-label" for="cargo_opt2">
+                            <input class="form-check-input" name="permission" type="radio" value="SALES" id="permission_opt2">
+                            <label class="form-check-label" for="permission_opt2">
                                 Vendendor
                             </label>
                         </div>
 
                         <div class="form-check d-flex" style="gap:10px">
-                            <input ${usuario.getCargo().toLowerCase().equals("Desenvolvedor") ? 'checked="checked"' : ''} class="form-check-input" name="cargo" type="radio" value="Desenvolvedor" id="cargo_opt3">
-                            <label class="form-check-label" for="cargo_opt3">
+                            <input class="form-check-input" name="permission" type="radio" value="MANEGER" id="permission_opt3">
+                            <label class="form-check-label" for="permission_opt3">
                                 Desenvolvedor
                             </label>
                         </div>

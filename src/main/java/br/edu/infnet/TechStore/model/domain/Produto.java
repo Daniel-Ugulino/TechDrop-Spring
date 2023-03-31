@@ -22,7 +22,7 @@ public abstract class Produto {
     private Boolean iluminacao;
     private String imgUrl;
     private String type;
-    private Boolean status;
+    private Boolean status = true;
 
     @JsonIgnore
     @ManyToOne

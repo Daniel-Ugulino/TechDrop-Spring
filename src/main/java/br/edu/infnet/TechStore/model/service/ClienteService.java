@@ -27,6 +27,9 @@ public class ClienteService {
             String s3FileUrl = s3fileService.uploadFile(path, multipartFile);
             cliente.setImgUrl(s3FileUrl);
         }
+        else{
+            cliente.setImgUrl("https://techdrop-bucket.s3.amazonaws.com/default.png");
+        }
         clienteRepository.save(cliente);
     }
 

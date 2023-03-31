@@ -1,8 +1,11 @@
 package br.edu.infnet.TechStore.controller;
 
 import br.edu.infnet.TechStore.model.domain.Mouse;
+import br.edu.infnet.TechStore.model.domain.Teclado;
 import br.edu.infnet.TechStore.model.domain.Usuario;
+import br.edu.infnet.TechStore.model.dtos.mouseDto;
 import br.edu.infnet.TechStore.model.service.MouseService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,10 +15,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
+
 @Controller
 public class MouseController {
     @Autowired
     private MouseService mouseService;
+
+    private String msg;
+
 
     @GetMapping(value = "/mouse/cadastro")
     public String telaCadastro(){
@@ -26,32 +34,43 @@ public class MouseController {
     public String telaLista(Model model,@SessionAttribute("usuario") Usuario usuario){
 
         model.addAttribute("mouse", mouseService.obterLista(usuario.getId()));
+        model.addAttribute("msg", msg);
+
         return "mouse/lista";
     }
 
     @PostMapping(value = "/mouse/incluir")
-    public String incluir(Mouse mouse, MultipartFile file, @SessionAttribute("usuario") Usuario usuario){
-        mouse.setUsuario(usuario);
+    public String incluir(@Valid mouseDto mouseDto, MultipartFile file, @SessionAttribute("usuario") Usuario usuario){
+        Mouse mouseModel = new Mouse();
+        BeanUtils.copyProperties(mouseDto,mouseModel);
+        mouseModel.setUsuario(usuario);
 
         if(file.isEmpty()) {
-            mouseService.incluir(mouse,null);
+            mouseService.incluir(mouseModel,null);
         }else{
-            mouseService.incluir(mouse,file);
+            mouseService.incluir(mouseModel,file);
         }
+
+        msg = "Mouse cadastrado com sucesso";
+
 
         return "redirect:/mouse";
     }
 
-
     @PostMapping(value = "/mouse/atualizar/{id}")
-    public String atualizar(Mouse mouse, MultipartFile file, @SessionAttribute("usuario") Usuario usuario,@PathVariable Integer id){
-        mouse.setUsuario(usuario);
+    public String atualizar(@Valid mouseDto mouseDto, MultipartFile file, @SessionAttribute("usuario") Usuario usuario,@PathVariable Integer id){
+        Mouse mouseModel = new Mouse();
+        BeanUtils.copyProperties(mouseDto,mouseModel);
+        mouseModel.setUsuario(usuario);
 
         if(file.isEmpty()) {
-            mouseService.atualizar(mouse,id,null);
+            mouseService.atualizar(mouseModel,id,null);
         }else{
-            mouseService.atualizar(mouse,id,file);
+            mouseService.atualizar(mouseModel,id,file);
         }
+        msg = "Mouse atualizado com sucesso";
+
+
 
         return "redirect:/mouse";
     }
@@ -75,6 +94,8 @@ public class MouseController {
     public String excluir(@PathVariable Integer id) {
 
         mouseService.excluir(id);
+        msg = "Mouse excluido com sucesso";
+
 
         return "redirect:/mouse";
     }

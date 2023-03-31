@@ -34,11 +34,13 @@ public class AcessoController {
 
 		if(user != null) {
 			model.addAttribute("usuario", user);
-
-			return "redirect:/usuario";
+			System.out.println(user.getPermission().toString());
+			return "redirect:/home";
 		}
 
-		return "redirect:/login";
+		model.addAttribute("msg", "Login Invalido");
+
+		return telaLogin();
 	}
 
 	@GetMapping(value = "/logout")
