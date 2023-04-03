@@ -4,6 +4,7 @@ import br.edu.infnet.TechStore.model.domain.Cliente;
 import br.edu.infnet.TechStore.model.domain.Headset;
 import br.edu.infnet.TechStore.model.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -55,11 +56,12 @@ public class ClienteService {
     }
 
     public Collection<Cliente> obterLista(){
-        return clienteRepository.findAll();
+
+        return clienteRepository.findAll(Sort.by(Sort.Direction.ASC, "nome"));
     }
 
     public Collection<Cliente> obterLista(Integer id){
-        return clienteRepository.findAll(id);
+        return clienteRepository.findAll(id, Sort.by(Sort.Direction.ASC, "nome"));
     }
 
     public Collection<Cliente> listaPaginada(Integer page){

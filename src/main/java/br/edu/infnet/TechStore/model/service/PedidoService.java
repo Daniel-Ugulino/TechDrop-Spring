@@ -4,6 +4,7 @@ import br.edu.infnet.TechStore.model.domain.Mouse;
 import br.edu.infnet.TechStore.model.domain.Pedido;
 import br.edu.infnet.TechStore.model.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -30,10 +31,10 @@ public class PedidoService {
     }
 
     public Collection<Pedido> obterLista(){
-        return pedidoRepository.findAll();
+        return pedidoRepository.findAll(Sort.by(Sort.Direction.DESC, "valor_total"));
     }
     public Collection<Pedido> obterLista(Integer id){
-        return pedidoRepository.findAll(id);
+        return pedidoRepository.findAll(id,Sort.by(Sort.Direction.DESC, "valor_total"));
     }
     public Pedido getById(Integer id){
         return pedidoRepository.findById(id).get();

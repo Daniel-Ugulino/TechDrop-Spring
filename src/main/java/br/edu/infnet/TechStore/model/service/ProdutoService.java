@@ -3,6 +3,7 @@ package br.edu.infnet.TechStore.model.service;
 import br.edu.infnet.TechStore.model.domain.Produto;
 import br.edu.infnet.TechStore.model.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -14,11 +15,11 @@ public class ProdutoService {
     private ProdutoRepository produtoRepository;
 
     public Collection<Produto> obterLista(){
-        return produtoRepository.findAll();
+        return produtoRepository.findAll(Sort.by(Sort.Direction.ASC, "marca"));
     }
 
     public Collection<Produto> obterLista(Integer id){
-        return produtoRepository.findAll(id);
+        return produtoRepository.findAll(id,Sort.by(Sort.Direction.ASC, "marca"));
     }
 
     public Collection<Produto> obterListaByType(String type){

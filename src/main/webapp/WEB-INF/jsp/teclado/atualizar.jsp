@@ -29,35 +29,35 @@
 
                 <div>
                     <label for="marca"  class="form-label">Marca</label>
-                    <input type="text" class="form-control" name="marca" value="${teclado.getMarca()}" id="marca" placeholder="name@example.com">
+                    <input required type="text" class="form-control" name="marca" value="${teclado.getMarca()}" id="marca" placeholder="name@example.com">
                 </div>
 
                 <div>
                     <label for="modelo"  class="form-label">Modelo</label>
-                    <input type="text" class="form-control" name="modelo" value="${teclado.getModelo()}" id="modelo" placeholder="name@example.com">
+                    <input required type="text" class="form-control" name="modelo" value="${teclado.getModelo()}" id="modelo" placeholder="name@example.com">
                 </div>
 
                 <div>
                     <label for="quantidade" class="form-label">Quantidade</label>
-                    <input type="text" class="form-control" name="quantidade" value="${teclado.getQuantidade()}" id="quantidade" placeholder="name@example.com">
+                    <input required type="text" class="form-control" name="quantidade" value="${teclado.getQuantidade()}" id="quantidade" placeholder="name@example.com">
                 </div>
 
                 <div>
                     <label for="valor" class="form-label">Valor</label>
-                    <input type="text" class="form-control" name="valor" value="${teclado.getValor()}" id="valor" placeholder="name@example.com">
+                    <input required type="text" class="form-control" name="valor" value="${teclado.getValor()}" id="valor" placeholder="name@example.com">
                 </div>
 
                 <div class="d-flex" style="gap:15px">
                     <p>Conexão:</p>
                     <div class="form-check d-flex" style="gap:10px">
-                        <input ${teclado.getBluetooh_cable().equals("bluetooh") ? 'checked="checked"' : ''} class="form-check-input" type="radio" name="bluetooh_cable" id="bluetooh_cable" value="bluetooh">
+                        <input required ${teclado.getBluetooh_cable().equals("bluetooh") ? 'checked="checked"' : ''} class="form-check-input" type="radio" name="bluetooh_cable" id="bluetooh_cable" value="bluetooh">
                         <label class="form-check-label" for="bluetooh_cable">
                             Bluetooh
                         </label>
                     </div>
 
                     <div class="form-check d-flex" style="gap:10px">
-                        <input ${teclado.getBluetooh_cable().equals("cable") ? 'checked="checked"' : ''} class="form-check-input" type="radio" name="bluetooh_cable" id="bluetooh_cable" value="cable">
+                        <input required ${teclado.getBluetooh_cable().equals("cable") ? 'checked="checked"' : ''} class="form-check-input" type="radio" name="bluetooh_cable" id="bluetooh_cable" value="cable">
                         <label class="form-check-label" for="bluetooh_cable">
                             Cable
                         </label>
@@ -67,14 +67,14 @@
                 <div class="d-flex" style="gap:15px">
                     <p>Iluminação:</p>
                     <div class="form-check d-flex" style="gap:10px">
-                        <input ${teclado.getIluminacao() ? 'checked="checked"' : ''} class="form-check-input" type="radio" name="iluminacao" id="iluminacao" value="true">
+                        <input required ${teclado.getIluminacao() ? 'checked="checked"' : ''} class="form-check-input" type="radio" name="iluminacao" id="iluminacao" value="true">
                         <label class="form-check-label" for="iluminacao">
                             Sim
                         </label>
                     </div>
 
-                    <div  class="form-check d-flex" style="gap:10px">
-                        <input ${teclado.getIluminacao() == false ? 'checked="checked"' : ''} class="form-check-input" type="radio" name="iluminacao" id="iluminacao" value="false">
+                    <div class="form-check d-flex" style="gap:10px">
+                        <input required ${teclado.getIluminacao() == false ? 'checked="checked"' : ''} class="form-check-input" type="radio" name="iluminacao" id="iluminacao" value="false">
                         <label class="form-check-label" for="iluminacao">
                             Não
                         </label>
@@ -86,33 +86,30 @@
                 <h4>Especificações</h4>
                 <div>
                     <label for="tipo" class="form-label">Tipo de Teclado</label>
-                    <select class="form-select" id="tipo" name="tipo">
-                        <option>Selecione uma das opções abaixo</option>
-                        <option ${mouse.getTipo() == tecladoTipo.MEMBRANA ? "selected" : " "} value="MEMBRANA">Membrana</option>
-                        <option ${mouse.getTipo() == tecladoTipo.MECANICO ? "selected" : " "} value="MECANICO">Mecanico</option>
-                        <option ${mouse.getTipo() == tecladoTipo.OPTICO ? "selected" : " "} value="OPTICO">Optico</option>
+                    <select required class="form-select" id="tipo" name="tipo">
+                        <option ${teclado.getTipo().toString() == "MEMBRANA" ? "selected" : " "} value="MEMBRANA">Membrana</option>
+                        <option ${teclado.getTipo().toString() == "MECANICO" ? "selected" : " "} value="MECANICO">Mecanico</option>
+                        <option ${teclado.getTipo().toString() == "OPTICO" ? "selected" : " "} value="OPTICO">Optico</option>
                     </select>
                 </div>
 
                 <div>
                     <label for="switch_type" class="form-label">Tipo de Switch</label>
-                    <select class="form-select" id="switch_type" name="switch_type">
-                        <option>Selecione uma das opções abaixo</option>
-                        <option ${mouse.getSwitch_type() == tecladoSwitch.NENHUM ? "selected" : " "} value="NENHUM">Nenhum</option>
-                        <option ${mouse.getSwitch_type() == tecladoSwitch.BLUE ? "selected" : " "} value="BLUE">Blue</option>
-                        <option ${mouse.getSwitch_type() == tecladoSwitch.BLACK ? "selected" : " "} value="BLACK">Red</option>
-                        <option ${mouse.getSwitch_type() == tecladoSwitch.BROWN ? "selected" : " "} value="BROWN">Brown</option>
-                        <option ${mouse.getSwitch_type() == tecladoSwitch.RED ? "selected" : " "} value="RED">Black</option>
+                    <select required class="form-select" id="switch_type" name="switch_type">
+                        <option ${teclado.getSwitch_type().toString() == "NENHUM" ? "selected" : " "} value="NENHUM">Nenhum</option>
+                        <option ${teclado.getSwitch_type().toString() == "BLUE" ? "selected" : " "} value="BLUE">Blue</option>
+                        <option ${teclado.getSwitch_type().toString() == "BLACK" ? "selected" : " "} value="BLACK">Black</option>
+                        <option ${teclado.getSwitch_type().toString() == "BROWN" ? "selected" : " "} value="BROWN">Brown</option>
+                        <option ${teclado.getSwitch_type().toString() == "RED" ? "selected" : " "} value="RED">Red</option>
                     </select>
                 </div>
 
                 <div>
                     <label for="ghosting" class="form-label">Ghosting</label>
-                    <select class="form-select" id="ghosting" name="ghosting">
-                        <option >Selecione uma das opções abaixo</option>
-                        <option ${mouse.getGhosting() == tecladoGhosthing.NENHUM ? "selected" : " "}}  value="NENHUM">Nenhum</option>
-                        <option ${mouse.getGhosting() == tecladoGhosthing.METADE ? "selected" : " "}}  value="METADE">50%</option>
-                        <option ${mouse.getGhosting()== tecladoGhosthing.TOTAL ? "TOTAL" : " "}}  value="TOTAL">100%</option>
+                    <select required class="form-select" id="ghosting" name="ghosting">
+                        <option ${teclado.getGhosting().toString() == "NENHUM" ? "selected" : " "}}  value="NENHUM">Nenhum</option>
+                        <option ${teclado.getGhosting().toString() == "METADE" ? "selected" : " "}}  value="METADE">50%</option>
+                        <option ${teclado.getGhosting().toString() == "FULL" ? "selected" : " "}}  value="FULL">100%</option>
                     </select>
                 </div>
             </div>

@@ -27,27 +27,35 @@ public class AcessoController {
 	
 	@PostMapping(value = "/login")
 	public String login(Model model,@RequestParam String email, @RequestParam String senha) {
-		
-		Usuario user = new Usuario(email, senha);
 
-		user = usuarioService.autenticar(user);
+		try {
+			Usuario user = new Usuario(email, senha);
 
-		if(user != null) {
-			model.addAttribute("usuario", user);
-			System.out.println(user.getPermission().toString());
-			return "redirect:/home";
+			user = usuarioService.autenticar(user);
+
+			if(user != null) {
+				model.addAttribute("usuario", user);
+				System.out.println(user.getPermission().toString());
+				return "redirect:/home";
+			}
+
+			model.addAttribute("msg", "Login Invalido");
+		} catch (Exception e){
+			System.out.println(e);
 		}
-
-		model.addAttribute("msg", "Login Invalido");
 
 		return telaLogin();
 	}
 
 	@GetMapping(value = "/logout")
 	public String logout(HttpSession session, SessionStatus status) {
-		status.setComplete();
 
-		session.removeAttribute("usuario");
+		try {
+			status.setComplete();
+			session.removeAttribute("usuario");
+		} catch (Exception e){
+			System.out.println(e);
+		}
 
 		return "redirect:/login";
 	}

@@ -3,6 +3,7 @@ package br.edu.infnet.TechStore.model.service;
 import br.edu.infnet.TechStore.model.domain.Teclado;
 import br.edu.infnet.TechStore.model.repository.TecladoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -53,11 +54,11 @@ public class TecladoService {
     }
 
     public Collection<Teclado> obterLista(){
-        return tecladoRepository.findAll();
+        return tecladoRepository.findAll(Sort.by(Sort.Direction.ASC, "marca"));
     }
 
     public Collection<Teclado> obterLista(Integer id){
-        return tecladoRepository.findAll(id);
+        return tecladoRepository.findAll(id,Sort.by(Sort.Direction.ASC, "marca"));
     }
 
     public Teclado getById(Integer id){

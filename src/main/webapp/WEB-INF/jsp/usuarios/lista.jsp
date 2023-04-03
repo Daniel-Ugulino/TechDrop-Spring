@@ -37,7 +37,7 @@
                             <th scope="col">E-mail</th>
                             <th scope="col">CPF</th>
                             <th scope="col">Setor</th>
-                            <th scope="col">Cargo</th>
+                            <th scope="col">Permissões</th>
                             <th scope="col">Clientes</th>
                             <th scope="col">Produtos</th>
                             <th scope="col">Pedidos</th>

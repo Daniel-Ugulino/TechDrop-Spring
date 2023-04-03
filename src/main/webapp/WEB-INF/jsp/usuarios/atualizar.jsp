@@ -28,37 +28,37 @@
 
                     <div>
                         <label for="nome" class="form-label" >Nome</label>
-                        <input type="text" name="username" id="nome" class="form-control" placeholder="Nome" value="${usuario.getUsername()}">
+                        <input required type="text" name="username" id="nome" class="form-control" placeholder="Nome" value="${usuario.getUsername()}">
                     </div>
 
                     <div>
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com" value="${usuario.getEmail()}">
+                        <input required type="email" name="email" class="form-control" id="email" placeholder="name@example.com" value="${usuario.getEmail()}">
                     </div>
 
                     <div>
                         <label for="cpf" class="form-label">Cpf</label>
-                        <input type="text" name="cpf" class="form-control" id="cpf" placeholder="000.000.000-00" value="${usuario.getCpf()}">
+                        <input required type="text" name="cpf" class="form-control" id="cpf" placeholder="000.000.000-00" value="${usuario.getCpf()}">
                     </div>
 
                     <div class="d-flex" style="gap:15px">
                         <p>Setor:</p>
                         <div class="form-check d-flex" style="gap:10px">
-                            <input ${usuario.getSetor().toLowerCase().equals("Gerencia") ? 'checked="checked"' : ''} class="form-check-input" name="setor" type="radio" value="Gerencia" id="setor_opt1">
+                            <input required ${usuario.getSetor().toLowerCase() == "gerencia" ? 'checked="checked"' : ''} class="form-check-input" name="setor" type="radio" value="gerencia" id="setor_opt1">
                             <label class="form-check-label" for="setor_opt1">
                                 Gerencia
                             </label>
                         </div>
 
                         <div class="form-check d-flex" style="gap:10px">
-                            <input ${usuario.getSetor().toLowerCase().equals("Vendas") ? 'checked="checked"' : ''} class="form-check-input" name="setor" type="radio" value="Vendas" id="setor_opt2">
+                            <input required ${usuario.getSetor().toLowerCase() == "vendas" ? 'checked="checked"' : ''} class="form-check-input" name="setor" type="radio" value="vendas" id="setor_opt2">
                             <label class="form-check-label" for="setor_opt2">
                                 Vendas
                             </label>
                         </div>
 
                         <div class="form-check d-flex" style="gap:10px">
-                            <input ${usuario.getSetor().toLowerCase().equals("Administrador") ? 'checked="checked"' : ''} class="form-check-input" name="setor" type="radio" value="Administrador" id="setor_opt3">
+                            <input required ${usuario.getSetor().toLowerCase() == "administrador" ? 'checked="checked"' : ''} class="form-check-input" name="setor" type="radio" value="administrador" id="setor_opt3">
                             <label class="form-check-label" for="setor_opt3">
                                 Administrador
                             </label>
@@ -69,21 +69,28 @@
                     <div class="d-flex flex-wrap" style="gap:15px">
                         <p>Permissao:</p>
                         <div class="form-check d-flex" style="gap:10px">
-                            <input class="form-check-input" name="permission" type="radio" value="ADMINISTRATOR" id="permission_opt1">
+                            <input required ${usuario.getPermission().toString() == "ADMINISTRATOR" ? 'checked="checked"' : 'a'} class="form-check-input" name="permission" type="radio" value="ADMINISTRATOR" id="permission_opt">
+                            <label class="form-check-label" for="permission_opt">
+                                Administrador
+                            </label>
+                        </div>
+
+                        <div class="form-check d-flex" style="gap:10px">
+                            <input ${usuario.getPermission().toString() == "MANEGER" ? 'checked="checked"' : 'a'} class="form-check-input" name="permission" type="radio" value="MANEGER" id="permission_opt1">
                             <label class="form-check-label" for="permission_opt1">
                                 Gestor
                             </label>
                         </div>
 
                         <div class="form-check d-flex" style="gap:10px">
-                            <input class="form-check-input" name="permission" type="radio" value="SALES" id="permission_opt2">
+                            <input required ${usuario.getPermission().toString() == "SALES" ? 'checked="checked"' : 'a'} class="form-check-input" name="permission" type="radio" value="SALES" id="permission_opt2">
                             <label class="form-check-label" for="permission_opt2">
                                 Vendendor
                             </label>
                         </div>
 
                         <div class="form-check d-flex" style="gap:10px">
-                            <input class="form-check-input" name="permission" type="radio" value="MANEGER" id="permission_opt3">
+                            <input required ${usuario.getPermission().toString() == "DEVELOPER" ? 'checked="checked"' : 'a'} class="form-check-input" name="permission" type="radio" value="DEVELOPER" id="permission_opt3">
                             <label class="form-check-label" for="permission_opt3">
                                 Desenvolvedor
                             </label>

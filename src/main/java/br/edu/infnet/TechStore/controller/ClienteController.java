@@ -31,71 +31,84 @@ public class ClienteController {
 
     @GetMapping(value = "/cliente")
     public String telaLista(Model model,@SessionAttribute("usuario") Usuario usuario) {
+        try {
+            if(usuario.getPermission().toString() == "ADMINISTRATOR"){
+                model.addAttribute("cliente", clienteService.obterLista());
+            }
+            else {
+                model.addAttribute("cliente", clienteService.obterLista(usuario.getId()));
+            }
 
-        if(usuario.getPermission().toString() == "ADMINISTRATOR"){
-            model.addAttribute("cliente", clienteService.obterLista());
+            model.addAttribute("msg", msg);
         }
-        else {
-            model.addAttribute("cliente", clienteService.obterLista(usuario.getId()));
+        catch (Exception e){
+            System.out.println(e);
         }
-
-        model.addAttribute("msg", msg);
-
 
         return "cliente/lista";
     }
 
     @PostMapping(value = "/cliente/incluir")
     public String incluir(@Valid clienteDto clienteDto,@Valid enderecoDto enderecoDto, MultipartFile file, @SessionAttribute("usuario") Usuario usuario) {
-        Cliente clienteModel = new Cliente();
-        Endereco enderecoModel = new Endereco();
+        try {
+            Cliente clienteModel = new Cliente();
+            Endereco enderecoModel = new Endereco();
 
-        BeanUtils.copyProperties(clienteDto,clienteModel);
-        BeanUtils.copyProperties(enderecoDto,enderecoModel);
+            BeanUtils.copyProperties(clienteDto,clienteModel);
+            BeanUtils.copyProperties(enderecoDto,enderecoModel);
 
-        clienteModel.setUsuario(usuario);
-        clienteModel.setEndereco(enderecoModel);
+            clienteModel.setUsuario(usuario);
+            clienteModel.setEndereco(enderecoModel);
 
-        if(file.isEmpty()) {
-            clienteService.incluir(clienteModel,null);
-        }else{
-            clienteService.incluir(clienteModel,file);
+            if(file.isEmpty()) {
+                clienteService.incluir(clienteModel,null);
+            }else{
+                clienteService.incluir(clienteModel,file);
+            }
+
+            msg = "Cliente cadastrado com sucesso";
+        } catch (Exception e){
+            System.out.println(e);
         }
-
-        msg = "Cliente cadastrado com sucesso";
-
 
         return "redirect:/cliente";
     }
 
     @GetMapping(value = "/cliente/{id}/excluir")
     public String excluir(@PathVariable Integer id) {
+        try {
+            clienteService.excluir(id);
+            msg = "Cliente excluido com sucesso";
+        } catch (Exception e){
+            System.out.println(e);
+        }
 
-        clienteService.excluir(id);
-
-        msg = "Cliente excluido com sucesso";
 
         return "redirect:/cliente";
     }
 
     @PostMapping(value = "/cliente/{id}/atualizar")
     public String Update(@Valid clienteDto clienteDto,@Valid enderecoDto enderecoDto, MultipartFile file, @PathVariable Integer id,@SessionAttribute("usuario") Usuario usuario){
-        Cliente clienteModel = new Cliente();
-        Endereco enderecoModel = new Endereco();
 
-        BeanUtils.copyProperties(clienteDto,clienteModel);
-        BeanUtils.copyProperties(enderecoDto,enderecoModel);
+        try {
+            Cliente clienteModel = new Cliente();
+            Endereco enderecoModel = new Endereco();
 
-        clienteModel.setUsuario(usuario);
-        clienteModel.setEndereco(enderecoModel);
+            BeanUtils.copyProperties(clienteDto,clienteModel);
+            BeanUtils.copyProperties(enderecoDto,enderecoModel);
 
-        if(file.isEmpty()) {
-            clienteService.atualizar(clienteModel,id,null);
-        }else{
-            clienteService.atualizar(clienteModel,id,file);
+            clienteModel.setUsuario(usuario);
+            clienteModel.setEndereco(enderecoModel);
+
+            if(file.isEmpty()) {
+                clienteService.atualizar(clienteModel,id,null);
+            }else{
+                clienteService.atualizar(clienteModel,id,file);
+            }
+            msg = "Cliente atualizado com sucesso";
+        } catch (Exception e){
+            System.out.println(e);
         }
-
-        msg = "Cliente atualizado com sucesso";
 
         return "redirect:/cliente";
     }
@@ -103,11 +116,11 @@ public class ClienteController {
     @GetMapping(value = "/cliente/{id}")
     public String getUser(Model model,@PathVariable Integer id){
 
-        Cliente cliente = clienteService.getById(id);
 
         try {
+            Cliente cliente = clienteService.getById(id);
             model.addAttribute("cliente", cliente);
-        }catch (Exception e){
+        } catch (Exception e){
             System.out.println(e);
         }
 

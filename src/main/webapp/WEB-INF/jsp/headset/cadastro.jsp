@@ -86,10 +86,10 @@
                 <div>
                     <label for="tipo" class="form-label">Tipo de som</label>
                     <select class="form-select" id="tipo" name="som">
-                        <option selected>Selecione uma das opções abaixo</option>
-                        <option value="Stereo 7.1">Stereo 7.1</option>
-                        <option value="Surround">Surround</option>
-                        <option value="Mono">Mono</option>
+                        <option value="" disabled selected>Selecione uma das opções abaixo</option>
+                        <option value="STEREO">Stereo 7.1</option>
+                        <option value="SURROUND">Surround</option>
+                        <option value="MONO">Mono</option>
                     </select>
                 </div>
 
@@ -106,14 +106,14 @@
                 <div class="d-flex" style="gap:15px">
                     <p>Cancelamento de Ruido:</p>
                     <div class="form-check d-flex" style="gap:10px">
-                        <input class="form-check-input" type="radio" value="sim" name="cancelamentoRuido" id="cancelamentoRuido1">
+                        <input class="form-check-input" type="radio" value="true" name="cancelamentoRuido" id="cancelamentoRuido1">
                         <label class="form-check-label" for="cancelamentoRuido1">
                             Sim
                         </label>
                     </div>
 
                     <div class="form-check d-flex" style="gap:10px">
-                        <input class="form-check-input" type="radio" value="nao" name="cancelamentoRuido" id="cancelamentoRuido2">
+                        <input class="form-check-input" type="radio" value="false" name="cancelamentoRuido" id="cancelamentoRuido2">
                         <label class="form-check-label" for="cancelamentoRuido2">
                             Não
                         </label>

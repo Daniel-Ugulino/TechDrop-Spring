@@ -33,44 +33,55 @@ public class MouseController {
     @GetMapping(value = "/mouse")
     public String telaLista(Model model,@SessionAttribute("usuario") Usuario usuario){
 
-        model.addAttribute("mouse", mouseService.obterLista(usuario.getId()));
-        model.addAttribute("msg", msg);
+        try {
+            model.addAttribute("mouse", mouseService.obterLista(usuario.getId()));
+            model.addAttribute("msg", msg);
+        } catch (Exception e){
+            System.out.println(e);
+        }
 
         return "mouse/lista";
     }
 
     @PostMapping(value = "/mouse/incluir")
     public String incluir(@Valid mouseDto mouseDto, MultipartFile file, @SessionAttribute("usuario") Usuario usuario){
-        Mouse mouseModel = new Mouse();
-        BeanUtils.copyProperties(mouseDto,mouseModel);
-        mouseModel.setUsuario(usuario);
 
-        if(file.isEmpty()) {
-            mouseService.incluir(mouseModel,null);
-        }else{
-            mouseService.incluir(mouseModel,file);
-        }
+        try {
+           Mouse mouseModel = new Mouse();
+           BeanUtils.copyProperties(mouseDto,mouseModel);
+           mouseModel.setUsuario(usuario);
 
-        msg = "Mouse cadastrado com sucesso";
+           if(file.isEmpty()) {
+               mouseService.incluir(mouseModel,null);
+           }else{
+               mouseService.incluir(mouseModel,file);
+           }
 
+           msg = "Mouse cadastrado com sucesso";
+       } catch (Exception e){
+           System.out.println(e);
+       }
 
         return "redirect:/mouse";
     }
 
     @PostMapping(value = "/mouse/atualizar/{id}")
     public String atualizar(@Valid mouseDto mouseDto, MultipartFile file, @SessionAttribute("usuario") Usuario usuario,@PathVariable Integer id){
-        Mouse mouseModel = new Mouse();
-        BeanUtils.copyProperties(mouseDto,mouseModel);
-        mouseModel.setUsuario(usuario);
 
-        if(file.isEmpty()) {
-            mouseService.atualizar(mouseModel,id,null);
-        }else{
-            mouseService.atualizar(mouseModel,id,file);
+        try {
+            Mouse mouseModel = new Mouse();
+            BeanUtils.copyProperties(mouseDto,mouseModel);
+            mouseModel.setUsuario(usuario);
+
+            if(file.isEmpty()) {
+                mouseService.atualizar(mouseModel,id,null);
+            }else{
+                mouseService.atualizar(mouseModel,id,file);
+            }
+            msg = "Mouse atualizado com sucesso";
+        } catch (Exception e){
+            System.out.println(e);
         }
-        msg = "Mouse atualizado com sucesso";
-
-
 
         return "redirect:/mouse";
     }
@@ -79,11 +90,10 @@ public class MouseController {
     @GetMapping(value = "/mouse/{id}")
     public String getUser(Model model,@PathVariable Integer id){
 
-        Mouse mouse = mouseService.getById(id);
-
         try {
+            Mouse mouse = mouseService.getById(id);
             model.addAttribute("mouse", mouse);
-        }catch (Exception e){
+        } catch (Exception e){
             System.out.println(e);
         }
 
@@ -93,9 +103,12 @@ public class MouseController {
     @GetMapping(value = "/mouse/{id}/excluir")
     public String excluir(@PathVariable Integer id) {
 
-        mouseService.excluir(id);
-        msg = "Mouse excluido com sucesso";
-
+        try {
+            mouseService.excluir(id);
+            msg = "Mouse excluido com sucesso";
+        } catch (Exception e){
+            System.out.println(e);
+        }
 
         return "redirect:/mouse";
     }

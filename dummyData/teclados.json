@@ -9,7 +9,7 @@
     "imgUrl": "https://techdrop-bucket.s3.amazonaws.com/default.png",
     "tipo": "MECANICO",
     "switch_type" : "RED",
-    "ghosting": "TOTAL"
+    "ghosting": "FULL"
   },
   {
     "marca": "Redragon",
@@ -21,7 +21,7 @@
     "imgUrl": "https://techdrop-bucket.s3.amazonaws.com/default.png",
     "tipo": "OPTICO",
     "switch_type" : "BLUE",
-    "ghosting": "TOTAL"
+    "ghosting": "FULL"
   }
 ,
   {
@@ -34,6 +34,6 @@
     "imgUrl": "https://techdrop-bucket.s3.amazonaws.com/default.png",
     "tipo": "MEMBRANA",
     "switch_type" : "NENHUM",
-    "ghosting": "TOTAL"
+    "ghosting": "FULL"
   }
 ]

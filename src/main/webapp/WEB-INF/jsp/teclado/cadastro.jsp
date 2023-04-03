@@ -28,35 +28,35 @@
 
                 <div>
                     <label for="marca"  class="form-label">Marca</label>
-                    <input type="text" class="form-control" name="marca" id="marca" placeholder="name@example.com">
+                    <input required type="text" class="form-control" name="marca" id="marca" placeholder="name@example.com"required>
                 </div>
 
                 <div>
                     <label for="modelo"  class="form-label">Modelo</label>
-                    <input type="text" class="form-control" name="modelo" id="modelo" placeholder="name@example.com">
+                    <input required type="text" class="form-control" name="modelo" id="modelo" placeholder="name@example.com" required>
                 </div>
 
                 <div>
                     <label for="quantidade" class="form-label">Quantidade</label>
-                    <input type="text" class="form-control" name="quantidade" id="quantidade" placeholder="name@example.com">
+                    <input required type="text" class="form-control" name="quantidade" id="quantidade" placeholder="name@example.com"required>
                 </div>
 
                 <div>
                     <label for="valor" class="form-label">Valor</label>
-                    <input type="text" class="form-control" name="valor" id="valor" placeholder="name@example.com">
+                    <input required type="text" class="form-control" name="valor" id="valor" placeholder="name@example.com">
                 </div>
 
                 <div class="d-flex" style="gap:15px">
                     <p>Conexão:</p>
                     <div class="form-check d-flex" style="gap:10px">
-                        <input value="bluetooh" class="form-check-input" type="radio" name="bluetooh_cable" id="bluetooh_cable1">
+                        <input value="bluetooh" class="form-check-input" type="radio" name="bluetooh_cable" id="bluetooh_cable1"required>
                         <label class="form-check-label" for="bluetooh_cable1">
                             Bluetooh
                         </label>
                     </div>
 
                     <div class="form-check d-flex" style="gap:10px">
-                        <input value="cable" class="form-check-input" type="radio" name="bluetooh_cable" id="bluetooh_cable2">
+                        <input required value="cable" class="form-check-input" type="radio" name="bluetooh_cable" id="bluetooh_cable2"required>
                         <label class="form-check-label" for="bluetooh_cable2">
                             Cable
                         </label>
@@ -66,14 +66,14 @@
                 <div class="d-flex" style="gap:15px">
                     <p>Iluminação:</p>
                     <div class="form-check d-flex" style="gap:10px">
-                        <input value="true" class="form-check-input" type="radio" name="iluminacao" id="iluminacao1">
+                        <input required value="true" class="form-check-input" type="radio" name="iluminacao" id="iluminacao1" required>
                         <label class="form-check-label" for="iluminacao1">
                             Sim
                         </label>
                     </div>
 
                     <div class="form-check d-flex" style="gap:10px">
-                        <input value="false" class="form-check-input" type="radio" name="iluminacao" id="iluminacao2">
+                        <input required value="false" class="form-check-input" type="radio" name="iluminacao" id="iluminacao2" required>
                         <label class="form-check-label" for="iluminacao2">
                             Não
                         </label>
@@ -85,8 +85,8 @@
                 <h4>Especificações</h4>
                 <div>
                     <label for="tipo" class="form-label">Tipo de Teclado</label>
-                    <select class="form-select" id="tipo" name="tipo">
-                        <option selected>Selecione uma das opções abaixo</option>
+                    <select required class="form-select" id="tipo" name="tipo" required>
+                        <option selected value="" disabled>Selecione uma das opções abaixo</option>
                         <option value="MEMBRANA">Membrana</option>
                         <option value="MECANICO">Mecanico</option>
                         <option value="OPTICO">Optico</option>
@@ -95,8 +95,8 @@
 
                 <div>
                     <label for="switch_type" class="form-label">Tipo de Switch</label>
-                    <select class="form-select" id="switch_type" name="switch_type">
-                        <option selected>Selecione uma das opções abaixo</option>
+                    <select required class="form-select" id="switch_type" name="switch_type" required>
+                        <option selected value="" disabled>Selecione uma das opções abaixo</option>
                         <option value="NENHUM">Nenhum</option>
                         <option value="BLUE">Blue</option>
                         <option value="RED">Red</option>
@@ -107,11 +107,11 @@
 
                 <div>
                     <label for="ghosting" class="form-label">Ghosting</label>
-                    <select class="form-select" id="ghosting" name="ghosting">
-                        <option selected>Selecione uma das opções abaixo</option>
+                    <select required class="form-select" id="ghosting" name="ghosting">
+                        <option selected value="" disabled>Selecione uma das opções abaixo</option>
                         <option value="NENHUM">Nenhum</option>
                         <option value="METADE">50%</option>
-                        <option value="TOTAL">100%</option>
+                        <option value="FULL">100%</option>
                     </select>
                 </div>
             </div>

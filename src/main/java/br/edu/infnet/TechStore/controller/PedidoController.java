@@ -25,43 +25,63 @@ public class PedidoController {
 
     @GetMapping(value = "/pedido/cadastro")
     public String telaCadastro(Model model,@SessionAttribute("usuario") Usuario usuario){
-        model.addAttribute("cliente", clienteService.obterLista(usuario.getId()));
+
+        try {
+            model.addAttribute("cliente", clienteService.obterLista(usuario.getId()));
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+
         return "/pedido/cadastro";
     }
 
     @GetMapping(value = "/pedido")
     public String telaLista(Model model, @SessionAttribute("usuario") Usuario usuario){
-        model.addAttribute("pedido", pedidoService.obterLista(usuario.getId()));
-        model.addAttribute("msg", msg);
+
+        try {
+            model.addAttribute("pedido", pedidoService.obterLista(usuario.getId()));
+            model.addAttribute("msg", msg);
+        }catch (Exception e){
+            System.out.println(e);
+        }
 
         return "pedido/lista";
     }
 
     @PostMapping(value = "/pedido/incluir")
     public String incluir(Pedido pedido,@SessionAttribute("usuario") Usuario usuario){
-        pedido.setUsuario(usuario);
-        pedido.calcularValorTotal();
-        pedidoService.incluir(pedido);
-
-        msg = "Pedido realizado com sucesso";
+        try {
+            pedido.setUsuario(usuario);
+            pedido.calcularValorTotal();
+            pedidoService.incluir(pedido);
+            msg = "Pedido realizado com sucesso";
+        }catch (Exception e){
+            System.out.println(e);
+        }
 
         return "redirect:/pedido";
     }
 
     @PostMapping(value = "/pedido/atualizar/{id}")
     public String atualizar(Pedido pedido, @SessionAttribute("usuario") Usuario usuario,@PathVariable Integer id){
-        pedido.setUsuario(usuario);
-        pedidoService.atualizar(pedido,id);
 
-        msg = "Pedido atualizado com sucesso";
+        try {
+            pedido.setUsuario(usuario);
+            pedidoService.atualizar(pedido,id);
+            msg = "Pedido atualizado com sucesso";
+        }catch (Exception e){
+            System.out.println(e);
+        }
 
         return "redirect:/mouse";
     }
 
     @GetMapping(value = "/pedido/{id}")
     public String getUser(Model model,@PathVariable Integer id){
-        Pedido pedido = pedidoService.getById(id);
+
         try {
+            Pedido pedido = pedidoService.getById(id);
             model.addAttribute("pedido", pedido);
         }catch (Exception e){
             System.out.println(e);
@@ -71,9 +91,12 @@ public class PedidoController {
 
     @GetMapping(value = "/pedido/{id}/excluir")
     public String excluir(@PathVariable Integer id) {
-        pedidoService.excluir(id);
-        msg = "Pedido excluido com sucesso";
-
+       try {
+           pedidoService.excluir(id);
+           msg = "Pedido excluido com sucesso";
+       }catch (Exception e){
+           System.out.println(e);
+       }
         return "redirect:/pedido";
     }
 }

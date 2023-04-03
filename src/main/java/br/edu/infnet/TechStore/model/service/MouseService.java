@@ -4,6 +4,7 @@ import br.edu.infnet.TechStore.model.domain.Headset;
 import br.edu.infnet.TechStore.model.domain.Mouse;
 import br.edu.infnet.TechStore.model.repository.MouseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.util.Collection;
@@ -54,11 +55,11 @@ public class MouseService{
 
 
     public Collection<Mouse> obterLista(){
-        return mouseRepository.findAll();
+        return mouseRepository.findAll(Sort.by(Sort.Direction.ASC, "marca"));
     }
 
     public Collection<Mouse> obterLista(Integer id){
-        return mouseRepository.findAll(id);
+        return mouseRepository.findAll(id,Sort.by(Sort.Direction.ASC, "marca"));
     }
 
     public Mouse getById(Integer id){

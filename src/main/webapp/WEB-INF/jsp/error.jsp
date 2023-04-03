@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page isErrorPage="true" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,17 +16,14 @@
 
 <main>
     <div class="container-fluid d-flex justify-content-center flex-column ps-5 pe-5 ">
+
         <div class="row">
-            <h2>Listagem de Usuarios</h2>
-            <h5>Quantidade de usuarios cadastrados: ${usuarios.size()}</h5>
-            <a href="/usuario/cadastro">Adicionar Item</a>
+            <h2>Ocorreu um erro</h2>
         </div>
 
-        <c:if test="${not empty usuarios}">
-            <div class="row">
-
-            </div>
-        </c:if>
+        <div class="row">
+            <h2>${exception}</h2>
+        </div>
 
     </div>
 </main>

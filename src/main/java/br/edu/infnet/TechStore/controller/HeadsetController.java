@@ -34,26 +34,34 @@ public class HeadsetController {
     @GetMapping(value = "/headset")
     public String telaLista(Model model,@SessionAttribute("usuario") Usuario usuario){
 
-        model.addAttribute("headset", headsetService.obterLista(usuario.getId()));
-        model.addAttribute("msg", msg);
+        try {
+            model.addAttribute("headset", headsetService.obterLista(usuario.getId()));
+            model.addAttribute("msg", msg);
+        } catch (Exception e){
+            System.out.println(e);
+        }
 
         return "headset/lista";
     }
 
     @PostMapping(value = "/headset/incluir")
     public String incluir(@Valid headsetDto headsetDto, MultipartFile file, @SessionAttribute("usuario") Usuario usuario){
-        Headset headsetModel = new Headset();
-        BeanUtils.copyProperties(headsetDto,headsetModel);
-        headsetModel.setUsuario(usuario);
 
-        if(file.isEmpty()) {
-            headsetService.incluir(headsetModel,null);
-        }else{
-            headsetService.incluir(headsetModel,file);
+        try {
+            Headset headsetModel = new Headset();
+            BeanUtils.copyProperties(headsetDto,headsetModel);
+            headsetModel.setUsuario(usuario);
+
+            if(file.isEmpty()) {
+                headsetService.incluir(headsetModel,null);
+            }else{
+                headsetService.incluir(headsetModel,file);
+            }
+
+            msg = "Headset cadastrado com sucesso";
+        } catch (Exception e){
+            System.out.println(e);
         }
-
-        msg = "Headset cadastrado com sucesso";
-
 
         return "redirect:/headset";
     }
@@ -61,18 +69,22 @@ public class HeadsetController {
 
     @PostMapping(value = "/headset/atualizar/{id}")
     public String atualizar(@Valid headsetDto headsetDto, MultipartFile file, @SessionAttribute("usuario") Usuario usuario,@PathVariable Integer id){
-        Headset headsetModel = new Headset();
-        BeanUtils.copyProperties(headsetDto,headsetModel);
-        headsetModel.setUsuario(usuario);
 
-        if(file.isEmpty()) {
-            headsetService.atualizar(headsetModel,id,null);
-        }else{
-            headsetService.atualizar(headsetModel,id,file);
-        }
+        try {
+           Headset headsetModel = new Headset();
+           BeanUtils.copyProperties(headsetDto,headsetModel);
+           headsetModel.setUsuario(usuario);
 
-        msg = "Headset atualizado com sucesso";
+           if(file.isEmpty()) {
+               headsetService.atualizar(headsetModel,id,null);
+           }else{
+               headsetService.atualizar(headsetModel,id,file);
+           }
 
+           msg = "Headset atualizado com sucesso";
+       } catch (Exception e){
+           System.out.println(e);
+       }
 
         return "redirect:/headset";
     }
@@ -80,12 +92,10 @@ public class HeadsetController {
 
     @GetMapping(value = "/headset/{id}")
     public String getUser(Model model,@PathVariable Integer id){
-
-        Headset headset = headsetService.getById(id);
-
         try {
+            Headset headset = headsetService.getById(id);
             model.addAttribute("headset", headset);
-        }catch (Exception e){
+        } catch (Exception e){
             System.out.println(e);
         }
 
@@ -95,8 +105,13 @@ public class HeadsetController {
     @GetMapping(value = "/headset/{id}/excluir")
     public String excluir(@PathVariable Integer id) {
 
-        headsetService.excluir(id);
-        msg = "Headset excluido com sucesso";
+        try {
+            headsetService.excluir(id);
+            msg = "Headset excluido com sucesso";
+        } catch (Exception e){
+            System.out.println(e);
+        }
+
 
         return "redirect:/headset";
     }

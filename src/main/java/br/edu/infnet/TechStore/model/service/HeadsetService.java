@@ -6,6 +6,7 @@ import br.edu.infnet.TechStore.model.domain.Mouse;
 import br.edu.infnet.TechStore.model.repository.HeadsetRepository;
 import br.edu.infnet.TechStore.model.repository.MouseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -56,11 +57,12 @@ public class HeadsetService {
     }
 
     public Collection<Headset> obterLista(){
-        return headsetRepository.findAll();
+
+        return headsetRepository.findAll(Sort.by(Sort.Direction.ASC, "marca"));
     }
 
     public Collection<Headset> obterLista(Integer id){
-        return headsetRepository.findAll(id);
+        return headsetRepository.findAll(id, Sort.by(Sort.Direction.ASC, "marca"));
     }
 
     public Headset getById(Integer id){

@@ -28,32 +28,32 @@
                 <h4>Dados do Cliente:</h4>
                 <div>
                     <label for="nome"  class="form-label">Nome</label>
-                    <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome">
+                    <input required type="text" class="form-control" name="nome" id="nome" placeholder="Nome">
                 </div>
 
                 <div>
                     <label for="sobrenome"  class="form-label">Sobrenome</label>
-                    <input type="text" class="form-control" name="sobrenome" id="sobrenome" placeholder="Sobrenome">
+                    <input required type="text" class="form-control" name="sobrenome" id="sobrenome" placeholder="Sobrenome">
                 </div>
 
                 <div>
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com">
+                    <input required type="email" class="form-control" name="email" id="email" placeholder="name@example.com">
                 </div>
 
                 <div>
                     <label for="cpf" class="form-label">Cpf</label>
-                    <input type="text" class="form-control" name="cpf" id="cpf" placeholder="000.000.000-00">
+                    <input required type="text" class="form-control" name="cpf" id="cpf" placeholder="000.000.000-00">
                 </div>
 
                 <div>
                     <label for="nascimento"  class="form-label">Nascimento</label>
-                    <input type="text" class="form-control" name="nascimento" id="nascimento" placeholder="02/02/2002">
+                    <input required type="text" class="form-control" name="nascimento" id="nascimento" placeholder="02/02/2002">
                 </div>
 
                 <div>
                     <label for="telefone" class="form-label">Telefone</label>
-                    <input type="text" class="form-control" name="telefone" id="telefone" placeholder="(21) 00000 0000">
+                    <input required type="text" class="form-control" name="telefone" id="telefone" placeholder="(21) 00000 0000">
                 </div>
             </div>
 
@@ -67,7 +67,7 @@
                 </div>
 
                 <div class="input-group mb-3">
-                    <input type="file" class="form-control" id="file" name="file">
+                    <input required type="file" class="form-control" id="file" name="file">
                 </div>
             </div>
 

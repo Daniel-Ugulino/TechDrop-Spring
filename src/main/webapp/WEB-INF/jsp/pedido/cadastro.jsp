@@ -28,29 +28,29 @@
 
                 <div>
                     <label for="marca"  class="form-label">Descrição da Venda</label>
-                    <input type="text" class="form-control" name="descricao" id="marca" placeholder="name@example.com">
+                    <input required type="text" class="form-control" name="descricao" id="marca" placeholder="name@example.com">
                 </div>
 
                 <div>
                     <label for="date"  class="form-label">Data da Venda</label>
-                    <input type="text" class="form-control" name="date" id="date" placeholder="name@example.com">
+                    <input required type="text" class="form-control" name="date" id="date" placeholder="name@example.com">
                 </div>
 
                 <div class="d-flex" style="gap: 20px">
                     <div>
                         <label for="pagamento" class="form-label">Forma de pagamento</label>
-                        <input type="text" class="form-control" name="pagamento" id="pagamento" placeholder="name@example.com">
+                        <input required type="text" class="form-control" name="pagamento" id="pagamento" placeholder="name@example.com">
                     </div>
                     <div>
                         <label for="valor" class="form-label">Valor Total</label>
-                        <input type="text" disabled class="form-control" id="valor" placeholder="name@example.com">
+                        <input required type="text" disabled class="form-control" id="valor" placeholder="name@example.com">
                     </div>
 
                 </div>
 
                 <div>
                     <label for="cliente" class="form-label">Cliente</label>
-                    <select class="form-select" id="cliente" name="cliente.id">
+                    <select required class="form-select" id="cliente" name="cliente.id">
                         <option selected disabled>Selecione um cliente</option>
                         <c:forEach var="obj" items="${cliente}">
                             <option value="${obj.id}">${obj.nome}</option>
