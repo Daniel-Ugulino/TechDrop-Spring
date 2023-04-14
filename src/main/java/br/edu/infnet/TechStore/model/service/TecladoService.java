@@ -30,11 +30,16 @@ public class TecladoService {
         tecladoRepository.save(teclado);
     }
 
-    public void excluir(Integer id){
+    public void updateStatus(Integer id){
         Teclado tecladoDB = tecladoRepository.findById(id).get();
         tecladoDB.setStatus(false);
         tecladoRepository.save(tecladoDB);
     }
+
+    public void excluir(Integer id){
+        tecladoRepository.deleteById(id);
+    }
+
 
     public void atualizar(Teclado teclado,Integer id, MultipartFile multipartFile){
 

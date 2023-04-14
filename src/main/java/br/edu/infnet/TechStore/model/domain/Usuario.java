@@ -25,17 +25,17 @@ public class Usuario {
     private Boolean status = true;
 
     @JsonIgnore
-    @OneToMany
+    @OneToMany()
     @JoinColumn(name = "idUsuario")
     private List<Cliente> clientes;
 
     @JsonIgnore
-    @OneToMany
+    @OneToMany()
     @JoinColumn(name = "idUsuario")
     private List<Produto> produtos;
 
     @JsonIgnore
-    @OneToMany
+    @OneToMany()
     @JoinColumn(name = "idUsuario")
     private List<Pedido> pedidos;
     public Usuario(){

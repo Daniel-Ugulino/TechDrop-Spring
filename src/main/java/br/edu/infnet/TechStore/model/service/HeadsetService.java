@@ -1,10 +1,7 @@
 package br.edu.infnet.TechStore.model.service;
 
-import br.edu.infnet.TechStore.model.domain.Cliente;
 import br.edu.infnet.TechStore.model.domain.Headset;
-import br.edu.infnet.TechStore.model.domain.Mouse;
 import br.edu.infnet.TechStore.model.repository.HeadsetRepository;
-import br.edu.infnet.TechStore.model.repository.MouseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -33,11 +30,16 @@ public class HeadsetService {
         headsetRepository.save(headset);
     }
 
-    public void excluir(Integer id){
+    public void updateStatus(Integer id){
         Headset headsetDB = headsetRepository.findById(id).get();
         headsetDB.setStatus(false);
         headsetRepository.save(headsetDB);
     }
+
+    public void excluir(Integer id){
+        headsetRepository.deleteById(id);
+    }
+
 
     public void atualizar(Headset headset,Integer id, MultipartFile multipartFile){
 

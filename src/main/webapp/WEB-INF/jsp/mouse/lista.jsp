@@ -40,6 +40,7 @@
                             <th scope="col">Valor</th>
                             <th scope="col">Conexao</th>
                             <th scope="col">Iluminacao</th>
+                            <th scope="col">Status</th>
                             <th scope="col">Max dpi</th>
                             <th scope="col">Qtd Botões</th>
                             <th scope="col">Peso</th>
@@ -57,13 +58,27 @@
                                 <td>${obj.valor}</td>
                                 <td>${obj.bluetooh_cable}</td>
                                 <td>${obj.iluminacao}</td>
+                                <td>${obj.status}</td>
                                 <td>${obj.dpi}</td>
                                 <td>${obj.qtd_botoes}</td>
                                 <td>${obj.peso}</td>
                                 <td><a href="${obj.imgUrl}" target="_blank">imagem</a></td>
                                 <td>
-                                    <a href="/mouse/${obj.id}/excluir">excluir</a>
+                                    <c:if test='${usuario.getPermission().toString() != "SALES"}'>
+                                        <c:if test="${obj.status == true}">
+                                            <a href="/mouse/${obj.id}/updateStatus">desativar</a>
+                                        </c:if>
+                                        <c:if test="${obj.status == false}">
+                                            <a href="/mouse/${obj.id}/updateStatus">ativar</a>
+                                        </c:if>
+                                    </c:if>
+
                                     <a href="/mouse/${obj.id}">atualizar</a>
+
+                                    <c:if test="${usuario.getPermission().toString() == 'ADMINISTRATOR' }">
+                                        <a href="/mouse/${obj.id}/excluir">excluir</a>
+                                    </c:if>
+
                                 </td>
                             </tr>
                         </c:forEach>

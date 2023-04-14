@@ -1,6 +1,6 @@
 package br.edu.infnet.TechStore.controller;
 
-import br.edu.infnet.TechStore.model.domain.Mouse;
+import br.edu.infnet.TechStore.enums.user.userPermissions;
 import br.edu.infnet.TechStore.model.domain.Teclado;
 import br.edu.infnet.TechStore.model.domain.Usuario;
 import br.edu.infnet.TechStore.model.dtos.tecladoDto;
@@ -34,11 +34,16 @@ public class TecladoController {
     public String telaLista(Model model,@SessionAttribute("usuario") Usuario usuario){
 
         try {
-            model.addAttribute("teclado", tecladoService.obterLista(usuario.getId()));
+            if(usuario.getPermission() == userPermissions.ADMINISTRATOR) {
+                model.addAttribute("teclado", tecladoService.obterLista());
+            }else{
+                model.addAttribute("teclado", tecladoService.obterLista(usuario.getId()));
+            }
             model.addAttribute("msg", msg);
         }catch (Exception e){
             System.out.println(e);
         }
+        msg = null;
 
         return "teclado/lista";
     }
@@ -108,10 +113,23 @@ public class TecladoController {
             tecladoService.excluir(id);
             msg = "Teclado excluido com sucesso";
         }catch (Exception e){
-            System.out.println(e);
+            msg = "Não foi possivel excluir o teclado, há um pedido vinculado";
         }
 
 
         return "redirect:/teclado";
+    }
+
+    @GetMapping(value = "/teclado/{id}/updateStatus")
+    public String updateStatus(@PathVariable Integer id){
+
+        try {
+            tecladoService.updateStatus(id);
+            msg = "Status do Teclado alterado com sucesso";
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        return "redirect:/usuario";
     }
 }

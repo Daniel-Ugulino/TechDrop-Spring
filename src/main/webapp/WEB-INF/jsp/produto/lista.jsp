@@ -34,6 +34,7 @@
                             <th scope="col">Valor</th>
                             <th scope="col">Conexao</th>
                             <th scope="col">Iluminacao</th>
+                            <th scope="col">Status</th>
                             <th scope="col">Tipo</th>
                             <th scope="col">Imagem do Produto</th>
                             <th scope="col">Opções</th>
@@ -49,11 +50,24 @@
                                 <td>${obj.valor}</td>
                                 <td>${obj.bluetooh_cable}</td>
                                 <td>${obj.iluminacao}</td>
+                                <td>${obj.status}</td>
                                 <td>${obj.type}</td>
                                 <td><a href="${obj.imgUrl}" target="_blank">imagem</a></td>
                                 <td>
-                                    <a href="/${obj.type}/${obj.id}/excluir">excluir</a>
+                                    <c:if test='${usuario.getPermission().toString() != "SALES"}'>
+                                        <c:if test="${obj.status == true}">
+                                            <a href="/${obj.type}/${obj.id}/updateStatus">desativar</a>
+                                        </c:if>
+                                        <c:if test="${obj.status == false}">
+                                            <a href="/${obj.type}/${obj.id}/updateStatus">ativar</a>
+                                        </c:if>
+                                    </c:if>
                                     <a href="/${obj.type}/${obj.id}">atualizar</a>
+
+                                    <c:if test="${usuario.getPermission().toString() == 'ADMINISTRATOR'}">
+                                        <a href="/${obj.type}/${obj.id}/excluir">excluir</a>
+                                    </c:if>
+
                                 </td>
                             </tr>
                         </c:forEach>

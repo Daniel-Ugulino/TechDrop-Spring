@@ -41,7 +41,7 @@ public class UsuarioLoader implements ApplicationRunner {
 
             for(Usuario usuario : usuarios){
                 usuario.setStatus(true);
-                usuarioService.incluir(usuario);
+                usuarioService.insert(usuario);
                 System.out.println("O Usuario: " + usuario.getUsername() + " foi incluido com sucesso");
             }
 

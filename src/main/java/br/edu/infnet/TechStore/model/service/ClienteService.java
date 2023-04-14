@@ -1,7 +1,6 @@
 package br.edu.infnet.TechStore.model.service;
 
 import br.edu.infnet.TechStore.model.domain.Cliente;
-import br.edu.infnet.TechStore.model.domain.Headset;
 import br.edu.infnet.TechStore.model.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -49,11 +48,16 @@ public class ClienteService {
 
         clienteRepository.save(cliente);
     }
-    public void excluir(Integer id) {
+    public void updateStatus(Integer id) {
         Cliente clienteDB = clienteRepository.findById(id).get();
         clienteDB.setStatus(false);
         clienteRepository.save(clienteDB);
     }
+
+    public void excluir(Integer id){
+        clienteRepository.deleteById(id);
+    }
+
 
     public Collection<Cliente> obterLista(){
 

@@ -1,7 +1,7 @@
 package br.edu.infnet.TechStore.controller;
 
+import br.edu.infnet.TechStore.enums.user.userPermissions;
 import br.edu.infnet.TechStore.model.domain.Mouse;
-import br.edu.infnet.TechStore.model.domain.Teclado;
 import br.edu.infnet.TechStore.model.domain.Usuario;
 import br.edu.infnet.TechStore.model.dtos.mouseDto;
 import br.edu.infnet.TechStore.model.service.MouseService;
@@ -24,7 +24,6 @@ public class MouseController {
 
     private String msg;
 
-
     @GetMapping(value = "/mouse/cadastro")
     public String telaCadastro(){
         return "/mouse/cadastro";
@@ -34,11 +33,16 @@ public class MouseController {
     public String telaLista(Model model,@SessionAttribute("usuario") Usuario usuario){
 
         try {
-            model.addAttribute("mouse", mouseService.obterLista(usuario.getId()));
+            if(usuario.getPermission() == userPermissions.ADMINISTRATOR){
+                model.addAttribute("mouse", mouseService.obterLista());
+            }else{
+                model.addAttribute("mouse", mouseService.obterLista(usuario.getId()));
+            }
             model.addAttribute("msg", msg);
         } catch (Exception e){
             System.out.println(e);
         }
+        msg = null;
 
         return "mouse/lista";
     }
@@ -107,9 +111,22 @@ public class MouseController {
             mouseService.excluir(id);
             msg = "Mouse excluido com sucesso";
         } catch (Exception e){
-            System.out.println(e);
+            msg = "Não foi possivel excluir o mouse, há um pedido vinculado";
         }
 
         return "redirect:/mouse";
+    }
+
+    @GetMapping(value = "/mouse/{id}/updateStatus")
+    public String updateStatus(@PathVariable Integer id){
+
+        try {
+            mouseService.changeStatus(id);
+            msg = "Status do Mouse alterado com sucesso";
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        return "redirect:/usuario";
     }
 }

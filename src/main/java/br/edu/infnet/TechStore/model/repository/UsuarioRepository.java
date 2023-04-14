@@ -12,14 +12,16 @@ public interface UsuarioRepository extends CrudRepository<Usuario,Integer> {
     @Query("from Usuario u where u.email = :email")
     Usuario login(String email);
 
-    @Query("from Usuario u where u.status = true")
     Collection<Usuario> findAll(Sort sort);
+
+    @Query("from Usuario u where u.status = true")
+    Collection<Usuario> findAllActive(Sort sort);
 
     @Query("from Usuario u where u.status = true")
     Collection<Usuario> findAllStatus();
 
-    @Query(value="select * from Usuario  u where u.status = true offset :page * 5 limit 5 ", nativeQuery = true)
-    Collection<Usuario> findPaginated(Integer page,Sort sort);
+    @Query(value="select * from Usuario u offset :page * 5 limit 5 ", nativeQuery = true)
+    Collection<Usuario> findPaginated(Integer page);
 
 }
 

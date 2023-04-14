@@ -27,7 +27,7 @@ public class ProdutoController {
     @GetMapping(value = "/produto")
     public String telaLista(Model model, @SessionAttribute("usuario") Usuario usuario){
         try {
-            if (usuario.getPermission()  == userPermissions.ADMINISTRATOR || usuario.getPermission() == userPermissions.DEVELOPER){
+            if (usuario.getPermission() == userPermissions.ADMINISTRATOR){
                 model.addAttribute("produto", produtoService.obterLista());
             }
             else {

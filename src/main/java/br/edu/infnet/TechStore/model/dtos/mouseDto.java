@@ -1,13 +1,14 @@
 package br.edu.infnet.TechStore.model.dtos;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 public class mouseDto extends produtoDto {
-    @NotEmpty
+    @NotNull
     private Integer dpi;
-    @NotEmpty
+    @NotNull
     private Integer qtd_botoes;
-    @NotEmpty
+    @NotNull
     private Integer peso;
 
     public Integer getDpi() {

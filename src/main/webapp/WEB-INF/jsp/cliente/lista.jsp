@@ -39,6 +39,7 @@
                             <th scope="col">Email</th>
                             <th scope="col">Cpf</th>
                             <th scope="col">Nascimento</th>
+                            <th scope="col">Status</th>
                             <th scope="col">Cep</th>
                             <th scope="col">Endereco</th>
                             <th scope="col">Telefone</th>
@@ -55,17 +56,26 @@
                                 <td>${obj.email}</td>
                                 <td>${obj.cpf}</td>
                                 <td>${obj.nascimento}</td>
+                                <td>${obj.status}</td>
                                 <td>${obj.endereco.uf}</td>
                                 <td>${obj.endereco.cep}</td>
                                 <td>${obj.telefone}</td>
                                 <td>${obj.usuario.getUsername()}</td>
                                 <td>
-                                  <%--  <c:if test='${!usuario.getCargo().equals("vendendor")}'>--%>
-                                        <a href="/cliente/${obj.id}/excluir">excluir</a>
-<%--
+                                    <c:if test='${usuario.getPermission().toString() != "SALES"}'>
+                                        <c:if test="${obj.status == true}">
+                                            <a href="/cliente/${obj.id}/updateStatus">desativar</a>
+                                        </c:if>
+                                        <c:if test="${obj.status == false}">
+                                            <a href="/cliente/${obj.id}/updateStatus">ativar</a>
+                                        </c:if>
                                     </c:if>
---%>
+
                                     <a href="/cliente/${obj.id}">atualizar</a>
+
+                                    <c:if test="${usuario.getPermission().toString() == 'ADMINISTRATOR'}">
+                                        <a href="/cliente/${obj.id}/excluir">excluir</a>
+                                    </c:if>
                                 </td>
                             </tr>
                         </c:forEach>

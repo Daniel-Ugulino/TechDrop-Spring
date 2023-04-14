@@ -67,7 +67,7 @@
                 </div>
 
                 <div class="input-group mb-3">
-                    <input required type="file" class="form-control" id="file" name="file">
+                    <input type="file" class="form-control" id="file" name="file">
                 </div>
             </div>
 

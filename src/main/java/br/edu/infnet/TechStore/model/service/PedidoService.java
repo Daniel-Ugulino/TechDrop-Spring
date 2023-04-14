@@ -19,9 +19,7 @@ public class PedidoService {
     }
 
     public void excluir(Integer id){
-        Pedido pedidoDB = pedidoRepository.findById(id).get();
-        pedidoDB.setStatus(false);
-        pedidoRepository.save(pedidoDB);
+        pedidoRepository.deleteById(id);
     }
 
     public void atualizar(Pedido pedido,Integer id){

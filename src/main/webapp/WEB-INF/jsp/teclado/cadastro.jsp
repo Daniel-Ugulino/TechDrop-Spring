@@ -49,7 +49,7 @@
                 <div class="d-flex" style="gap:15px">
                     <p>Conexão:</p>
                     <div class="form-check d-flex" style="gap:10px">
-                        <input value="bluetooh" class="form-check-input" type="radio" name="bluetooh_cable" id="bluetooh_cable1"required>
+                        <input required value="bluetooh" class="form-check-input" type="radio" name="bluetooh_cable" id="bluetooh_cable1"required>
                         <label class="form-check-label" for="bluetooh_cable1">
                             Bluetooh
                         </label>

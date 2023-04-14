@@ -56,8 +56,10 @@
                                     <td>${obj.cliente.getNome()}</td>
                                     <td>${obj.usuario.getUsername()}</td>
                                 <td>
-                                    <a href="/pedido/${obj.id}/excluir">excluir</a>
                                     <a href="/pedido/${obj.id}">atualizar</a>
+                                    <c:if test='${usuario.getPermission().toString() == "ADMINISTRATOR"}'>
+                                        <a href="/pedido/${obj.id}/excluir">excluir</a>
+                                    </c:if>
                                 </td>
                             </tr>
                         </c:forEach>

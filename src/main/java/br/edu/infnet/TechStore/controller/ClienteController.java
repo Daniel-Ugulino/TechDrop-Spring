@@ -1,8 +1,8 @@
 package br.edu.infnet.TechStore.controller;
 
+import br.edu.infnet.TechStore.enums.user.userPermissions;
 import br.edu.infnet.TechStore.model.domain.Cliente;
 import br.edu.infnet.TechStore.model.domain.Endereco;
-import br.edu.infnet.TechStore.model.domain.Headset;
 import br.edu.infnet.TechStore.model.domain.Usuario;
 import br.edu.infnet.TechStore.model.dtos.clienteDto;
 import br.edu.infnet.TechStore.model.dtos.enderecoDto;
@@ -23,7 +23,6 @@ public class ClienteController {
 
     private String msg;
 
-
     @GetMapping(value = "/cliente/cadastro")
     public String telaCadastro() {
         return "cliente/cadastro";
@@ -32,18 +31,19 @@ public class ClienteController {
     @GetMapping(value = "/cliente")
     public String telaLista(Model model,@SessionAttribute("usuario") Usuario usuario) {
         try {
-            if(usuario.getPermission().toString() == "ADMINISTRATOR"){
+            if(usuario.getPermission() == userPermissions.ADMINISTRATOR){
                 model.addAttribute("cliente", clienteService.obterLista());
             }
             else {
                 model.addAttribute("cliente", clienteService.obterLista(usuario.getId()));
             }
-
             model.addAttribute("msg", msg);
         }
         catch (Exception e){
             System.out.println(e);
         }
+
+        msg = null;
 
         return "cliente/lista";
     }
@@ -80,11 +80,23 @@ public class ClienteController {
             clienteService.excluir(id);
             msg = "Cliente excluido com sucesso";
         } catch (Exception e){
-            System.out.println(e);
+            msg = "Não foi possivel excluir o Cliente, há um pedido vinculado";
         }
 
-
         return "redirect:/cliente";
+    }
+
+    @GetMapping(value = "/cliente/{id}/updateStatus")
+    public String updateStatus(@PathVariable Integer id){
+
+        try {
+            clienteService.updateStatus(id);
+            msg = "Status do Cliente alterado com sucesso";
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        return "redirect:/usuario";
     }
 
     @PostMapping(value = "/cliente/{id}/atualizar")

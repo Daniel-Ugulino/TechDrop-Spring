@@ -1,5 +1,6 @@
 package br.edu.infnet.TechStore.controller;
 
+import br.edu.infnet.TechStore.enums.user.userPermissions;
 import br.edu.infnet.TechStore.model.domain.Pedido;
 import br.edu.infnet.TechStore.model.domain.Usuario;
 import br.edu.infnet.TechStore.model.service.ClienteService;
@@ -27,11 +28,19 @@ public class PedidoController {
     public String telaCadastro(Model model,@SessionAttribute("usuario") Usuario usuario){
 
         try {
-            model.addAttribute("cliente", clienteService.obterLista(usuario.getId()));
+            if(usuario.getPermission() == userPermissions.ADMINISTRATOR){
+                model.addAttribute("cliente", clienteService.obterLista());
+            }
+            else{
+                model.addAttribute("cliente", clienteService.obterLista(usuario.getId()));
+            }
+            model.addAttribute("msg", msg);
         }
         catch (Exception e){
             System.out.println(e);
         }
+
+        msg = null;
 
         return "/pedido/cadastro";
     }
@@ -40,11 +49,16 @@ public class PedidoController {
     public String telaLista(Model model, @SessionAttribute("usuario") Usuario usuario){
 
         try {
-            model.addAttribute("pedido", pedidoService.obterLista(usuario.getId()));
+            if(usuario.getPermission() == userPermissions.ADMINISTRATOR){
+                model.addAttribute("pedido", pedidoService.obterLista());
+            }else{
+                model.addAttribute("pedido", pedidoService.obterLista(usuario.getId()));
+            }
             model.addAttribute("msg", msg);
         }catch (Exception e){
             System.out.println(e);
         }
+        msg = null;
 
         return "pedido/lista";
     }

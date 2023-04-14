@@ -1,6 +1,5 @@
 package br.edu.infnet.TechStore.model.service;
 
-import br.edu.infnet.TechStore.model.domain.Headset;
 import br.edu.infnet.TechStore.model.domain.Mouse;
 import br.edu.infnet.TechStore.model.repository.MouseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +30,14 @@ public class MouseService{
         mouseRepository.save(mouse);
     }
 
-    public void excluir(Integer id){
+    public void changeStatus(Integer id){
         Mouse mouseDB = mouseRepository.findById(id).get();
         mouseDB.setStatus(false);
         mouseRepository.save(mouseDB);
+    }
+
+    public void excluir(Integer id){
+        mouseRepository.deleteById(id);
     }
 
     public void atualizar(Mouse mouse,Integer id, MultipartFile multipartFile){

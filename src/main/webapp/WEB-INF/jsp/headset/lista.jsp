@@ -42,6 +42,7 @@
                             <th scope="col">Valor</th>
                             <th scope="col">Conexao</th>
                             <th scope="col">Iluminacao</th>
+                            <th scope="col">Status</th>
                             <th scope="col">Tipo de som</th>
                             <th scope="col">Frequencia</th>
                             <th scope="col">Sensibilidade</th>
@@ -60,14 +61,26 @@
                                 <td>${obj.valor}</td>
                                 <td>${obj.bluetooh_cable}</td>
                                 <td>${obj.iluminacao}</td>
+                                <td>${obj.status}</td>
                                 <td>${obj.som}</td>
                                 <td>${obj.frequencia}</td>
                                 <td>${obj.sensibilidade}</td>
                                 <td>${obj.cancelamentoRuido}</td>
                                 <td><a href="${obj.imgUrl}" target="_blank">imagem</a></td>
                                 <td>
-                                    <a href="/headset/${obj.id}/excluir">excluir</a>
+                                    <c:if test='${usuario.getPermission().toString() != "SALES"}'>
+                                        <c:if test="${obj.status == true}">
+                                            <a href="/headset/${obj.id}/updateStatus">desativar</a>
+                                        </c:if>
+                                        <c:if test="${obj.status == false}">
+                                            <a href="/headset/${obj.id}/updateStatus">ativar</a>
+                                        </c:if>
+                                    </c:if>
                                     <a href="/headset/${obj.id}">atualizar</a>
+
+                                    <c:if test="${usuario.getPermission().toString() == 'ADMINISTRATOR'}">
+                                        <a href="/headset/${obj.id}/excluir">excluir</a>
+                                    </c:if>
                                 </td>
                             </tr>
                         </c:forEach>

@@ -28,35 +28,35 @@
 
                 <div>
                     <label for="marca"  class="form-label">Marca</label>
-                    <input type="text" class="form-control" name="marca" id="marca" placeholder="name@example.com">
+                    <input required type="text" class="form-control" name="marca" id="marca" placeholder="name@example.com">
                 </div>
 
                 <div>
                     <label for="modelo"  class="form-label">Modelo</label>
-                    <input type="text" class="form-control" name="modelo" id="modelo" placeholder="name@example.com">
+                    <input required type="text" class="form-control" name="modelo" id="modelo" placeholder="name@example.com">
                 </div>
 
                 <div>
                     <label for="quantidade" class="form-label">Quantidade</label>
-                    <input type="text" class="form-control" name="quantidade" id="quantidade" placeholder="name@example.com">
+                    <input required type="text" class="form-control" name="quantidade" id="quantidade" placeholder="name@example.com">
                 </div>
 
                 <div>
                     <label for="valor" class="form-label">Valor</label>
-                    <input type="text" class="form-control" name="valor" id="valor" placeholder="name@example.com">
+                    <input required type="text" class="form-control" name="valor" id="valor" placeholder="name@example.com">
                 </div>
 
                 <div class="d-flex" style="gap:15px">
                     <p>Conexão:</p>
                     <div class="form-check d-flex" style="gap:10px">
-                        <input value="bluetooh" class="form-check-input" type="radio" name="bluetooh_cable" id="bluetooh_cable1">
+                        <input required value="bluetooh" class="form-check-input" type="radio" name="bluetooh_cable" id="bluetooh_cable1">
                         <label class="form-check-label" for="bluetooh_cable1">
                             Bluetooh
                         </label>
                     </div>
 
                     <div class="form-check d-flex" style="gap:10px">
-                        <input value="cable" class="form-check-input" type="radio" name="bluetooh_cable" id="bluetooh_cable2">
+                        <input required value="cable" class="form-check-input" type="radio" name="bluetooh_cable" id="bluetooh_cable2">
                         <label class="form-check-label" for="bluetooh_cable2">
                             Cable
                         </label>
@@ -66,14 +66,14 @@
                 <div class="d-flex" style="gap:15px">
                     <p>Iluminação:</p>
                     <div class="form-check d-flex" style="gap:10px">
-                        <input value="true" class="form-check-input" type="radio" name="iluminacao" id="iluminacao1">
-                        <label class="form-check-label" for="iluminacao1">
+                        <input required value="true" class="form-check-input" type="radio" name="iluminacao" id="iluminacao1">
+                        <label  class="form-check-label" for="iluminacao1">
                             Sim
                         </label>
                     </div>
 
                     <div class="form-check d-flex" style="gap:10px">
-                        <input value="false" class="form-check-input" type="radio" name="iluminacao" id="iluminacao2">
+                        <input required value="false" class="form-check-input" type="radio" name="iluminacao" id="iluminacao2">
                         <label class="form-check-label" for="iluminacao2">
                             Não
                         </label>
@@ -85,7 +85,7 @@
                 <h4>Especificações</h4>
                 <div>
                     <label for="tipo" class="form-label">Tipo de som</label>
-                    <select class="form-select" id="tipo" name="som">
+                    <select required class="form-select" id="tipo" name="som">
                         <option value="" disabled selected>Selecione uma das opções abaixo</option>
                         <option value="STEREO">Stereo 7.1</option>
                         <option value="SURROUND">Surround</option>
@@ -95,25 +95,25 @@
 
                 <div>
                     <label for="frequencia" class="form-label">Frequencia do Som</label>
-                    <input type="number" class="form-control" name="frequencia" id="frequencia" placeholder="1000">
+                    <input required type="number" class="form-control" name="frequencia" id="frequencia" placeholder="1000">
                 </div>
 
                 <div>
                     <label for="sensibilidade" class="form-label">Sensibilidade</label>
-                    <input type="number" class="form-control" name="sensibilidade" id="sensibilidade" placeholder="1000">
+                    <input required type="number" class="form-control" name="sensibilidade" id="sensibilidade" placeholder="1000">
                 </div>
 
                 <div class="d-flex" style="gap:15px">
                     <p>Cancelamento de Ruido:</p>
                     <div class="form-check d-flex" style="gap:10px">
-                        <input class="form-check-input" type="radio" value="true" name="cancelamentoRuido" id="cancelamentoRuido1">
+                        <input required class="form-check-input" type="radio" value="true" name="cancelamentoRuido" id="cancelamentoRuido1">
                         <label class="form-check-label" for="cancelamentoRuido1">
                             Sim
                         </label>
                     </div>
 
                     <div class="form-check d-flex" style="gap:10px">
-                        <input class="form-check-input" type="radio" value="false" name="cancelamentoRuido" id="cancelamentoRuido2">
+                        <input required class="form-check-input" type="radio" value="false" name="cancelamentoRuido" id="cancelamentoRuido2">
                         <label class="form-check-label" for="cancelamentoRuido2">
                             Não
                         </label>

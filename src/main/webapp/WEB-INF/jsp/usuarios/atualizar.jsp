@@ -88,13 +88,6 @@
                                 Vendendor
                             </label>
                         </div>
-
-                        <div class="form-check d-flex" style="gap:10px">
-                            <input required ${usuario.getPermission().toString() == "DEVELOPER" ? 'checked="checked"' : 'a'} class="form-check-input" name="permission" type="radio" value="DEVELOPER" id="permission_opt3">
-                            <label class="form-check-label" for="permission_opt3">
-                                Desenvolvedor
-                            </label>
-                        </div>
                     </div>
 
 

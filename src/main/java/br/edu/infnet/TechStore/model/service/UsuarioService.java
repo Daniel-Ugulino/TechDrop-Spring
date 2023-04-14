@@ -17,26 +17,30 @@ public class UsuarioService{
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public Collection<Usuario> obterLista(){ return usuarioRepository.findAll(Sort.by(Sort.Direction.ASC, "username"));}
+    public Collection<Usuario> getList(){ return usuarioRepository.findAll(Sort.by(Sort.Direction.ASC, "username"));}
 
 
-    public Collection<Usuario> listaPaginada(Integer page){
-        return usuarioRepository.findPaginated(page,Sort.by(Sort.Direction.ASC, "username"));
+    public Collection<Usuario> pagedList(Integer page){
+        return usuarioRepository.findPaginated(page);
     }
 
-    public Usuario incluir(Usuario usuario) {
+    public Usuario insert(Usuario usuario) {
         usuario.setPassword(bCryptPasswordEncoder.encode(usuario.getPassword()));
         usuario.setStatus(true);
         return usuarioRepository.save(usuario);
     }
 
-    public void excluir(Integer id) {
+    public void delete(Integer id) {
+        usuarioRepository.deleteById(id);
+    }
+
+    public void changeStatus(Integer id) {
         Usuario userFromDB = usuarioRepository.findById(id).get();
-        userFromDB.setStatus(false);
+        userFromDB.setStatus(!userFromDB.getStatus());
         usuarioRepository.save(userFromDB);
     }
 
-    public Usuario autenticar(Usuario usuario){
+    public Usuario aunteatication(Usuario usuario){
         Usuario userFromDB = usuarioRepository.login(usuario.getEmail());
 
         if (userFromDB != null && userFromDB.getStatus() && bCryptPasswordEncoder.matches(usuario.getPassword(), userFromDB.getPassword())){
@@ -45,7 +49,7 @@ public class UsuarioService{
         return null;
     }
 
-    public void atualizar(Usuario usuario, Integer id){
+    public void update(Usuario usuario, Integer id){
         Usuario user = usuarioRepository.findById(id).get();
         usuario.setPassword(user.getPassword());
         usuarioRepository.save(usuario);

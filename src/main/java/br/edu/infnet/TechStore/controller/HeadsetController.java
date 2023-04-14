@@ -1,7 +1,7 @@
 package br.edu.infnet.TechStore.controller;
 
+import br.edu.infnet.TechStore.enums.user.userPermissions;
 import br.edu.infnet.TechStore.model.domain.Headset;
-import br.edu.infnet.TechStore.model.domain.Mouse;
 import br.edu.infnet.TechStore.model.domain.Usuario;
 import br.edu.infnet.TechStore.model.dtos.headsetDto;
 import br.edu.infnet.TechStore.model.service.HeadsetService;
@@ -34,12 +34,18 @@ public class HeadsetController {
     @GetMapping(value = "/headset")
     public String telaLista(Model model,@SessionAttribute("usuario") Usuario usuario){
 
-        try {
-            model.addAttribute("headset", headsetService.obterLista(usuario.getId()));
+        try{
+            if(usuario.getPermission() == userPermissions.ADMINISTRATOR){
+                model.addAttribute("headset", headsetService.obterLista());
+            }
+            else{
+                model.addAttribute("headset", headsetService.obterLista(usuario.getId()));
+            }
             model.addAttribute("msg", msg);
         } catch (Exception e){
             System.out.println(e);
         }
+        msg = null;
 
         return "headset/lista";
     }
@@ -109,10 +115,23 @@ public class HeadsetController {
             headsetService.excluir(id);
             msg = "Headset excluido com sucesso";
         } catch (Exception e){
-            System.out.println(e);
+            msg = "Não foi possivel excluir o headset, há um pedido vinculado";
         }
 
 
         return "redirect:/headset";
+    }
+
+    @GetMapping(value = "/headset/{id}/updateStatus")
+    public String updateStatus(@PathVariable Integer id){
+
+        try {
+            headsetService.updateStatus(id);
+            msg = "Status do Headset alterado com sucesso";
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        return "redirect:/usuario";
     }
 }

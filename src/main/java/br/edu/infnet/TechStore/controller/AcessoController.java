@@ -31,11 +31,10 @@ public class AcessoController {
 		try {
 			Usuario user = new Usuario(email, senha);
 
-			user = usuarioService.autenticar(user);
+			user = usuarioService.aunteatication(user);
 
 			if(user != null) {
 				model.addAttribute("usuario", user);
-				System.out.println(user.getPermission().toString());
 				return "redirect:/home";
 			}
 

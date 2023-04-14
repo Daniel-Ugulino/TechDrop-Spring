@@ -3,7 +3,6 @@ package br.edu.infnet.TechStore.controller;
 import br.edu.infnet.TechStore.enums.user.userPermissions;
 import br.edu.infnet.TechStore.model.domain.Usuario;
 import br.edu.infnet.TechStore.model.dtos.usuarioDto;
-import br.edu.infnet.TechStore.model.execptions.UsuarioException;
 import br.edu.infnet.TechStore.model.service.UsuarioService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +29,13 @@ public class UsuarioController {
 
 		try {
 			if(usuario.getPermission() == userPermissions.ADMINISTRATOR){
-				model.addAttribute("usuarios", usuarioService.listaPaginada(0));
+				model.addAttribute("usuarios", usuarioService.getList());
 				model.addAttribute("msg", msg);
 			}
 		} catch (Exception e){
 			System.out.println(e.getMessage());
 		}
-
+		msg = null;
 		return "usuarios/lista";
 	}
 
@@ -44,7 +43,7 @@ public class UsuarioController {
 	public String listaPaginada(Model model,@PathVariable Integer page){
 
 		try {
-			model.addAttribute("usuarios", usuarioService.listaPaginada(page));
+			model.addAttribute("usuarios", usuarioService.pagedList(page));
 		} catch (Exception e){
 			System.out.println(e.getMessage());
 		}
@@ -58,7 +57,7 @@ public class UsuarioController {
 		try {
 			Usuario usuarioModel = new Usuario();
 			BeanUtils.copyProperties(usuarioDto,usuarioModel);
-			usuarioService.incluir(usuarioModel);
+			usuarioService.insert(usuarioModel);
 
 			msg = "Usuario cadastrado com sucesso";
 
@@ -74,8 +73,21 @@ public class UsuarioController {
 	public String excluir(@PathVariable Integer id){
 
 		try {
-			usuarioService.excluir(id);
+			usuarioService.delete(id);
 			msg = "Usuario excluido com sucesso";
+		} catch (Exception e){
+			msg = "Não foi possivel excluir o usuario";
+		}
+
+		return "redirect:/usuario";
+	}
+
+	@GetMapping(value = "/usuario/{id}/updateStatus")
+	public String updateStatus(@PathVariable Integer id){
+
+		try {
+			usuarioService.changeStatus(id);
+			msg = "Status do Usuario alterado com sucesso";
 		} catch (Exception e){
 			System.out.println(e.getMessage());
 		}
@@ -88,7 +100,7 @@ public class UsuarioController {
 	public String Update(Usuario usuario, @PathVariable Integer id){
 
 		try {
-			usuarioService.atualizar(usuario, id);
+			usuarioService.update(usuario, id);
 			msg = "Usuario atualizado com sucesso";
 
 		} catch (Exception e){

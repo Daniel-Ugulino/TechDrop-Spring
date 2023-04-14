@@ -38,6 +38,7 @@
                             <th scope="col">CPF</th>
                             <th scope="col">Setor</th>
                             <th scope="col">Permissões</th>
+                            <th scope="col">Status</th>
                             <th scope="col">Clientes</th>
                             <th scope="col">Produtos</th>
                             <th scope="col">Pedidos</th>
@@ -53,12 +54,20 @@
                                     <td>${obj.cpf}</td>
                                     <td>${obj.setor}</td>
                                     <td>${obj.permission}</td>
+                                    <td>${obj.status}</td>
                                     <td>${obj.clientes.size()}</td>
                                     <td>${obj.produtos.size()}</td>
                                     <td>${obj.pedidos.size()}</td>
                                     <td>
-                                        <a href="/usuario/${obj.id}/excluir">excluir</a>
+                                        <c:if test="${obj.status == true}">
+                                            <a href="/usuario/${obj.id}/updateStatus">desativar</a>
+                                        </c:if>
+                                        <c:if test="${obj.status == false}">
+                                            <a href="/usuario/${obj.id}/updateStatus">ativar</a>
+                                        </c:if>
                                         <a href="/usuario/${obj.id}">atualizar</a>
+
+                                        <a href="/usuario/${obj.id}/excluir">excluir</a>
                                     </td>
                                 </tr>
                             </c:forEach>

@@ -51,7 +51,7 @@
                 <div>
                     <label for="cliente" class="form-label">Cliente</label>
                     <select required class="form-select" id="cliente" name="cliente.id">
-                        <option selected disabled>Selecione um cliente</option>
+                        <option selected disabled value="">Selecione um cliente</option>
                         <c:forEach var="obj" items="${cliente}">
                             <option value="${obj.id}">${obj.nome}</option>
                         </c:forEach>
@@ -69,14 +69,14 @@
 
                 <div id="produto_container" style="display: flex;flex-direction: column;gap: 10px;max-height: 300px;overflow: auto">
                     <div class="d-flex" style="gap: 20px">
-                        <select onchange="get_product(this)" class="form-select tipo">
-                            <option selected disabled>Selecione a categoria do Produto</option>
+                        <select required onchange="get_product(this)" class="form-select tipo">
+                            <option value="" selected disabled>Selecione a categoria do Produto</option>
                             <option value="teclado">Teclado</option>
                             <option value="mouse">Mouse</option>
                             <option value="headset">Headset</option>
                         </select>
-                        <select class="form-select" name="produtos[]" onchange="calcular_valor(this)">
-                            <option  selected disabled>Selecione o produto</option>
+                        <select required class="form-select" name="produtos[]" onchange="calcular_valor(this)">
+                            <option value="" selected disabled>Selecione o produto</option>
                         </select>
                     </div>
                 </div>
@@ -101,15 +101,15 @@
     $("#add").click(function (){
         let div =  $('<div class="d-flex" style="gap: 20px">')
 
-        let select_type = $('<select onchange="get_product(this)" class="form-select tipo">' +
-            '<option  selected disabled>Selecione a categoria do Produto</option>' +
+        let select_type = $('<select required onchange="get_product(this)" class="form-select tipo">' +
+            '<option  value="" selected disabled>Selecione a categoria do Produto</option>' +
             '<option value="teclado">Teclado</option>' +
             '<option value="mouse">Mouse</option>' +
             '<option value="headset">Headset</option>'+
             '</select>')
 
-        let select_product = $('<select onchange="calcular_valor(this)" class="form-select" name="produtos[]">' +
-            '<option  selected disabled>Selecione o produto</option>' +
+        let select_product = $('<select required onchange="calcular_valor(this)" class="form-select" name="produtos[]">' +
+            '<option value="" selected disabled>Selecione o produto</option>' +
             '</select>')
 
         div.append(select_type,select_product)
